@@ -17,27 +17,27 @@
     }
 
     int Board::getWidth(){
-        return this.width;
+        return this->width;
     }
 
     int Board::getHeight(){
-        return this.height;
+        return this->height;
     }
 
     std::vector<Piece> Board::getPieces(){
-        return this.pieces;
+        return this->pieces;
     }
 
     void Board::setWidth(int w){
-        this.width = w;
+        this->width = w;
     }
 
     void Board::setHeight(int h){
-        this.height = h;
+        this->height = h;
     }
 
     void Board::setY(std::vector<Piece> pieces){
-        this.pieces = pieces;
+        this->pieces = pieces;
     }    
 
 

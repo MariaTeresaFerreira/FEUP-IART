@@ -3,27 +3,28 @@
 //
 
 #include "Cell.h"
+
     Cell::Cell(){};
 
     Cell::Cell(int x, int y){
-        this.x = x;
-        this.y = y;
+        this->x = x;
+        this->y = y;
     }
 
     int Cell::getX(){
-        return this.x;
+        return this->x;
     }
 
     int Cell::getY(){
-        return this.y;
+        return this->y;
     }
 
     void Cell::setX(int x){
-        this.x = x;
+        this->x = x;
     }
 
     void Cell::setY(int y){
-        this.y = y;
+        this->y = y;
     }
 
     

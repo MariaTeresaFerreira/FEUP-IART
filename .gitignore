@@ -1,0 +1,17 @@
+.idea/
+.gradle/
+out/
+build/
+*.iml
+.vscode/
+*.out
+*.exe
+*.app
+*.slo
+*.lo
+*.o
+*.obj
+*.lai
+*.la
+*.a
+*.lib

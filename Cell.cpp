@@ -27,5 +27,14 @@
         this->y = y;
     }
 
+    void Cell::printCellInfo(){
+        std::cout << "X value:" << this->getX() << std::endl << "Y value:" << this->getY() << std::endl;
+    }
+
+    std::ostream& operator<< (std::ostream& stream, const Cell& cell){
+        stream << cell.x << " " << cell.y << "\n";
+        return stream;
+    }
+
     
 

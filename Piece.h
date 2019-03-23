@@ -26,6 +26,8 @@ class Piece {
         void setColor(std::string color);
 
         void setCells(std::vector<Cell> cell);
+
+        friend std::ostream& operator<< (std::ostream& stream, Piece& piece);
 };
 
 

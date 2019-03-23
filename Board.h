@@ -34,6 +34,9 @@ class Board {
 
         void setPieces(std::vector<Piece>);
 
+        friend std::ostream& operator<< (std::ostream& stream, Board& board);
+
+
 };
 
 

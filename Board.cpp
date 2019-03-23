@@ -38,6 +38,18 @@
 
     void Board::setPieces(std::vector<Piece> pieces){
         this->pieces = pieces;
-    }    
+    }
+
+    std::ostream& operator<< (std::ostream& stream, Board& board){
+        stream << board.getWidth() << "\n";
+        stream << board.getHeight() << "\n\n";
+        for(unsigned int i = 0; i < board.getPieces().size(); i++){
+            stream << board.getPieces().at(i).getColor() << "\n";
+            for(unsigned int j = 0; j < board.getPieces().at(i).getCells().size(); j++){
+                stream << board.getPieces().at(i).getCells().at(j).getX() << " " << board.getPieces().at(i).getCells().at(j).getY() << "\n";
+            }
+        }
+        return stream;
+    }
 
 

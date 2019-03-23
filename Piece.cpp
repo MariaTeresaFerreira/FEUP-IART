@@ -27,3 +27,11 @@
         this->cells = cells;
     }
 
+    std::ostream& operator<< (std::ostream& stream, Piece& piece){
+        stream << piece.getColor() << "\n";
+        for(unsigned int i = 0; i < piece.getCells().size(); i++){
+            stream << piece.getCells().at(i).getX() << " " << piece.getCells().at(i).getY() << "\n";
+        }
+        return stream;
+    }
+

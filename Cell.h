@@ -5,6 +5,7 @@
 #ifndef FEUP_IART_CELL_H
 #define FEUP_IART_CELL_H
 
+#include <iostream>
 
 class Cell {
     protected:
@@ -23,7 +24,11 @@ class Cell {
         void setX(int x);
 
         void setY(int y);
-        
+
+        void printCellInfo();
+
+        friend std::ostream& operator<< (std::ostream& stream, const Cell& cell);
+
 
 };
 

@@ -12,6 +12,10 @@ class Cell {
         int y;
 
     public:
+        Cell();
+
+        Cell(int x, int y);
+
         int getX();
 
         int getY();

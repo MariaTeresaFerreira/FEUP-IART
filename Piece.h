@@ -15,6 +15,10 @@ class Piece {
         std::vector<Cell> cells;
 
     public:
+        Piece();
+
+        Piece(std::string color, std::vector<Cell> cells);
+
         std::string getColor();
 
         std::vector<Cell> getCells();

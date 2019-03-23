@@ -13,9 +13,14 @@ class Board {
     protected:
         int width;
         int height;
-        std:vector<Piece> pieces;
+        std::vector<Piece> pieces;
 
     public:
+        Board();
+
+        Board(int width, int height);
+
+        Board(int width, int height, std:vector<Piece> pieces);
 
         int getWidth();
 

@@ -3,7 +3,19 @@
 //
 
 #include "Board.h"
-  
+    Board::Board(){}
+
+    Board::Board(int width, int height){
+        this->width = width;
+        this->height = height;
+    }
+
+    Board::Board(int width, int height, std:vector<Piece> pieces){
+        this->width = width;
+        this->height = height;
+        this->pieces = pieces;
+    }
+
     int Board::getWidth(){
         return this.width;
     }

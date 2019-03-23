@@ -4,6 +4,13 @@
 
 #include "Piece.h"
 
+    Piece::Piece(){};
+
+    Piece::Piece(std::string color, std::vector<Cell> cells){
+        this.color = color;
+        this.cells = cells;
+    }
+
     std::string Piece::getColor(){
         return this.color;
     }

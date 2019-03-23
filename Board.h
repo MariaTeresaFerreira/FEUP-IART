@@ -20,7 +20,7 @@ class Board {
 
         Board(int width, int height);
 
-        Board(int width, int height, std:vector<Piece> pieces);
+        Board(int width, int height, std::vector<Piece> pieces);
 
         int getWidth();
 
@@ -32,7 +32,7 @@ class Board {
 
         void setHeight(int height);
 
-        void setHeight(std::vector<Piece>);
+        void setPieces(std::vector<Piece>);
 
 };
 

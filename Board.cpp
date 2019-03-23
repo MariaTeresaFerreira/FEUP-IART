@@ -10,7 +10,7 @@
         this->height = height;
     }
 
-    Board::Board(int width, int height, std:vector<Piece> pieces){
+    Board::Board(int width, int height, std::vector<Piece> pieces){
         this->width = width;
         this->height = height;
         this->pieces = pieces;
@@ -36,7 +36,7 @@
         this->height = h;
     }
 
-    void Board::setY(std::vector<Piece> pieces){
+    void Board::setPieces(std::vector<Piece> pieces){
         this->pieces = pieces;
     }    
 

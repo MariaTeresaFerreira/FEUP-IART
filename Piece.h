@@ -23,9 +23,9 @@ class Piece {
 
         std::vector<Cell> getCells();
 
-        std::string setColor(std::string color);
+        void setColor(std::string color);
 
-        std::std::string setCells(std::vector<Cell> cell);
+        void setCells(std::vector<Cell> cell);
 };
 
 

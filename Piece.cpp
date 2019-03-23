@@ -4,7 +4,7 @@
 
 #include "Piece.h"
 
-    Piece::Piece(){};
+    Piece::Piece(){}
 
     Piece::Piece(std::string color, std::vector<Cell> cells){
         this->color = color;
@@ -19,11 +19,11 @@
         return this->cells;
     }
 
-    void setY(std::string color){
+    void Piece::setColor(std::string color){
         this->color = color;
     }
 
-    void setX(std::vector<Cell> cells){
+    void Piece::setCells(std::vector<Cell> cells){
         this->cells = cells;
     }
 

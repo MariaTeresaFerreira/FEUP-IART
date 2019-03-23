@@ -2,4 +2,21 @@
 // Created by Teresa Ferreira on 22/03/2019.
 //
 
-#include "piece.h"
+#include "Piece.h"
+
+    std::string Piece::getColor(){
+        return this.color;
+    }
+
+    std::vector<Cell> Piece::getCells(){
+        return this.cells;
+    }
+
+    void setY(std::string color){
+        this.color = color;
+    }
+
+    void setX(std::vector<Cell> cells){
+        this.cells = cells;
+    }
+

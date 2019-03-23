@@ -6,7 +6,19 @@
 #define FEUP_IART_CELL_H
 
 
-class cell {
+class Cell {
+    protected:
+        int x;
+        int y;
+
+    public:
+        int getX();
+
+        int getY();
+
+        void setX(int x);
+
+        void setY(int y);
 
 };
 

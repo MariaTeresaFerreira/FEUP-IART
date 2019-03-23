@@ -5,9 +5,23 @@
 #ifndef FEUP_IART_PIECE_H
 #define FEUP_IART_PIECE_H
 
+#include "Cell.h"
+#include "vector"
+#include "string"
 
-class piece {
+class Piece {
+    protected:
+        std::string color;
+        std::vector<Cell> cells;
 
+    public:
+        std::string getColor();
+
+        std::vector<Cell> getCells();
+
+        std::string setColor(std::string color);
+
+        std::std::string setCells(std::vector<Cell> cell);
 };
 
 

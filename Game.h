@@ -11,9 +11,17 @@
 
 class Game {
     protected:
-        
+        Board board;
 
     public:
+
+        Game();
+
+        Game(Board board);
+
+        void draw();
+
+        void run();
         
 };
 

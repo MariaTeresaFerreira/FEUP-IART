@@ -4,6 +4,11 @@
 #include "Board.h"
 
 int main() {
+/*
+    Game game = Game(Board x);
+    game.run();
+*/
+
     Cell cell1 = Cell(1,2);
     Cell cell2 = Cell(4,3);
     Cell cell3 = Cell(12,1);

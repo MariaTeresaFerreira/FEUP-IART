@@ -9,11 +9,13 @@
 #include "vector"
 #include "string"
 
+
 class Board {
     protected:
         int width;
         int height;
         std::vector<Piece> pieces;
+
 
     public:
         Board();

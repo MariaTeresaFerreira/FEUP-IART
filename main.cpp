@@ -9,9 +9,9 @@ int main() {
     game.run();
 */
 
-    Cell cell1 = Cell(1,2);
-    Cell cell2 = Cell(4,3);
-    Cell cell3 = Cell(12,1);
+    Cell cell1 = Cell(2,1);
+    Cell cell2 = Cell(2,4);
+    Cell cell3 = Cell(0,1);
     Cell cell4 = Cell(0,0);
     
     std::vector<Cell> cells;
@@ -21,15 +21,15 @@ int main() {
     cells.push_back(cell3);
     cells.push_back(cell4);
 
-    Piece piece1 = Piece("greeen", cells);
-    Piece piece2 = Piece("red", cells);
-    Piece piece3 = Piece("blue", cells);
+    Piece piece1 = Piece("green", cells);
+    //Piece piece2 = Piece("red", cells);
+    //Piece piece3 = Piece("blue", cells);
 
     std::vector<Piece> pieces;
 
     pieces.push_back(piece1);
-    pieces.push_back(piece2);
-    pieces.push_back(piece3);
+    //pieces.push_back(piece2);
+    //pieces.push_back(piece3);
 
     Board board = Board(5,3,pieces);
     

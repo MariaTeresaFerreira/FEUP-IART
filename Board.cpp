@@ -3,6 +3,7 @@
 //
 
 #include "Board.h"
+
     Board::Board(){}
 
     Board::Board(int width, int height){
@@ -54,23 +55,65 @@
 
     void Board::printBoard(){
 
+        char piecesArray[this->width][this->height];
+
+        for (int i = 0; i < this->height; ++i)
+        {
+            for (int j = 0; j < this->width; ++j)
+            {
+                piecesArray[i][j] = ' ';
+
+            }
+        }
+
+        for(int m = 0; m < this->pieces.size(); m++){
+
+            for(int n = 0; n < this->pieces.at(m).getCells().size(); n++){
+                piecesArray[this->pieces.at(m).getCells().at(n).getX()][this->pieces.at(m).getCells().at(n).getY()]
+                        = this->pieces.at(m).getPieceCharColor();
+            }
+
+        }
+
+        for (int i = 0; i < this->height; ++i)
+        {
+            std::cout << " | " ;
+            for (int j = 0; j < this->width; ++j)
+            {
+                std::cout << piecesArray[i][j] << ' ';
+                std::cout << " | " ;
+
+            }
+            std::cout << std::endl;
+        }
+    }
+
+
+
+
+/*
+
         for(int i = 0; i < this->getHeight(); i++)
         {
 
             for(int j = 0; j < this->getWidth(); j++)
             {
-                std::cout << " | ";
+                Piece newPiece = Piece();
+                if (std::find(this->pieces.begin(), this->pieces.end(), ) != this->pieces.end())
+                    std::cout << " | ";
+
+
                 /*
                 for(size_t k = 0; k < this->getPieces(); k++)
                 {
                     if()
                 }
-                */
+
                 
             }
             std::cout << "\n";
         }
         
-    }
+    }*/
 
 

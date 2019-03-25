@@ -8,6 +8,7 @@
 #include "Cell.h"
 #include "vector"
 #include "string"
+#include <iostream>
 
 class Piece {
     protected:
@@ -28,6 +29,10 @@ class Piece {
         void setCells(std::vector<Cell> cell);
 
         friend std::ostream& operator<< (std::ostream& stream, Piece& piece);
+
+        int getColorInt(std::string color);
+
+        void printPiece();
 };
 
 

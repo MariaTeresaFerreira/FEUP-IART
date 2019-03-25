@@ -52,4 +52,25 @@
         return stream;
     }
 
+    void Board::printBoard(){
+
+        for(int i = 0; i < this->getHeight(); i++)
+        {
+
+            for(int j = 0; j < this->getWidth(); j++)
+            {
+                std::cout << " | ";
+                /*
+                for(size_t k = 0; k < this->getPieces(); k++)
+                {
+                    if()
+                }
+                */
+                
+            }
+            std::cout << "\n";
+        }
+        
+    }
+
 

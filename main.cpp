@@ -33,6 +33,8 @@ int main() {
 
     Board board = Board(5,3,pieces);
     
-    std::cout << board;
+    //std::cout << board;
+
+    board.printBoard();
     return 0;
 }

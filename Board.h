@@ -36,6 +36,8 @@ class Board {
 
         friend std::ostream& operator<< (std::ostream& stream, Board& board);
 
+        void printBoard();
+
 
 };
 

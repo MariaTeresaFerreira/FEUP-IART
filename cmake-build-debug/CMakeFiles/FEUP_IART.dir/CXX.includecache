@@ -1,0 +1,30 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/Teresa/FEUP/3/IART/FEUP-IART/Board.cpp
+Board.h
+/Users/Teresa/FEUP/3/IART/FEUP-IART/Board.h
+
+/Users/Teresa/FEUP/3/IART/FEUP-IART/Board.h
+
+/Users/Teresa/FEUP/3/IART/FEUP-IART/Cell.cpp
+Cell.h
+/Users/Teresa/FEUP/3/IART/FEUP-IART/Cell.h
+
+/Users/Teresa/FEUP/3/IART/FEUP-IART/Cell.h
+
+/Users/Teresa/FEUP/3/IART/FEUP-IART/Piece.cpp
+Piece.h
+/Users/Teresa/FEUP/3/IART/FEUP-IART/Piece.h
+
+/Users/Teresa/FEUP/3/IART/FEUP-IART/Piece.h
+
+/Users/Teresa/FEUP/3/IART/FEUP-IART/main.cpp
+iostream
+-
+

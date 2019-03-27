@@ -25,10 +25,12 @@ int main() {
     
     cells1.push_back(cell1);
     cells1.push_back(cell2);
+    
     cells2.push_back(cell3);
     cells2.push_back(cell4);
     cells3.push_back(cell5);
     cells3.push_back(cell6);
+    
 
     Piece piece1 = Piece("green", cells1);
     Piece piece2 = Piece("red", cells2);

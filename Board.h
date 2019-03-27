@@ -13,7 +13,9 @@ class Board {
     protected:
         int lines;
         int columns;
+        std::vector< std::vector<char> > matrix;
         std::vector<Piece> pieces;
+
 
     public:
         Board();
@@ -27,6 +29,8 @@ class Board {
         int getColumns();
 
         std::vector<Piece> getPieces();
+
+        void setMatrixPosition(char icon, int x, int y);
 
         void setLines(int lines);
 

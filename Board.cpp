@@ -8,12 +8,38 @@
     Board::Board(int lines, int columns){
         this->lines = lines;
         this->columns = columns;
+
+        this->matrix = std::vector< std::vector<char> >(this->getLines(), std::vector<char>(this->getColumns()));
+
+        for(int i = 0; i < lines; i++){
+            for(int j = 0; j < columns; j++){
+                setMatrixPosition(' ',i,j);
+            }
+        }
+        
     }
 
     Board::Board(int lines, int columns, std::vector<Piece> pieces){
         this->lines = lines;
         this->columns = columns;
         this->pieces = pieces;
+        
+        this->matrix = std::vector< std::vector<char> >(this->getLines(), std::vector<char>(this->getColumns()));
+
+        for(int i = 0; i < lines; i++){
+            for(int j = 0; j < columns; j++){
+                setMatrixPosition(' ',i,j);
+            }
+        }
+
+        for(unsigned int i = 0; i < this->getPieces().size(); i++)
+        {
+            for(unsigned int j = 0; j < this->getPieces()[i].getCells().size(); j++)
+            {
+                this->matrix[this->getPieces()[i].getCells()[j].getY()][this->getPieces()[i].getCells()[j].getX()] 
+                = this->getPieces()[i].getPieceCharColor();       
+            }
+        }
     }
 
     int Board::getLines(){
@@ -52,26 +78,11 @@
         return stream;
     }
 
+    void Board::setMatrixPosition(char icon, int x, int y){
+        this->matrix[x][y] = icon; 
+    }
+
     void Board::printBoard(){
-
-        std::vector< std::vector<char> > vecBoard(this->getLines(), std::vector<char>(this->getColumns()));
-
-        for(int i = 0; i < this->getLines(); i++)
-        {
-            for(int j = 0; j < this->getColumns(); j++)
-            {
-                vecBoard[i][j] = ' ';       
-            }
-        }
-
-        for(unsigned int i = 0; i < this->getPieces().size(); i++)
-        {
-            for(unsigned int j = 0; j < this->getPieces()[i].getCells().size(); j++)
-            {
-                vecBoard[this->getPieces()[i].getCells()[j].getY()][this->getPieces()[i].getCells()[j].getX()] 
-                = this->getPieces()[i].getPieceCharColor();       
-            }
-        }
 
         for(int i = 0; i < this->getLines(); i++)
         {
@@ -80,7 +91,7 @@
                 if(j == 0)
                     std::cout  << "| ";
 
-                std::cout << vecBoard[i][j] << " | ";       
+                std::cout << this->matrix[i][j] << " | ";       
             }
             
             std::cout << std::endl;
@@ -95,7 +106,7 @@
             std::cout << std::endl;
 
         }
-
+    
         
     }
 

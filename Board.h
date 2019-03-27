@@ -11,26 +11,26 @@
 
 class Board {
     protected:
-        int width;
-        int height;
+        int lines;
+        int columns;
         std::vector<Piece> pieces;
 
     public:
         Board();
 
-        Board(int width, int height);
+        Board(int lines, int columns);
 
-        Board(int width, int height, std::vector<Piece> pieces);
+        Board(int lines, int columns, std::vector<Piece> pieces);
 
-        int getWidth();
+        int getLines();
 
-        int getHeight();
+        int getColumns();
 
         std::vector<Piece> getPieces();
 
-        void setWidth(int width);
+        void setLines(int lines);
 
-        void setHeight(int height);
+        void setColumns(int columns);
 
         void setPieces(std::vector<Piece>);
 

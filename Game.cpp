@@ -13,6 +13,11 @@
         this->board = board;
     }
 
+    Game::Game(Board board, Board newBoard){
+        this->board = board;
+        this->newBoard = newBoard;
+    }
+
     void Game::draw(){
         //draw board on console
     }

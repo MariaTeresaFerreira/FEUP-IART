@@ -5,35 +5,35 @@
 #include "Board.h"
     Board::Board(){}
 
-    Board::Board(int width, int height){
-        this->width = width;
-        this->height = height;
+    Board::Board(int lines, int columns){
+        this->lines = lines;
+        this->columns = columns;
     }
 
-    Board::Board(int width, int height, std::vector<Piece> pieces){
-        this->width = width;
-        this->height = height;
+    Board::Board(int lines, int columns, std::vector<Piece> pieces){
+        this->lines = lines;
+        this->columns = columns;
         this->pieces = pieces;
     }
 
-    int Board::getWidth(){
-        return this->width;
+    int Board::getLines(){
+        return this->lines;
     }
 
-    int Board::getHeight(){
-        return this->height;
+    int Board::getColumns(){
+        return this->columns;
     }
 
     std::vector<Piece> Board::getPieces(){
         return this->pieces;
     }
 
-    void Board::setWidth(int w){
-        this->width = w;
+    void Board::setLines(int w){
+        this->lines = w;
     }
 
-    void Board::setHeight(int h){
-        this->height = h;
+    void Board::setColumns(int h){
+        this->columns = h;
     }
 
     void Board::setPieces(std::vector<Piece> pieces){
@@ -41,8 +41,8 @@
     }
 
     std::ostream& operator<< (std::ostream& stream, Board& board){
-        stream << board.getWidth() << "\n";
-        stream << board.getHeight() << "\n\n";
+        stream << board.getLines() << "\n";
+        stream << board.getColumns() << "\n\n";
         for(unsigned int i = 0; i < board.getPieces().size(); i++){
             stream << board.getPieces().at(i).getColor() << "\n";
             for(unsigned int j = 0; j < board.getPieces().at(i).getCells().size(); j++){
@@ -54,22 +54,48 @@
 
     void Board::printBoard(){
 
-        for(int i = 0; i < this->getHeight(); i++)
-        {
+        std::vector< std::vector<char> > vecBoard(this->getLines(), std::vector<char>(this->getColumns()));
 
-            for(int j = 0; j < this->getWidth(); j++)
+        for(int i = 0; i < this->getLines(); i++)
+        {
+            for(int j = 0; j < this->getColumns(); j++)
             {
-                std::cout << " | ";
-                /*
-                for(size_t k = 0; k < this->getPieces(); k++)
-                {
-                    if()
-                }
-                */
-                
+                vecBoard[i][j] = ' ';       
             }
-            std::cout << "\n";
         }
+
+        for(unsigned int i = 0; i < this->getPieces().size(); i++)
+        {
+            for(unsigned int j = 0; j < this->getPieces()[i].getCells().size(); j++)
+            {
+                vecBoard[this->getPieces()[i].getCells()[j].getY()][this->getPieces()[i].getCells()[j].getX()] 
+                = this->getPieces()[i].getPieceCharColor();       
+            }
+        }
+
+        for(int i = 0; i < this->getLines(); i++)
+        {
+            for(int j = 0; j < this->getColumns(); j++)
+            {
+                if(j == 0)
+                    std::cout  << "| ";
+
+                std::cout << vecBoard[i][j] << " | ";       
+            }
+            
+            std::cout << std::endl;
+
+            for(int j = 1; j < this->getColumns(); j++)
+            {
+                if(j == 1)
+                    std::cout  << "-----";
+
+                    std::cout  << "----";
+            }
+            std::cout << std::endl;
+
+        }
+
         
     }
 

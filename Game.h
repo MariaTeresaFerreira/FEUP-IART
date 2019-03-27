@@ -12,12 +12,15 @@
 class Game {
     protected:
         Board board;
+        Board newBoard;
 
     public:
 
         Game();
 
         Game(Board board);
+
+        Game(Board board, Board newBoard);
 
         void draw();
 

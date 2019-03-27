@@ -33,6 +33,8 @@ class Piece {
         int getColorInt(std::string color);
 
         void printPiece();
+
+        char getPieceCharColor();
 };
 
 

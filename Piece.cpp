@@ -80,3 +80,19 @@
         }
     }
 
+    char Piece::getPieceCharColor(){
+        int colorInt = this->getColorInt(this->getColor());
+        switch(colorInt){
+            case 1:
+                return 'r';
+            case 2:
+                return 'b';
+            case 3:
+                return 'g';
+            case 4:
+                return 'y';
+            default:
+                break;
+        }
+    }
+

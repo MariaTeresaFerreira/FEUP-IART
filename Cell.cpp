@@ -27,13 +27,27 @@
         this->y = y;
     }
 
-    void Cell::printCellInfo(){
+    void Cell::printCellInfo(Cell cell){
         std::cout << "X value:" << this->getX() << std::endl << "Y value:" << this->getY() << std::endl;
     }
 
     std::ostream& operator<< (std::ostream& stream, const Cell& cell){
         stream << cell.x << " " << cell.y << "\n";
         return stream;
+    }
+
+    bool Cell::isAdjacent(Cell cell){
+        
+        if(this->getX() - 1 == cell.getX())
+            return true;
+        else if(this->getX() + 1 == cell.getX())
+            return true;
+        else if(this->getY() - 1 == cell.getY())
+            return true;
+        else if(this->getY() + 1 == cell.getY())
+            return true;
+
+        return false;
     }
 
     

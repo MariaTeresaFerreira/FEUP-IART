@@ -42,6 +42,8 @@ class Board {
 
         void printBoard();
 
+        void putPiecesMatrix();
+
 
 };
 

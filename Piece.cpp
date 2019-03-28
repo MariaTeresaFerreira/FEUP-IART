@@ -94,5 +94,6 @@
             default:
                 break;
         }
+        return ' ';
     }
 

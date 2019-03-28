@@ -42,6 +42,8 @@ class Board {
 
         void putMatrixEmpty();
 
+        Piece& getPieceWithCell(Cell cell);
+
         void printBoard();
 
         friend std::ostream& operator<< (std::ostream& stream, Board& board);

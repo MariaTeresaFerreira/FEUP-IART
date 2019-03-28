@@ -60,6 +60,10 @@ int main() {
     
     board.printBoard();
 
+    board.getPieceWithCell(Cell(0,0)).setColor("red");
+
+    board.printBoard();
+    //std::cout << board.getPieceWithCell(Cell(0,0)) << std::endl;
     /*
     Game game = Game(Board board);
     game.run();

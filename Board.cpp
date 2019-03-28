@@ -68,14 +68,13 @@
         }
     }
 
-    Piece& Board::getPieceWithCell(Cell cell){
+    bool Board::hasPieceWithCell(Cell cell){
         for(unsigned int i = 0; i < this->pieces.size(); i++){
             if(this->pieces[i].containsCell(cell)){
-                return this->pieces[i];
+                return true;
             }
         }
-        Piece ola;
-        return ola;
+        return false;
     }
 
     void Board::printBoard(){

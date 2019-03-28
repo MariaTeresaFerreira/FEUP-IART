@@ -13,13 +13,8 @@
         this->board = board;
     }
 
-    Game::Game(Board board, Board newBoard){
-        this->board = board;
-        this->newBoard = newBoard;
-    }
-
     void Game::draw(){
-        //draw board on console
+        board.printBoard();
     }
 
     void Game::run(){
@@ -28,9 +23,32 @@
 
             this->draw();
 
-            //read imput and process key
-            
+            std::cout << this->imputCell();            
         }
+    }
+
+    Cell Game::imputCell(){
+        int x;
+        int y;
+        while(true){
+            std::cout << "Insert X of the Cell" << std::endl;
+            std::cin >> x;
+            if(x < 0 || x >= board.getColumns()){
+                continue;
+            } 
+            std::cout << std::endl;
+
+            std::cout << "Insert Y of the Cell" << std::endl;
+            std::cin >> y;
+            if(y < 0 || x >= board.getLines()){
+                continue;
+            }
+            std::cout << std::endl;
+
+            break;
+        }
+
+        return Cell(x,y);
     }
 
 

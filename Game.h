@@ -12,7 +12,6 @@
 class Game {
     protected:
         Board board;
-        Board newBoard;
 
     public:
 
@@ -20,11 +19,11 @@ class Game {
 
         Game(Board board);
 
-        Game(Board board, Board newBoard);
-
         void draw();
 
         void run();
+
+        Cell imputCell();
         
 };
 

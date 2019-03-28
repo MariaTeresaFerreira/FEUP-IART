@@ -2,6 +2,8 @@
 #include "Cell.h"
 #include "Piece.h"
 #include "Board.h"
+#include "Game.h"
+
 
 int main() {
     Cell cellb1 = Cell(0,0);
@@ -60,14 +62,13 @@ int main() {
     
     board.printBoard();
 
-    board.getPieceWithCell(Cell(0,0)).setColor("red");
+    //std::cout << board.hasPieceInCell(Cell(0,0)) << std::endl;
+    //std::cout << board.hasPieceInCell(Cell(0,1)) << std::endl;
 
-    board.printBoard();
-    //std::cout << board.getPieceWithCell(Cell(0,0)) << std::endl;
-    /*
-    Game game = Game(Board board);
+
+    Game game = Game(board);
     game.run();
-    */
+    
 
     return 0;
 }

@@ -42,7 +42,7 @@ class Board {
 
         void putMatrixEmpty();
 
-        Piece& getPieceWithCell(Cell cell);
+        bool hasPieceWithCell(Cell cell);
 
         void printBoard();
 

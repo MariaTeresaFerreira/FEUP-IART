@@ -36,14 +36,15 @@ class Board {
 
         void setColumns(int columns);
 
-        void setPieces(std::vector<Piece>);
-
-        friend std::ostream& operator<< (std::ostream& stream, Board& board);
-
-        void printBoard();
+        void setPieces(std::vector<Piece> pieces);
 
         void putPiecesMatrix();
 
+        void putMatrixEmpty();
+
+        void printBoard();
+
+        friend std::ostream& operator<< (std::ostream& stream, Board& board);
 
 };
 

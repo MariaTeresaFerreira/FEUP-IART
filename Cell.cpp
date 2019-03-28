@@ -38,13 +38,13 @@
 
     bool Cell::isAdjacent(Cell cell){
         
-        if(this->getX() - 1 == cell.getX())
+        if(this->getX() - 1 == cell.getX() && this->getY() == cell.getY())
             return true;
-        else if(this->getX() + 1 == cell.getX())
+        else if(this->getX() + 1 == cell.getX() && this->getY() == cell.getY())
             return true;
-        else if(this->getY() - 1 == cell.getY())
+        else if(this->getY() - 1 == cell.getY() && this->getX() == cell.getX())
             return true;
-        else if(this->getY() + 1 == cell.getY())
+        else if(this->getY() + 1 == cell.getY() && this->getX() == cell.getX())
             return true;
 
         return false;

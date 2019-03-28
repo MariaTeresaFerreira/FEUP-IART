@@ -9,8 +9,7 @@
         this->lines = lines;
         this->columns = columns;
         this->matrix = std::vector< std::vector<char> >(this->getLines(), std::vector<char>(this->getColumns()));
-
-        putPiecesMatrix();   
+        putMatrixEmpty();
     }
 
     Board::Board(int lines, int columns, std::vector<Piece> pieces){
@@ -18,13 +17,7 @@
         this->columns = columns;
         this->pieces = pieces;
         this->matrix = std::vector< std::vector<char> >(this->getLines(), std::vector<char>(this->getColumns()));
-
-        for(int i = 0; i < lines; i++){
-            for(int j = 0; j < columns; j++){
-                setMatrixPosition(' ',i,j);
-            }
-        }
-
+        putMatrixEmpty();
         putPiecesMatrix();
     }
 
@@ -52,18 +45,6 @@
         this->pieces = pieces;
     }
 
-    std::ostream& operator<< (std::ostream& stream, Board& board){
-        stream << board.getLines() << "\n";
-        stream << board.getColumns() << "\n\n";
-        for(unsigned int i = 0; i < board.getPieces().size(); i++){
-            stream << board.getPieces().at(i).getColor() << "\n";
-            for(unsigned int j = 0; j < board.getPieces().at(i).getCells().size(); j++){
-                stream << board.getPieces().at(i).getCells().at(j).getX() << " " << board.getPieces().at(i).getCells().at(j).getY() << "\n";
-            }
-        }
-        return stream;
-    }
-
     void Board::setMatrixPosition(char icon, int x, int y){
         this->matrix[x][y] = icon; 
     }
@@ -75,6 +56,14 @@
             {
                 this->matrix[this->getPieces()[i].getCells()[j].getY()][this->getPieces()[i].getCells()[j].getX()] 
                 = this->getPieces()[i].getPieceCharColor();       
+            }
+        }
+    }
+
+    void Board::putMatrixEmpty(){
+        for(int i = 0; i < this->lines; i++){
+            for(int j = 0; j < this->columns; j++){
+                setMatrixPosition(' ',i,j);
             }
         }
     }
@@ -103,8 +92,18 @@
             std::cout << std::endl;
 
         }
-    
-        
+    }
+
+    std::ostream& operator<< (std::ostream& stream, Board& board){
+        stream << board.getLines() << "\n";
+        stream << board.getColumns() << "\n\n";
+        for(unsigned int i = 0; i < board.getPieces().size(); i++){
+            stream << board.getPieces().at(i).getColor() << "\n";
+            for(unsigned int j = 0; j < board.getPieces().at(i).getCells().size(); j++){
+                stream << board.getPieces().at(i).getCells().at(j).getX() << " " << board.getPieces().at(i).getCells().at(j).getY() << "\n";
+            }
+        }
+        return stream;
     }
 
 

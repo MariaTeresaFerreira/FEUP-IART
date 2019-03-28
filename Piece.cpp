@@ -8,8 +8,13 @@
     Piece::Piece(){}
 
     Piece::Piece(std::string color, std::vector<Cell> cells){
-        this->color = color;
-        this->cells = cells;
+        if(cellsAdjacent(cells)){
+            this->color = color;
+            this->cells = cells;
+        }
+        else{
+            std::cout << "Cells are not adjacent" << std::endl;
+        }
     }
 
     std::string Piece::getColor(){
@@ -35,14 +40,37 @@
         }
         return stream;
     }
-/*
-    string enum{
-        red = 1;
-        blue = 2;
-        green = 3;
-        yellow = 4;
-    }color_name;
-*/
+
+
+    bool Piece::cellsAdjacent(std::vector<Cell> cells){
+
+        int numberCells = cells.size();
+        
+        if(numberCells == 1){
+            return true;
+        }
+
+        for(unsigned int i = 0; i < cells.size(); i++){
+            for(unsigned int j = 0; j < cells.size(); j++){
+
+                //same cell can not be compared so iteration skipped
+                if(i == j){
+                    continue;
+                }
+
+                //if this.cell is adjacent to other cell they are valid
+                if(cells[i].isAdjacent(cells[j])){
+                    numberCells--;
+                    break;
+                }
+            }
+        }
+
+        if(numberCells == 0)
+            return true;
+        return false;
+    }
+
     int Piece::getColorInt(std::string color){
         int response = -1;
        

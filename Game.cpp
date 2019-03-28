@@ -21,16 +21,25 @@
 
         while(true){
 
-            Cell imput;
+            Cell imputCell;
             while(true){
                 std::cout << "Imput a Valid Cell to play" << std::endl;
-                imput = this->imputCell();
+                imputCell = this->imputCell();
                 
-                if(board.hasPieceWithCell(imput))
+                if(board.hasPieceWithCell(imputCell))
                     break;
             }
 
-            std::cout << imput;
+            char direction = this->imputDirection();
+
+            if(this->board.possibleMove(imputCell, direction)){
+                std::cout << std:: endl <<  "está bem" << std::endl << std:: endl;
+            }
+            else{
+                continue;
+            }
+            
+            //check if game ended
         }
     }
 
@@ -59,9 +68,23 @@
 
             break;
         }
-
         return Cell(x,y);
     }
 
+    char Game::imputDirection(){
+        char direction;
+
+        while(true){
+            std::cout << "Press 'a' for left, 'w' for up, 'd for right or 's' for down" << std::endl;
+            std::cin >> direction;
+
+            if(direction == 'd' || direction == 'w' || direction == 'a' || direction == 's')
+                break;
+        }
+       
+        return direction;
+    }
+
+    
 
 

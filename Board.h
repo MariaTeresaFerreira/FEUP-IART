@@ -42,7 +42,11 @@ class Board {
 
         void putMatrixEmpty();
 
+        Cell moveCell(Cell cell, char direction);
+
         bool hasPieceWithCell(Cell cell);
+
+        bool possibleMove(Cell cell, char direction);
 
         void printBoard();
 

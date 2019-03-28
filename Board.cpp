@@ -60,6 +60,20 @@
         }
     }
 
+    Cell Board::moveCell(Cell cell, char direction){
+        Cell response;
+        if(direction == 'd')
+            response = Cell(cell.getX()+1, cell.getY());
+        else if(direction == 'w')
+            response = Cell(cell.getX(), cell.getY()-1);
+        else if(direction == 'a')
+            response = Cell(cell.getX()-1, cell.getY());
+        else if(direction == 's')
+            response = Cell(cell.getX(), cell.getY()+1);
+
+        return response;
+    }
+
     void Board::putMatrixEmpty(){
         for(int i = 0; i < this->lines; i++){
             for(int j = 0; j < this->columns; j++){
@@ -73,6 +87,30 @@
             if(this->pieces[i].containsCell(cell)){
                 return true;
             }
+        }
+        return false;
+    }
+
+    bool Board::possibleMove(Cell cell, char direction){
+        Cell newCell;
+        int numberCells;
+        
+        for(unsigned int i = 0; i < this->pieces.size(); i++){
+            if(this->pieces[i].containsCell(cell)){
+                numberCells = this->pieces[i].getCells().size();
+
+                for(unsigned int j = 0; j < this->pieces[i].getCells().size(); j++){
+                    newCell = moveCell(this->pieces[i].getCells()[j],direction);
+                    
+                    if(this->pieces[i].containsCell(newCell) || !hasPieceWithCell(newCell) ) {
+                        if(newCell.getX() >= 0 && newCell.getX() < this->columns && newCell.getY() >= 0 && newCell.getY() < this->lines)
+                            numberCells--;
+                    }
+                }
+            }
+        }
+        if(numberCells == 0){
+            return true;
         }
         return false;
     }

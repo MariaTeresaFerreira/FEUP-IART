@@ -21,9 +21,16 @@
 
         while(true){
 
-            this->draw();
+            Cell imput;
+            while(true){
+                std::cout << "Imput a Valid Cell to play" << std::endl;
+                imput = this->imputCell();
+                
+                if(board.hasPieceWithCell(imput))
+                    break;
+            }
 
-            std::cout << this->imputCell();            
+            std::cout << imput;
         }
     }
 
@@ -31,9 +38,13 @@
         int x;
         int y;
         while(true){
+            this->draw();
+            std::cout << std::endl;
+
             std::cout << "Insert X of the Cell" << std::endl;
             std::cin >> x;
             if(x < 0 || x >= board.getColumns()){
+                std::cout << "Invalid X" << std::endl;
                 continue;
             } 
             std::cout << std::endl;
@@ -41,6 +52,7 @@
             std::cout << "Insert Y of the Cell" << std::endl;
             std::cin >> y;
             if(y < 0 || x >= board.getLines()){
+                std::cout << "Invalid Y" << std::endl;
                 continue;
             }
             std::cout << std::endl;

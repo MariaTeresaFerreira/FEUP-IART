@@ -60,8 +60,6 @@ int main() {
 
     Board board = Board(4,4,pieces);
     
-    board.printBoard();
-
     //std::cout << board.hasPieceInCell(Cell(0,0)) << std::endl;
     //std::cout << board.hasPieceInCell(Cell(0,1)) << std::endl;
 

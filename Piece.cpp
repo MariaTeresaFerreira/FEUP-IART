@@ -41,6 +41,14 @@
         return stream;
     }
 
+    bool Piece::containsCell(Cell cell){
+        for(unsigned int i = 0; i < this->cells.size(); i++){
+            if(cell.getX() == this->cells[i].getX() && cell.getY() == this->cells[i].getY())
+            return true;
+        }
+        return false;
+    }
+
 
     bool Piece::cellsAdjacent(std::vector<Cell> cells){
 

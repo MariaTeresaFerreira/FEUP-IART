@@ -32,6 +32,8 @@ class Piece {
 
         int getColorInt(std::string color);
 
+        bool containsCell(Cell cell);
+
         bool cellsAdjacent(std::vector<Cell> cells);
 
         void printPiece();

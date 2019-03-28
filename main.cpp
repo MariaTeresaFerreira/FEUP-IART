@@ -4,11 +4,6 @@
 #include "Board.h"
 
 int main() {
-/*
-    Game game = Game(Board x);
-    game.run();
-*/
-
     Cell cellb1 = Cell(0,0);
 
     Cell cellb2 = Cell(3,0);
@@ -64,5 +59,11 @@ int main() {
     Board board = Board(4,4,pieces);
     
     board.printBoard();
+
+    /*
+    Game game = Game(Board board);
+    game.run();
+    */
+
     return 0;
 }

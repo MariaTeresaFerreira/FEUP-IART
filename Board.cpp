@@ -72,6 +72,18 @@
 
         for(int i = 0; i < this->getLines(); i++)
         {
+            
+            if(i == 0){
+                for(int j = 1; j < this->getColumns(); j++){
+                    if(j == 1)
+                        std::cout  << "-----";
+
+                    std::cout  << "----";
+                }
+                std::cout << std::endl;
+            }
+            
+
             for(int j = 0; j < this->getColumns(); j++)
             {
                 if(j == 0)

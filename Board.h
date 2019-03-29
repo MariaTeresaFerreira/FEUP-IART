@@ -57,7 +57,7 @@ class Board {
 
         std::vector< std::vector<char> > getBoard();
 
-        std::vector<Cell> moveTop(Piece p);
+        bool isGameFinished();
 
 };
 

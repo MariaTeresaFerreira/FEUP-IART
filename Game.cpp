@@ -41,7 +41,12 @@
                 continue;
             }
             
-            //check if game ended
+            if(this->board.isGameFinished()){
+                std::cout << "Good game!" << std::endl;
+                break;
+            }
+
+
         }
     }
 

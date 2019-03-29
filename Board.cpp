@@ -112,19 +112,7 @@ std::vector<std::vector<char> > Board::getBoard()
 {
     return this->matrix;
 }
-std::vector<Cell> Board::moveTop(Piece p)
-{
 
-    std::vector<Cell> aux = p.getCells();
-    for (unsigned int i = 0; i < aux.size(); i++)
-    {
-        if (this->getBoard()[aux[i].getX()][aux[i].getY() - 1] == ' ')
-        {
-            aux[i].setY(aux[i].getY() - 1);
-        }
-    }
-    return aux;
-}
 
 bool Board::possibleMove(Cell cell, char direction)
 {
@@ -247,4 +235,23 @@ std::ostream &operator<<(std::ostream &stream, Board &board)
         }
     }
     return stream;
+}
+
+bool Board::isGameFinished(){
+
+    std::vector<char> colors;
+    char col;
+
+    for(int i = 0; i < this->pieces.size(); i++){
+        col = this->pieces[i].getPieceCharColor();
+
+        if(std::find(colors.begin(), colors.end(), col) != colors.end()) {
+            return false;
+        } else
+            colors.push_back(col);
+
+    }
+
+    return true;
+
 }

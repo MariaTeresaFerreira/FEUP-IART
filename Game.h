@@ -22,6 +22,10 @@ class Game {
         void draw();
 
         void run();
+
+        Cell imputCell();
+
+        char imputDirection();
         
 };
 

@@ -12,34 +12,48 @@
 
 class Board {
     protected:
-        int width;
-        int height;
+        int lines;
+        int columns;
+        std::vector< std::vector<char> > matrix;
         std::vector<Piece> pieces;
 
 
     public:
         Board();
 
-        Board(int width, int height);
+        Board(int lines, int columns);
 
-        Board(int width, int height, std::vector<Piece> pieces);
+        Board(int lines, int columns, std::vector<Piece> pieces);
 
-        int getWidth();
+        int getLines();
 
-        int getHeight();
+        int getColumns();
 
         std::vector<Piece> getPieces();
 
-        void setWidth(int width);
+        void setMatrixPosition(char icon, int x, int y);
 
-        void setHeight(int height);
+        void setLines(int lines);
 
-        void setPieces(std::vector<Piece>);
+        void setColumns(int columns);
 
-        friend std::ostream& operator<< (std::ostream& stream, Board& board);
+        void setPieces(std::vector<Piece> pieces);
+
+        void putPiecesMatrix();
+
+        void putMatrixEmpty();
+
+        Cell moveCell(Cell cell, char direction);
+
+        bool hasPieceWithCell(Cell cell);
+
+        bool possibleMove(Cell cell, char direction);
+
+        void movePiece(Cell cell, char direction);
 
         void printBoard();
 
+        friend std::ostream& operator<< (std::ostream& stream, Board& board);
 
 };
 

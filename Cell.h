@@ -25,7 +25,9 @@ class Cell {
 
         void setY(int y);
 
-        void printCellInfo();
+        bool isAdjacent(Cell cell);
+
+        void printCellInfo(Cell cell);
 
         friend std::ostream& operator<< (std::ostream& stream, const Cell& cell);
 

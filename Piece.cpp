@@ -21,8 +21,8 @@
         return this->color;
     }
 
-    std::vector<Cell> Piece::getCells(){
-        return this->cells;
+    std::vector<Cell> & Piece::getCells(){
+        return (this->cells);
     }
 
     void Piece::setColor(std::string color){

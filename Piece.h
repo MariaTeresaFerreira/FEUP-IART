@@ -22,7 +22,7 @@ class Piece {
 
         std::string getColor();
 
-        std::vector<Cell> getCells();
+        std::vector<Cell> & getCells();
 
         void setColor(std::string color);
 

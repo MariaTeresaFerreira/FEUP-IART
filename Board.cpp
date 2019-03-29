@@ -2,212 +2,249 @@
 // Created by Teresa Ferreira on 22/03/2019.
 //
 
-
 #include "Board.h"
 
-    Board::Board(){}
+Board::Board() {}
 
-    Board::Board(int lines, int columns){
-        this->lines = lines;
-        this->columns = columns;
-        this->matrix = std::vector< std::vector<char> >(this->getLines(), std::vector<char>(this->getColumns()));
-        putMatrixEmpty();
-    }
+Board::Board(int lines, int columns)
+{
+    this->lines = lines;
+    this->columns = columns;
+    this->matrix = std::vector<std::vector<char> >(this->getLines(), std::vector<char>(this->getColumns()));
+    putMatrixEmpty();
+}
 
-    Board::Board(int lines, int columns, std::vector<Piece> pieces){
-        this->lines = lines;
-        this->columns = columns;
-        this->pieces = pieces;
-        this->matrix = std::vector< std::vector<char> >(this->getLines(), std::vector<char>(this->getColumns()));
-        putMatrixEmpty();
-        putPiecesMatrix();
-    }
+Board::Board(int lines, int columns, std::vector<Piece> pieces)
+{
+    this->lines = lines;
+    this->columns = columns;
+    this->pieces = pieces;
+    this->matrix = std::vector<std::vector<char> >(this->getLines(), std::vector<char>(this->getColumns()));
+    putMatrixEmpty();
+    putPiecesMatrix();
+}
 
-    int Board::getLines(){
-        return this->lines;
-    }
+int Board::getLines()
+{
+    return this->lines;
+}
 
-    int Board::getColumns(){
-        return this->columns;
-    }
+int Board::getColumns()
+{
+    return this->columns;
+}
 
-    std::vector<Piece> Board::getPieces(){
-        return this->pieces;
-    }
+std::vector<Piece> Board::getPieces()
+{
+    return this->pieces;
+}
 
-    void Board::setLines(int w){
-        this->lines = w;
-    }
+void Board::setLines(int w)
+{
+    this->lines = w;
+}
 
-    void Board::setColumns(int h){
-        this->columns = h;
-    }
+void Board::setColumns(int h)
+{
+    this->columns = h;
+}
 
-    void Board::setPieces(std::vector<Piece> pieces){
-        this->pieces = pieces;
-    }
+void Board::setPieces(std::vector<Piece> pieces)
+{
+    this->pieces = pieces;
+}
 
-    void Board::setMatrixPosition(char icon, int x, int y){
-        this->matrix[x][y] = icon; 
-    }
+void Board::setMatrixPosition(char icon, int x, int y)
+{
+    this->matrix[x][y] = icon;
+}
 
-    void Board::putPiecesMatrix(){
-         for(unsigned int i = 0; i < this->getPieces().size(); i++)
+void Board::putPiecesMatrix()
+{
+    for (unsigned int i = 0; i < this->getPieces().size(); i++)
+    {
+        for (unsigned int j = 0; j < this->getPieces()[i].getCells().size(); j++)
         {
-            for(unsigned int j = 0; j < this->getPieces()[i].getCells().size(); j++)
+            this->matrix[this->getPieces()[i].getCells()[j].getY()][this->getPieces()[i].getCells()[j].getX()] = this->getPieces()[i].getPieceCharColor();
+        }
+    }
+}
+
+Cell Board::moveCell(Cell cell, char direction)
+{
+    Cell response;
+    if (direction == 'd')
+        response = Cell(cell.getX() + 1, cell.getY());
+    else if (direction == 'w')
+        response = Cell(cell.getX(), cell.getY() - 1);
+    else if (direction == 'a')
+        response = Cell(cell.getX() - 1, cell.getY());
+    else if (direction == 's')
+        response = Cell(cell.getX(), cell.getY() + 1);
+
+    return response;
+}
+
+void Board::putMatrixEmpty()
+{
+    for (int i = 0; i < this->lines; i++)
+    {
+        for (int j = 0; j < this->columns; j++)
+        {
+            setMatrixPosition(' ', i, j);
+        }
+    }
+}
+
+bool Board::hasPieceWithCell(Cell cell)
+{
+    for (unsigned int i = 0; i < this->pieces.size(); i++)
+    {
+        if (this->pieces[i].containsCell(cell))
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
+std::vector<std::vector<char> > Board::getBoard()
+{
+    return this->matrix;
+}
+std::vector<Cell> Board::moveTop(Piece p)
+{
+
+    std::vector<Cell> aux = p.getCells();
+    for (unsigned int i = 0; i < aux.size(); i++)
+    {
+        if (this->getBoard()[aux[i].getX()][aux[i].getY() - 1] == ' ')
+        {
+            aux[i].setY(aux[i].getY() - 1);
+        }
+    }
+    return aux;
+}
+
+bool Board::possibleMove(Cell cell, char direction)
+{
+    Cell newCell;
+    int numberCells;
+
+    for (unsigned int i = 0; i < this->pieces.size(); i++)
+    {
+        if (this->pieces[i].containsCell(cell))
+        {
+            numberCells = this->pieces[i].getCells().size();
+
+            for (unsigned int j = 0; j < this->pieces[i].getCells().size(); j++)
             {
-                this->matrix[this->getPieces()[i].getCells()[j].getY()][this->getPieces()[i].getCells()[j].getX()] 
-                = this->getPieces()[i].getPieceCharColor();       
+                newCell = moveCell(this->pieces[i].getCells()[j], direction);
+
+                if (this->pieces[i].containsCell(newCell) || !hasPieceWithCell(newCell))
+                {
+                    if (newCell.getX() >= 0 && newCell.getX() < this->columns && newCell.getY() >= 0 && newCell.getY() < this->lines)
+                        numberCells--;
+                }
             }
-        }
-    }
-
-    Cell Board::moveCell(Cell cell, char direction){
-        Cell response;
-        if(direction == 'd')
-            response = Cell(cell.getX()+1, cell.getY());
-        else if(direction == 'w')
-            response = Cell(cell.getX(), cell.getY()-1);
-        else if(direction == 'a')
-            response = Cell(cell.getX()-1, cell.getY());
-        else if(direction == 's')
-            response = Cell(cell.getX(), cell.getY()+1);
-
-        return response;
-    }
-
-    void Board::putMatrixEmpty(){
-        for(int i = 0; i < this->lines; i++){
-            for(int j = 0; j < this->columns; j++){
-                setMatrixPosition(' ',i,j);
-            }
-        }
-    }
-
-    bool Board::hasPieceWithCell(Cell cell){
-        for(unsigned int i = 0; i < this->pieces.size(); i++){
-            if(this->pieces[i].containsCell(cell)){
+            if (numberCells == 0)
+            {
                 return true;
             }
         }
-        return false;
     }
-
-std::vector< std::vector<char> > Board::getBoard(){
-    return this->matrix;
+    return false;
 }
-    std::vector<Cell> Board::moveTop(Piece p){
 
-        std::vector<Cell> aux = p.getCells();
-        for(unsigned int i = 0; i < aux.size(); i++)
+void Board::movePiece(Cell cell, char direction)
+{
+    Cell newCell;
+    std::cout << "Ola" << std::endl;
+
+    for (unsigned int i = 0; i < this->pieces.size(); i++)
+    {
+
+        if (this->pieces[i].containsCell(cell))
         {
-            if(this->getBoard()[aux[i].getX()][aux[i].getY()-1] == ' ')
+
+            for (unsigned int j = 0; j < this->pieces[i].getCells().size(); j++)
             {
-                aux[i].setY(aux[i].getY()-1);
+                newCell = moveCell(this->pieces[i].getCells()[j], direction);
+
+                std::cout << "new cell x: "<< newCell.getX() << std::endl;
+                std::cout << "new cell y: "<< newCell.getY() << std::endl;
+                std::cout << "antes" << std::endl;
+                std::cout << this->pieces[i].getCells()[j].getX() << std::endl;
+                std::cout << this->pieces[i].getCells()[j].getY() << std::endl;
+
+                this->pieces[i].getCells()[j].setX(newCell.getX());
+                this->pieces[i].getCells()[j].setY(newCell.getY());
+
+                std::cout << "depois" << std::endl;
+                std::cout << this->pieces[i].getCells()[j].getX() << std::endl;
+                std::cout << this->pieces[i].getCells()[j].getY() << std::endl;
+
+
             }
         }
-        return aux;
     }
+/*
+    for (unsigned int i = 0; i < this->pieces.size(); i++)
+    {
+        std::cout << this->pieces[i] << std::endl;
+    }*/
+}
 
+void Board::printBoard()
+{
 
-    bool Board::possibleMove(Cell cell, char direction){
-        Cell newCell;
-        int numberCells;
-        
-        for(unsigned int i = 0; i < this->pieces.size(); i++){
-            if(this->pieces[i].containsCell(cell)){
-                numberCells = this->pieces[i].getCells().size();
+    for (int i = 0; i < this->getLines(); i++)
+    {
 
-                for(unsigned int j = 0; j < this->pieces[i].getCells().size(); j++){
-                    newCell = moveCell(this->pieces[i].getCells()[j],direction);
-                    
-                    if(this->pieces[i].containsCell(newCell) || !hasPieceWithCell(newCell) ) {
-                        if(newCell.getX() >= 0 && newCell.getX() < this->columns && newCell.getY() >= 0 && newCell.getY() < this->lines)
-                            numberCells--;
-                    }
-                }
-                if(numberCells == 0){
-                    return true;
-                }
-            }
-        }        
-        return false;
-    }
-
-    void Board::movePiece(Cell cell, char direction){
-        Cell newCell;
-        std::cout << "Ola" << std::endl;
-        
-        for(unsigned int i = 0; i < this->pieces.size(); i++){
-            std::cout << this->pieces[i] << std::endl;
-            if(this->pieces[i].containsCell(cell)){
-
-                for(unsigned int j = 0; j < this->pieces[i].getCells().size(); j++){
-                    newCell = moveCell(this->pieces[i].getCells()[j],direction);
-                    
-                    this->pieces[i].getCells()[j].setX(newCell.getX());
-                    this->pieces[i].getCells()[j].setY(newCell.getY());
-                }
-            }
-        }
-
-        for(unsigned int i = 0; i < this->pieces.size(); i++){
-            std::cout << this->pieces[i] << std::endl;
-        }
-        
-    }
-
-
-
-
-    void Board::printBoard(){
-
-        for(int i = 0; i < this->getLines(); i++)
+        if (i == 0)
         {
-            
-            if(i == 0){
-                for(int j = 1; j < this->getColumns(); j++){
-                    if(j == 1)
-                        std::cout  << "-----";
-
-                    std::cout  << "----";
-                }
-                std::cout << std::endl;
-            }
-            
-
-            for(int j = 0; j < this->getColumns(); j++)
+            for (int j = 1; j < this->getColumns(); j++)
             {
-                if(j == 0)
-                    std::cout  << "| ";
+                if (j == 1)
+                    std::cout << "-----";
 
-                std::cout << this->matrix[i][j] << " | ";       
-            }
-            
-            std::cout << std::endl;
-
-            for(int j = 1; j < this->getColumns(); j++)
-            {
-                if(j == 1)
-                    std::cout  << "-----";
-
-                    std::cout  << "----";
+                std::cout << "----";
             }
             std::cout << std::endl;
+        }
 
+        for (int j = 0; j < this->getColumns(); j++)
+        {
+            if (j == 0)
+                std::cout << "| ";
+
+            std::cout << this->matrix[i][j] << " | ";
+        }
+
+        std::cout << std::endl;
+
+        for (int j = 1; j < this->getColumns(); j++)
+        {
+            if (j == 1)
+                std::cout << "-----";
+
+            std::cout << "----";
+        }
+        std::cout << std::endl;
+    }
+}
+
+std::ostream &operator<<(std::ostream &stream, Board &board)
+{
+    stream << board.getLines() << "\n";
+    stream << board.getColumns() << "\n\n";
+    for (unsigned int i = 0; i < board.getPieces().size(); i++)
+    {
+        stream << board.getPieces().at(i).getColor() << "\n";
+        for (unsigned int j = 0; j < board.getPieces().at(i).getCells().size(); j++)
+        {
+            stream << board.getPieces().at(i).getCells().at(j).getX() << " " << board.getPieces().at(i).getCells().at(j).getY() << "\n";
         }
     }
-
-    std::ostream& operator<< (std::ostream& stream, Board& board){
-        stream << board.getLines() << "\n";
-        stream << board.getColumns() << "\n\n";
-        for(unsigned int i = 0; i < board.getPieces().size(); i++){
-            stream << board.getPieces().at(i).getColor() << "\n";
-            for(unsigned int j = 0; j < board.getPieces().at(i).getCells().size(); j++){
-                stream << board.getPieces().at(i).getCells().at(j).getX() << " " << board.getPieces().at(i).getCells().at(j).getY() << "\n";
-            }
-        }
-        return stream;
-    }
-
-
+    return stream;
+}

@@ -21,19 +21,19 @@
 
         while(true){
 
-            Cell imputCell;
+            Cell inputCell;
             while(true){
-                std::cout << "Imput a Valid Cell to play" << std::endl;
-                imputCell = this->imputCell();
+                std::cout << "input a Valid Cell to play" << std::endl;
+                inputCell = this->inputCell();
                 
-                if(board.hasPieceWithCell(imputCell))
+                if(board.hasPieceWithCell(inputCell))
                     break;
             }
 
-            char direction = this->imputDirection();
+            char direction = this->inputDirection();
 
-            if(this->board.possibleMove(imputCell, direction)){
-                this->board.movePiece(imputCell, direction);
+            if(this->board.possibleMove(inputCell, direction)){
+                this->board.movePiece(inputCell, direction);
                 this->board.putMatrixEmpty();
                 this->board.putPiecesMatrix();
             }
@@ -45,7 +45,7 @@
         }
     }
 
-    Cell Game::imputCell(){
+    Cell Game::inputCell(){
         int x;
         int y;
         while(true){
@@ -73,7 +73,7 @@
         return Cell(x,y);
     }
 
-    char Game::imputDirection(){
+    char Game::inputDirection(){
         char direction;
 
         while(true){

@@ -2,6 +2,7 @@
 // Created by Teresa Ferreira on 22/03/2019.
 //
 
+
 #include "Board.h"
 
     Board::Board(){}
@@ -92,6 +93,23 @@
         return false;
     }
 
+std::vector< std::vector<char> > Board::getBoard(){
+    return this->matrix;
+}
+    std::vector<Cell> Board::moveTop(Piece p){
+
+        std::vector<Cell> aux = p.getCells();
+        for(unsigned int i = 0; i < aux.size(); i++)
+        {
+            if(this->getBoard()[aux[i].getX()][aux[i].getY()-1] == ' ')
+            {
+                aux[i].setY(aux[i].getY()-1);
+            }
+        }
+        return aux;
+    }
+
+
     bool Board::possibleMove(Cell cell, char direction){
         Cell newCell;
         int numberCells;
@@ -138,6 +156,9 @@
         }
         
     }
+
+
+
 
     void Board::printBoard(){
 

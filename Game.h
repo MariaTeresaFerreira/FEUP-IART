@@ -23,9 +23,9 @@ class Game {
 
         void run();
 
-        Cell imputCell();
+        Cell inputCell();
 
-        char imputDirection();
+        char inputDirection();
         
 };
 

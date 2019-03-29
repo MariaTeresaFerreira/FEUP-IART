@@ -33,7 +33,9 @@
             char direction = this->imputDirection();
 
             if(this->board.possibleMove(imputCell, direction)){
-                std::cout << std:: endl <<  "está bem" << std::endl << std:: endl;
+                this->board.movePiece(imputCell, direction);
+                this->board.putMatrixEmpty();
+                this->board.putPiecesMatrix();
             }
             else{
                 continue;

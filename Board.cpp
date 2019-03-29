@@ -107,12 +107,35 @@
                             numberCells--;
                     }
                 }
+                if(numberCells == 0){
+                    return true;
+                }
+            }
+        }        
+        return false;
+    }
+
+    void Board::movePiece(Cell cell, char direction){
+        Cell newCell;
+        std::cout << "Ola" << std::endl;
+        
+        for(unsigned int i = 0; i < this->pieces.size(); i++){
+            std::cout << this->pieces[i] << std::endl;
+            if(this->pieces[i].containsCell(cell)){
+
+                for(unsigned int j = 0; j < this->pieces[i].getCells().size(); j++){
+                    newCell = moveCell(this->pieces[i].getCells()[j],direction);
+                    
+                    this->pieces[i].getCells()[j].setX(newCell.getX());
+                    this->pieces[i].getCells()[j].setY(newCell.getY());
+                }
             }
         }
-        if(numberCells == 0){
-            return true;
+
+        for(unsigned int i = 0; i < this->pieces.size(); i++){
+            std::cout << this->pieces[i] << std::endl;
         }
-        return false;
+        
     }
 
     void Board::printBoard(){

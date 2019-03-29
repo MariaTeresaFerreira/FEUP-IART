@@ -48,6 +48,8 @@ class Board {
 
         bool possibleMove(Cell cell, char direction);
 
+        void movePiece(Cell cell, char direction);
+
         void printBoard();
 
         friend std::ostream& operator<< (std::ostream& stream, Board& board);

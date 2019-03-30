@@ -3,6 +3,7 @@
 #include "Piece.h"
 #include "Board.h"
 #include "Game.h"
+#include "AI.h"
 
 
 int main() {
@@ -62,6 +63,7 @@ int main() {
 
     //std::cout << board.hasPieceInCell(Cell(0,0)) << std::endl;
     //std::cout << board.hasPieceInCell(Cell(0,1)) << std::endl;
+
 
     Game game = Game(board);
     game.run();

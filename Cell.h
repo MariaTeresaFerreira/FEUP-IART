@@ -6,6 +6,7 @@
 #define FEUP_IART_CELL_H
 
 #include <iostream>
+#include <stdlib.h> 
 
 class Cell {
     protected:
@@ -32,6 +33,8 @@ class Cell {
         friend std::ostream& operator<< (std::ostream& stream, const Cell& cell);
 
         friend bool operator== (const Cell& cell1, const Cell& cell2);
+
+        unsigned int getCellDistance(Cell cell);
 
 };
 

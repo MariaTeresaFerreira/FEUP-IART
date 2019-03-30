@@ -44,6 +44,8 @@ class Piece {
 
         void addCell(Cell cell);
 
+        unsigned int getPieceDistance(Piece piece);
+
         friend bool operator== (const Piece& piece1, const Piece& piece2);
 };
 

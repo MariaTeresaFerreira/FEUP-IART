@@ -20,6 +20,7 @@
     void Game::run(){
 
         while(true){
+            std::cout << heuristic(this->board) << std::endl;
 
             Cell inputCell;
             while(true){

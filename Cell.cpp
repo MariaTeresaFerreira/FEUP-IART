@@ -58,5 +58,14 @@
         return false;
     }
 
+    unsigned int Cell::getCellDistance(Cell cell){
+        if(cell.getX() == this->x)
+            return std::abs(cell.getY() - this->y - 1);
+        else if(cell.getY() == this->y)
+            return std::abs(cell.getX() - this->x - 1);
+        else
+            return std::abs(cell.getY() - this->y) +  std::abs(cell.getX() - this->x) - 1;
+    }
+
     
 

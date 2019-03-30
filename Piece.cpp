@@ -152,3 +152,14 @@
         this->cells.push_back(cell);
 
     }
+
+    unsigned int Piece::getPieceDistance(Piece piece){
+        unsigned int solution = 9999;
+        for(unsigned int i = 0; i < this->getCells().size(); i++){
+            for(unsigned int j = 0; j < piece.getCells().size(); j++){
+                if(this->getCells()[i].getCellDistance(piece.getCells()[j]) < solution)
+                    solution = this->getCells()[i].getCellDistance(piece.getCells()[j]);
+            }   
+        }
+        return solution;
+    }

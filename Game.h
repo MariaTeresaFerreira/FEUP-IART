@@ -6,6 +6,7 @@
 #define FEUP_IART_GAME_H
 
 #include "Board.h"
+#include "AI.h"
 
 
 

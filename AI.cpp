@@ -70,8 +70,55 @@ vector<Move> AStar(Board board)
 }
 
 unsigned int heuristic(Board board){
-    //board.;
-    return 0;
+    vector<Piece> red;
+    vector<Piece> green;
+    vector<Piece> blue;
+    vector<Piece> yellow;
+    unsigned int heu = 0;
+
+    for(unsigned int i = 0; i < board.getPieces().size(); i++){
+        if(board.getPieces()[i].getColor() == "red")
+            red.push_back(board.getPieces()[i]);
+        else if(board.getPieces()[i].getColor() == "blue")
+            blue.push_back(board.getPieces()[i]);
+        else if(board.getPieces()[i].getColor() == "green")
+            green.push_back(board.getPieces()[i]);
+        else if(board.getPieces()[i].getColor() == "yellow")
+            yellow.push_back(board.getPieces()[i]);
+    }
+
+    if(red.size() > 1 ){
+        for(unsigned int i = 0; i < red.size(); i++){
+            for(unsigned int j = (i + 1); j < red.size(); j++){
+                heu += red[i].getPieceDistance(red[j]);
+            }               
+        }
+    }
+
+    if(blue.size() > 1){
+        for(unsigned int i = 0; i < blue.size(); i++){
+            for(unsigned int j = (i + 1); j < blue.size(); j++){
+                heu += blue[i].getPieceDistance(blue[j]);
+            }               
+        }
+    }
+
+    if(green.size() > 1){
+        for(unsigned int i = 0; i < green.size(); i++){
+            for(unsigned int j = (i + 1); j < green.size(); j++){
+                heu += green[i].getPieceDistance(green[j]);
+            }               
+        }
+    }
+
+    if(yellow.size() > 1){
+        for(unsigned int i = 0; i < yellow.size(); i++){
+            for(unsigned int j = (i + 1); j < yellow.size(); j++){
+                heu += yellow[i].getPieceDistance(yellow[j]);
+            }               
+        }
+    }
+    return heu;
 }
         
 Node* findNodeOnList(set<Node*> & nodes_, Board board)

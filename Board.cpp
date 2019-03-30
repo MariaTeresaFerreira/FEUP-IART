@@ -242,7 +242,7 @@ bool Board::isGameFinished(){
     std::vector<char> colors;
     char col;
 
-    for(int i = 0; i < this->pieces.size(); i++){
+    for(unsigned int i = 0; i < this->pieces.size(); i++){
         col = this->pieces[i].getPieceCharColor();
 
         if(std::find(colors.begin(), colors.end(), col) != colors.end()) {
@@ -255,3 +255,35 @@ bool Board::isGameFinished(){
     return true;
 
 }
+
+  void Board::cellsAdjacent(){
+    std::vector<Piece>::iterator it;
+
+    for(unsigned int i = 0; i < this->pieces.size(); i++){
+        for(unsigned int j = 0; j < this->pieces.size(); j++){
+
+            //same piece can not be compared so iteration skipped
+            if(i == j){
+                continue;
+            }
+
+            //if this.cell is adjacent to other cell they are valid
+            if(this->pieces.at(i).isPieceAdjacent(this->pieces.at(j)) && this->pieces.at(i).getColor() == this->pieces.at(j).getColor()){
+              for(unsigned int k = 0; k < this->pieces.at(j).getCells().size(); k++){
+                this->pieces.at(i).addCell((this->pieces.at(j).getCells().at(k)));
+                }
+
+                this->pieces.at(j).getCells().clear();
+
+
+                for(it = this->pieces.begin(); it != this->pieces.end(); it++){
+                  if(it->getCells().size() == 0){
+                    this->pieces.erase(it);
+                  }
+                }
+            break;
+            }
+        }
+    }
+  }
+

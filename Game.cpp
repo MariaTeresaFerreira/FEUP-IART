@@ -25,7 +25,7 @@
             while(true){
                 std::cout << "input a Valid Cell to play" << std::endl;
                 inputCell = this->inputCell();
-                
+
                 if(board.hasPieceWithCell(inputCell))
                     break;
             }
@@ -34,13 +34,14 @@
 
             if(this->board.possibleMove(inputCell, direction)){
                 this->board.movePiece(inputCell, direction);
+                this->board.cellsAdjacent();
                 this->board.putMatrixEmpty();
                 this->board.putPiecesMatrix();
             }
             else{
                 continue;
             }
-            
+
             if(this->board.isGameFinished()){
                 std::cout << "Good game!" << std::endl;
                 break;
@@ -62,7 +63,7 @@
             if(x < 0 || x >= board.getColumns()){
                 std::cout << "Invalid X" << std::endl;
                 continue;
-            } 
+            }
             std::cout << std::endl;
 
             std::cout << "Insert Y of the Cell" << std::endl;
@@ -88,10 +89,6 @@
             if(direction == 'd' || direction == 'w' || direction == 'a' || direction == 's')
                 break;
         }
-       
+
         return direction;
     }
-
-    
-
-

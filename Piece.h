@@ -39,6 +39,10 @@ class Piece {
         void printPiece();
 
         char getPieceCharColor();
+        
+        bool isPieceAdjacent(Piece piece);
+
+        void addCell(Cell cell);
 };
 
 

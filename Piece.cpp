@@ -53,7 +53,7 @@
     bool Piece::cellsAdjacent(std::vector<Cell> cells){
 
         int numberCells = cells.size();
-        
+
         if(numberCells == 1){
             return true;
         }
@@ -81,7 +81,7 @@
 
     int Piece::getColorInt(std::string color){
         int response = -1;
-       
+
         if(color == "red")
             response = 1;
         else if(color == "blue")
@@ -133,3 +133,18 @@
         return ' ';
     }
 
+    bool Piece::isPieceAdjacent(Piece piece){
+        for(unsigned int i = 0; i < this->cells.size(); i++){
+          for(unsigned int j = 0; j < piece.getCells().size(); j++){
+            if (this->cells.at(i).isAdjacent(piece.getCells().at(j))) {
+              return true;
+            }
+          }
+        }
+        return false;
+    }
+
+    void Piece::addCell(Cell cell) {
+        this->cells.push_back(cell);
+
+    }

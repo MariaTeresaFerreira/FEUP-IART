@@ -33,7 +33,7 @@ int main() {
     cells2.push_back(cellb2);
 
     cells3.push_back(cellb3);
-    
+
     cells4.push_back(cellg1);
     cells4.push_back(cellg2);
     cells4.push_back(cellg3);
@@ -43,7 +43,7 @@ int main() {
     cells5.push_back(cellr2);
     cells5.push_back(cellr3);
     cells5.push_back(cellr4);
-    
+
     Piece piece1 = Piece("blue", cells1);
     Piece piece2 = Piece("blue", cells2);
     Piece piece3 = Piece("blue", cells3);
@@ -59,13 +59,13 @@ int main() {
     pieces.push_back(piece5);
 
     Board board = Board(4,4,pieces);
-    
+
     //std::cout << board.hasPieceInCell(Cell(0,0)) << std::endl;
     //std::cout << board.hasPieceInCell(Cell(0,1)) << std::endl;
 
     Game game = Game(board);
     game.run();
-    
+
 
     return 0;
 }

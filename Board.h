@@ -6,9 +6,9 @@
 #define FEUP_IART_BOARD_H
 
 #include "Piece.h"
-#include "vector"
-#include "string"
-
+#include <vector>
+#include <string>
+#include <algorithm>
 
 class Board {
     protected:
@@ -58,6 +58,8 @@ class Board {
         std::vector< std::vector<char> > getBoard();
 
         bool isGameFinished();
+
+        void cellsAdjacent();
 
 };
 

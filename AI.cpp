@@ -81,6 +81,79 @@ vector<Move> AStar(Board board)
     return path;
 }
 
+vector<Move> greedy(Board board)
+{
+    Node* current = nullptr;
+    set<Node*> openSet, closedSet;
+    openSet.insert(new Node(board));
+    vector<Move> path;
+    
+    char directions[] = {'w','a','s','d'};
+
+    while (!openSet.empty()) {
+        current = *openSet.begin();
+        for (auto node : openSet) {
+            if (node->H <= current->H) {
+                current = node;
+            }
+        }
+
+        if (current->board.isGameFinished()) {
+            break;
+        }
+
+        closedSet.insert(current);
+        openSet.erase(std::find(openSet.begin(), openSet.end(), current));
+
+        for (unsigned int j = 0; j < current->board.getPieces().size(); j++){
+
+            for (unsigned int i = 0; i < 4; ++i) {
+
+                Board new_board = current->board;
+                Cell c = current->board.getPieces().at(j).getCells().at(0);
+                new_board.movePiece(c, directions[i]);
+                if (!current->board.possibleMove(c, directions[i]) ||
+                    findNodeOnList(closedSet, new_board)) {
+                    continue;
+                }
+                new_board.cellsAdjacent();
+                new_board.putMatrixEmpty();
+                new_board.putPiecesMatrix();
+
+
+                Node *successor = findNodeOnList(openSet, new_board);
+                if (successor == nullptr) {
+                    
+                    successor = new Node(new_board, current, c.getX(), c.getY(), directions[i]);
+                    successor->H = heuristic(successor->board);
+                    openSet.insert(successor);
+                }
+                
+            }
+        }
+    }
+
+    std::cout << "current board: " << current->board << std::endl;
+
+    while (current != nullptr) {
+
+
+
+        Move m;
+        m.x = current->x;
+        m.y = current->y;
+        m.direction = current->direction;
+        path.push_back(m);
+        current = current->parent;
+    }
+
+    releaseNodes(openSet);
+    releaseNodes(closedSet);
+
+    std::reverse(path.begin(), path.end());
+    return path;
+}
+
 unsigned int heuristic(Board board){
     vector<Piece> red;
     vector<Piece> green;

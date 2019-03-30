@@ -1,8 +1,10 @@
 CC=g++ -std=c++11
 
-CFLAGS=-c -Wall
+CFLAGS=-c -Wall -g
 
 all: game
+
+debug: game 
 
 game: main.o Cell.o Piece.o Board.o Game.o Node.o AI.o
 	$(CC) main.o Cell.o  Piece.o Board.o Game.o Node.o AI.o -o game

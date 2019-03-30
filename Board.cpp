@@ -277,6 +277,7 @@ bool Board::isGameFinished(){
                 for(it = this->pieces.begin(); it != this->pieces.end(); it++){
                   if(it->getCells().size() == 0){
                     this->pieces.erase(it);
+                    it--;
                   }
                 }
             break;

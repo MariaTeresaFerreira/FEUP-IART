@@ -135,10 +135,12 @@ void Game::AIGame(Board b){
             path = AStar(this->getBoardGame());
 
 
-            std::cout << "teste afscdfcwsdz";
+
             break;
         } else if(algorithm == 2){
-            //Jogo AI
+            path = AStar(this->getBoardGame());
+            
+            std::cout << "teste afscdfcwsdz";
             break;
         }
     }

@@ -20,6 +20,7 @@ std::vector<Move> AStar(Board board);
 Node* findNodeOnList(std::set<Node*>& nodes_, Board board);
 unsigned int heuristic(Board board);
 void releaseNodes(std::set<Node*> & nodes_);
+std::vector<Move> greedy(Board board);
 
 
 

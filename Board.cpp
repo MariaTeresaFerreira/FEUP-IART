@@ -158,29 +158,26 @@ void Board::movePiece(Cell cell, char direction)
             for (unsigned int j = 0; j < this->pieces[i].getCells().size(); j++)
             {
                 newCell = moveCell(this->pieces[i].getCells()[j], direction);
-
+/*
                 std::cout << "new cell x: "<< newCell.getX() << std::endl;
                 std::cout << "new cell y: "<< newCell.getY() << std::endl;
                 std::cout << "antes" << std::endl;
                 std::cout << this->pieces[i].getCells()[j].getX() << std::endl;
                 std::cout << this->pieces[i].getCells()[j].getY() << std::endl;
-
+*/
                 this->pieces[i].getCells()[j].setX(newCell.getX());
                 this->pieces[i].getCells()[j].setY(newCell.getY());
 
+/*
                 std::cout << "depois" << std::endl;
                 std::cout << this->pieces[i].getCells()[j].getX() << std::endl;
                 std::cout << this->pieces[i].getCells()[j].getY() << std::endl;
+*/
 
 
             }
         }
     }
-/*
-    for (unsigned int i = 0; i < this->pieces.size(); i++)
-    {
-        std::cout << this->pieces[i] << std::endl;
-    }*/
 }
 
 void Board::printBoard()
@@ -274,7 +271,6 @@ bool Board::isGameFinished(){
                 }
 
                 this->pieces.at(j).getCells().clear();
-
 
                 for(it = this->pieces.begin(); it != this->pieces.end(); it++){
                   if(it->getCells().size() == 0){

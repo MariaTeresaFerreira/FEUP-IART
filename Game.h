@@ -26,6 +26,8 @@ class Game {
         Cell inputCell();
 
         char inputDirection();
+
+        std::vector<char> inputAIDirection(Piece piece);
         
 };
 

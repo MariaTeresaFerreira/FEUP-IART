@@ -4,12 +4,12 @@ using namespace std;
 
 vector<Move> AStar(Board board)
 {
-    Node *current = nullptr;
+    Node* current = nullptr;
     set<Node*> openSet, closedSet;
     openSet.insert(new Node(board));
     vector<Move> path;
     
-    int directions[] = {'w','a','s','d'};
+    char directions[] = {'w','a','s','d'};
 
     while (!openSet.empty()) {
         current = *openSet.begin();
@@ -70,6 +70,7 @@ vector<Move> AStar(Board board)
 }
 
 unsigned int heuristic(Board board){
+    //board.;
     return 0;
 }
         

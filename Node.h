@@ -9,13 +9,15 @@
 class Node {
     public:
         Board board;
-        Node *parent;
+        Node* parent;
         char direction;
         int x;
         int y;
-        Node(Board board, Node *parent = NULL, int x = -1, int y = -1, char direction = 'x');
         unsigned int G;
         unsigned int H;
+
+        Node(Board board, Node* parent = NULL, int x = -1, int y = -1, char direction = 'f');
+        
         unsigned int getScore();
 
 };

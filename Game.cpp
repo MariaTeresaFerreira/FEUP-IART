@@ -23,7 +23,7 @@
 
             Cell inputCell;
             while(true){
-                std::cout << "input a Valid Cell to play" << std::endl;
+                std::cout << "Input a Valid Cell to play" << std::endl;
                 inputCell = this->inputCell();
 
                 if(board.hasPieceWithCell(inputCell))
@@ -91,4 +91,17 @@
         }
 
         return direction;
+    }
+
+    std::vector<char> Game::inputAIDirection(Piece piece){
+        char directions[] = {'w','a','s','d'};
+        std::vector<char> possibleMoves;
+        Cell cell = piece.getCells()[0];
+
+        for(unsigned int i = 0; i < sizeof(directions); i++)
+        {
+            if(this->board.possibleMove(cell,directions[i]))
+            possibleMoves.push_back(directions[i]);
+        }
+        return possibleMoves;
     }

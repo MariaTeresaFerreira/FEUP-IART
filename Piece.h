@@ -6,8 +6,8 @@
 #define FEUP_IART_PIECE_H
 
 #include "Cell.h"
-#include "vector"
-#include "string"
+#include <vector>
+#include <string>
 #include <iostream>
 
 class Piece {
@@ -43,6 +43,8 @@ class Piece {
         bool isPieceAdjacent(Piece piece);
 
         void addCell(Cell cell);
+
+        friend bool operator== (const Piece& piece1, const Piece& piece2);
 };
 
 

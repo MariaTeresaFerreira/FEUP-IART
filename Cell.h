@@ -31,6 +31,8 @@ class Cell {
 
         friend std::ostream& operator<< (std::ostream& stream, const Cell& cell);
 
+        friend bool operator== (const Cell& cell1, const Cell& cell2);
+
 };
 
 

@@ -40,6 +40,10 @@
         return stream;
     }
 
+    bool operator== (const Cell& cell1, const Cell& cell2){
+        return (cell1.x == cell2.x && cell1.y == cell2.y) ? true : false;
+    }
+
     bool Cell::isAdjacent(Cell cell){
         
         if(this->getX() - 1 == cell.getX() && this->getY() == cell.getY())

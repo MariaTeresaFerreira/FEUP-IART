@@ -41,6 +41,10 @@
         return stream;
     }
 
+    bool operator== (const Piece& piece1, const Piece& piece2){
+        return piece1.cells == piece2.cells;
+    }
+
     bool Piece::containsCell(Cell cell){
         for(unsigned int i = 0; i < this->cells.size(); i++){
             if(cell.getX() == this->cells[i].getX() && cell.getY() == this->cells[i].getY())

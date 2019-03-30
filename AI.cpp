@@ -25,16 +25,22 @@ vector<Move> AStar(Board board)
 
         closedSet.insert(current);
         openSet.erase(std::find(openSet.begin(), openSet.end(), current));
+
         for (unsigned int j = 0; j < current->board.getPieces().size(); j++){
+
             for (unsigned int i = 0; i < 4; ++i) {
+
                 Board new_board = current->board;
                 Cell c = current->board.getPieces().at(j).getCells().at(0);
                 new_board.movePiece(c, directions[i]);
-                
-                if (new_board.possibleMove(c, directions[i]) ||
+                if (!current->board.possibleMove(c, directions[i]) ||
                     findNodeOnList(closedSet, new_board)) {
                     continue;
                 }
+                new_board.cellsAdjacent();
+                new_board.putMatrixEmpty();
+                new_board.putPiecesMatrix();
+                std::cout << "ola 2" << std::endl;
 
                 unsigned int totalCost = current->G + 1;
 
@@ -54,7 +60,12 @@ vector<Move> AStar(Board board)
         }
     }
 
+    std::cout << "current board: " << current->board << std::endl;
+
     while (current != nullptr) {
+
+
+
         Move m;
         m.x = current->x;
         m.y = current->y;
@@ -66,6 +77,7 @@ vector<Move> AStar(Board board)
     releaseNodes(openSet);
     releaseNodes(closedSet);
 
+    std::reverse(path.begin(), path.end());
     return path;
 }
 

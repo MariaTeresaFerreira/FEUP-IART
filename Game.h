@@ -7,6 +7,7 @@
 
 #include "Board.h"
 #include "AI.h"
+#include <vector>
 
 
 
@@ -29,6 +30,10 @@ class Game {
         char inputDirection();
 
         std::vector<char> inputAIDirection(Piece piece);
+
+        void AIGame(Board b);
+
+        Board getBoardGame();
         
 };
 

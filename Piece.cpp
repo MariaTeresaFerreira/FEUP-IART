@@ -42,7 +42,7 @@
     }
 
     bool operator== (const Piece& piece1, const Piece& piece2){
-        return piece1.cells == piece2.cells;
+        return (piece1.color == piece2.color && piece1.cells == piece2.cells);
     }
 
     bool Piece::containsCell(Cell cell){

@@ -108,7 +108,7 @@ bool Board::hasPieceWithCell(Cell cell)
     return false;
 }
 
-std::vector<std::vector<char> > Board::getBoard()
+std::vector<std::vector<char> > & Board::getBoard()
 {
     return this->matrix;
 }
@@ -148,6 +148,7 @@ void Board::movePiece(Cell cell, char direction)
 {
     Cell newCell;
     std::cout << "Ola" << std::endl;
+
 
     for (unsigned int i = 0; i < this->pieces.size(); i++)
     {
@@ -217,6 +218,7 @@ void Board::printBoard()
         }
         std::cout << std::endl;
     }
+
 }
 
 std::ostream &operator<<(std::ostream &stream, Board &board)

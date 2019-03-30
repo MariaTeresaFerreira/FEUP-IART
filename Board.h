@@ -55,7 +55,7 @@ class Board {
 
         friend std::ostream& operator<< (std::ostream& stream, Board& board);
 
-        std::vector< std::vector<char> > getBoard();
+        std::vector< std::vector<char> > & getBoard();
 
         bool isGameFinished();
 

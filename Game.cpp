@@ -19,8 +19,22 @@
 
     void Game::run(){
 
+        int gameMode;
+
         while(true){
-            std::cout << heuristic(this->board) << std::endl;
+            std::cout << "Select game mode: " << std::endl << "1 - Human" << std::endl << "2 - AI" << std::endl;
+            std::cin >> gameMode;
+            if(gameMode == 1){
+                break;
+                //Jogo humano normal
+            } else if(gameMode == 2){
+                AIGame(this->board);
+                //Jogo AI
+                return;
+            }
+        }
+
+        while(true){
 
             Cell inputCell;
             while(true){
@@ -106,3 +120,55 @@
         }
         return possibleMoves;
     }
+
+void Game::AIGame(Board b){
+
+    int algorithm;
+    std::vector<Move> path;
+
+    while(true){
+        std::cout << "Select algorithm: " << std::endl << "1 - AStar" << std::endl << "2 - " << std::endl;
+        std::cin >> algorithm;
+        if(algorithm == 1){
+
+
+            path = AStar(this->getBoardGame());
+
+
+            std::cout << "teste afscdfcwsdz";
+            break;
+        } else if(algorithm == 2){
+            //Jogo AI
+            break;
+        }
+    }
+
+    for(unsigned int i = 0; i < path.size(); i++){
+
+
+        Cell inputCell(path.at(i).x, path.at(i).y);
+        char direction = path.at(i).direction;
+
+        std::cout << "play " << i << ": " << std::endl;
+        std::cout << inputCell.getX() << " " << inputCell.getY() << " " << direction << std::endl;
+
+
+
+        this->board.movePiece(inputCell, direction);
+        this->board.cellsAdjacent();
+        this->board.putMatrixEmpty();
+        this->board.putPiecesMatrix();
+
+        this->board.printBoard();
+
+
+
+    }
+
+}
+
+Board Game::getBoardGame() {
+    return this->board;
+
+
+}

@@ -138,7 +138,7 @@ void Game::AIGame(Board b){
 
             break;
         } else if(algorithm == 2){
-            path = AStar(this->getBoardGame());
+            path = greedy(this->getBoardGame());
             
             std::cout << "teste afscdfcwsdz";
             break;

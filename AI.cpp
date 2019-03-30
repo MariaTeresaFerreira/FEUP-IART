@@ -9,6 +9,7 @@ vector<Move> AStar(Board board)
     openSet.insert(new Node(board));
     vector<Move> path;
     
+    
     char directions[] = {'w','a','s','d'};
 
     while (!openSet.empty()) {
@@ -40,7 +41,6 @@ vector<Move> AStar(Board board)
                 new_board.cellsAdjacent();
                 new_board.putMatrixEmpty();
                 new_board.putPiecesMatrix();
-                std::cout << "ola 2" << std::endl;
 
                 unsigned int totalCost = current->G + 1;
 
@@ -60,8 +60,7 @@ vector<Move> AStar(Board board)
         }
     }
 
-    std::cout << "current board: " << current->board << std::endl;
-
+    
     while (current != nullptr) {
 
 
@@ -74,10 +73,12 @@ vector<Move> AStar(Board board)
         current = current->parent;
     }
 
+    cout << closedSet.size() << " - Astar nodes" << endl;
+
     releaseNodes(openSet);
     releaseNodes(closedSet);
 
-    std::reverse(path.begin(), path.end());
+    reverse(path.begin(), path.end());
     return path;
 }
 
@@ -133,8 +134,6 @@ vector<Move> greedy(Board board)
         }
     }
 
-    std::cout << "current board: " << current->board << std::endl;
-
     while (current != nullptr) {
 
 
@@ -146,6 +145,7 @@ vector<Move> greedy(Board board)
         path.push_back(m);
         current = current->parent;
     }
+    cout << closedSet.size() << " - Greedy nodes" << endl;
 
     releaseNodes(openSet);
     releaseNodes(closedSet);

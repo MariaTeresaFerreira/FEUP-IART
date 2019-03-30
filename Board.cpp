@@ -147,7 +147,6 @@ bool Board::possibleMove(Cell cell, char direction)
 void Board::movePiece(Cell cell, char direction)
 {
     Cell newCell;
-    std::cout << "Ola" << std::endl;
 
 
     for (unsigned int i = 0; i < this->pieces.size(); i++)

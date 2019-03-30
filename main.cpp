@@ -7,7 +7,7 @@
 
 
 int main() {
-    /*
+    /* lvl1 easy
     Cell cellb1 = Cell(0,0);
 
     Cell cellb2 = Cell(3,0);
@@ -61,7 +61,7 @@ int main() {
     pieces.push_back(piece5);
 */
 
-
+/*lvl2 easy
     Cell cellr1 = Cell(1,0);
     Cell cellr2 = Cell(1,1);
 
@@ -101,6 +101,66 @@ int main() {
     pieces.push_back(piece2);
     pieces.push_back(piece3);
     pieces.push_back(piece4);
+    */
+
+Cell cellb1 = Cell(0, 0);
+    Cell cellb2 = Cell(1, 0);
+    Cell cellb3 = Cell(3, 2);
+    Cell cellb4 = Cell(2, 3);
+
+    Cell cellg1 = Cell(3, 0);
+    Cell cellg2 = Cell(1, 3);
+
+    Cell cellr1 = Cell(0, 1);
+    Cell cellr2 = Cell(1, 1);
+    Cell cellr3 = Cell(2, 1);
+    Cell cellr4 = Cell(0, 2);
+    Cell cellr5 = Cell(1, 2);
+    Cell cellr6 = Cell(2, 2);
+
+
+
+    std::vector<Cell> cells1;
+    std::vector<Cell> cells2;
+    std::vector<Cell> cells3;
+    std::vector<Cell> cells4;
+    std::vector<Cell> cells5;
+    std::vector<Cell> cells6;
+
+    cells1.push_back(cellb1);
+    cells1.push_back(cellb2);
+
+    cells2.push_back(cellg1);
+
+    cells3.push_back(cellr1);
+    cells3.push_back(cellr2);
+    cells3.push_back(cellr3);
+    cells3.push_back(cellr4);
+    cells3.push_back(cellr5);
+    cells3.push_back(cellr6);
+
+    cells4.push_back(cellb3);
+
+    cells5.push_back(cellg2);
+
+    cells6.push_back(cellb4);
+
+    Piece piece1 = Piece("blue", cells1);
+    Piece piece2 = Piece("green", cells2);
+    Piece piece3 = Piece("red", cells3);
+    Piece piece4 = Piece("blue", cells4);
+    Piece piece5 = Piece("green", cells5);
+    Piece piece6 = Piece("blue", cells6);
+
+
+    std::vector<Piece> pieces;
+
+    pieces.push_back(piece1);
+    pieces.push_back(piece2);
+    pieces.push_back(piece3);
+    pieces.push_back(piece4);
+    pieces.push_back(piece5);
+    pieces.push_back(piece6);
 
     Board board = Board(4,4,pieces);
 

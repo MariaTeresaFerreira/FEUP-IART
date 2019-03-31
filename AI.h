@@ -9,6 +9,7 @@
 #include "Piece.h"
 #include <set>
 #include <vector>
+#include <queue>
 
 #define DEPTH_LIMIT 10
 #define IDA_LIMIT 20
@@ -28,7 +29,6 @@ std::vector<Move> BFS(Board board);
 Node* findNodeOnList(std::set<Node*>& nodes_, Board board);
 unsigned int heuristic(Board board);
 void releaseNodes(std::set<Node*> & nodes_);
-
 
 
 #endif //FEUP_IART_AI_H

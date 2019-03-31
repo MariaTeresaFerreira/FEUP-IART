@@ -192,7 +192,7 @@ void Game::AIGame(Board b){
         Cell inputCell(path.at(i).x, path.at(i).y);
         char direction = path.at(i).direction;
 
-        std::cout << "play " << i << ": " << std::endl;
+        std::cout << "play " << i+1 << ": " << std::endl;
         std::cout << inputCell.getX() << " " << inputCell.getY() << " " << direction << std::endl;
 
 

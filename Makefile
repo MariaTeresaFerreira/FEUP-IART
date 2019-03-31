@@ -1,6 +1,6 @@
 CC=g++ -std=c++11
 
-CFLAGS=-c -Wall
+CFLAGS=-c -Wall -g
 
 all: game
 

@@ -8,7 +8,7 @@
 
 int main() {
     //lvl1 easy
-    /*
+
     Cell cellb1 = Cell(0,0);
 
     Cell cellb2 = Cell(3,0);
@@ -59,11 +59,11 @@ int main() {
     pieces.push_back(piece2);
     pieces.push_back(piece3);
     pieces.push_back(piece4);
-    pieces.push_back(piece5);*/
+    pieces.push_back(piece5);
 
 
     //lvl2 easy
-
+/*
     Cell cellr1 = Cell(1,0);
     Cell cellr2 = Cell(1,1);
 
@@ -102,7 +102,7 @@ int main() {
     pieces.push_back(piece1);
     pieces.push_back(piece2);
     pieces.push_back(piece3);
-    pieces.push_back(piece4);
+    pieces.push_back(piece4);*/
 
     //lvl 1 hard
     /*

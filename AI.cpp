@@ -7,15 +7,78 @@ int depth_cost = DEPTH_LIMIT;
 
 vector<Move> BFS(Board board)
 {
-    Node* current = nullptr;
-    set<Node*> openSet, closedSet;
-    openSet.insert(new Node(board));
+    int level = 0;
+    queue<Node*> q;
+    queue<Node*> empty;
+    Node *n = new Node(board);
+    Node *current = n;
+    current->G = 0;
+
+    q.push(current);
     vector<Move> path;
 
 
     char directions[] = {'w','a','s','d'};
 
 
+    while(!q.empty()){
+
+
+
+        current = q.front();
+        q.pop();
+
+        if(current->board.isGameFinished()){
+            break;
+        }
+
+        if(current->G > level){
+            level++;
+            cout << "depth level: " << level << endl;
+        }
+
+        for(unsigned int i = 0; i < current->board.getPieces().size(); i++) {
+                for (unsigned int j = 0; j < 4; j++) {
+
+                    Board new_board = current->board;
+
+                    Cell c = board.getPieces().at(i).getCells().at(0);
+                    new_board.movePiece(c, directions[j]);
+                    if (!board.possibleMove(c, directions[j])) {
+                        continue;
+                    }
+
+
+
+                    new_board.cellsAdjacent();
+                    new_board.putMatrixEmpty();
+                    new_board.putPiecesMatrix();
+
+                    Node *current_temp = new Node(new_board, current, c.getX(), c.getY(), directions[j]);
+                    current_temp->G = current->G+1;
+
+                    q.push(current_temp);
+
+
+                }
+            }
+
+
+
+    }
+
+    while (current != nullptr) {
+
+        Move m;
+        m.x = current->x;
+        m.y = current->y;
+        m.direction = current->direction;
+        path.push_back(m);
+        current = current->parent;
+    }
+
+    path.pop_back();
+    reverse(path.begin(), path.begin());
     return path;
 }
 
@@ -300,7 +363,7 @@ unsigned int heuristic(Board board){
     }
     return heu;
 }
-        
+
 Node* findNodeOnList(set<Node*> & nodes_, Board board)
 {
     for (auto node : nodes_) {

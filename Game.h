@@ -8,6 +8,8 @@
 #include "Board.h"
 #include "AI.h"
 #include <vector>
+#include <chrono>
+#include <ctime>
 
 
 

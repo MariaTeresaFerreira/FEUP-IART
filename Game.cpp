@@ -124,6 +124,9 @@ void Game::AIGame(Board b){
 
     int algorithm;
     std::vector<Move> path;
+    std::chrono::duration<double> time_span;
+
+
 
     while(true){
         std::cout << "Select algorithm: " << std::endl << "1 - AStar" << std::endl
@@ -131,19 +134,40 @@ void Game::AIGame(Board b){
                   << "4 - IDA (Iterative Deepening Algorithm)" << std::endl;
         std::cin >> algorithm;
         if(algorithm == 1){
+
+            std::chrono::high_resolution_clock::time_point t1 = std::chrono::high_resolution_clock::now();
             path = AStar(this->getBoardGame());
+            std::chrono::high_resolution_clock::time_point t2 = std::chrono::high_resolution_clock::now();
+            time_span = std::chrono::duration_cast<std::chrono::duration<double> >(t2 - t1);
+
 
             break;
         } else if(algorithm == 2){
+
+            std::chrono::high_resolution_clock::time_point t1 = std::chrono::high_resolution_clock::now();
             path = greedy(this->getBoardGame());
+            std::chrono::high_resolution_clock::time_point t2 = std::chrono::high_resolution_clock::now();
+            time_span = std::chrono::duration_cast<std::chrono::duration<double> >(t2 - t1);
+
+
             
             break;
         } else if(algorithm == 3){
+
+
+            std::chrono::high_resolution_clock::time_point t1 = std::chrono::high_resolution_clock::now();
             path = DFS(this->getBoardGame());
+            std::chrono::high_resolution_clock::time_point t2 = std::chrono::high_resolution_clock::now();
+            time_span = std::chrono::duration_cast<std::chrono::duration<double> >(t2 - t1);
 
             break;
         }else if(algorithm == 4){
+
+            std::chrono::high_resolution_clock::time_point t1 = std::chrono::high_resolution_clock::now();
             path = IDA(this->getBoardGame());
+            std::chrono::high_resolution_clock::time_point t2 = std::chrono::high_resolution_clock::now();
+            time_span = std::chrono::duration_cast<std::chrono::duration<double> >(t2 - t1);
+
 
             break;
     }
@@ -170,6 +194,8 @@ void Game::AIGame(Board b){
 
 
     }
+
+    std::cout << "Execution time -  " << time_span.count() << " seconds."<< std::endl;
 
 }
 

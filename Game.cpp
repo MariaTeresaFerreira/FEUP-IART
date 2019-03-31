@@ -129,9 +129,12 @@ void Game::AIGame(Board b){
 
 
     while(true){
-        std::cout << "Select algorithm: " << std::endl << "1 - AStar" << std::endl
-                  << "2 - Greedy" << std::endl << "3 - DFS (Depth-First Search)" << std::endl
-                  << "4 - IDA (Iterative Deepening Algorithm)" << std::endl;
+        std::cout << "Select algorithm: " << std::endl
+                  << "1 - AStar" << std::endl
+                  << "2 - Greedy" << std::endl
+                  << "3 - DFS (Depth-First Search)" << std::endl
+                  << "4 - IDA (Iterative Deepening Algorithm)" << std::endl
+                  << "5 - BFS (Breadth First Search)";
         std::cin >> algorithm;
         if(algorithm == 1){
 
@@ -170,7 +173,17 @@ void Game::AIGame(Board b){
 
 
             break;
-    }
+        }else if(algorithm == 5){
+
+        std::chrono::high_resolution_clock::time_point t1 = std::chrono::high_resolution_clock::now();
+        path = BFS(this->getBoardGame());
+        std::chrono::high_resolution_clock::time_point t2 = std::chrono::high_resolution_clock::now();
+        time_span = std::chrono::duration_cast<std::chrono::duration<double> >(t2 - t1);
+
+
+        break;
+        }
+
     }
 
     for(unsigned int i = 0; i < path.size(); i++){

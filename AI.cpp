@@ -4,6 +4,23 @@ using namespace std;
 
 int depth_cost = DEPTH_LIMIT;
 
+
+vector<Move> BFS(Board board)
+{
+    Node* current = nullptr;
+    set<Node*> openSet, closedSet;
+    openSet.insert(new Node(board));
+    vector<Move> path;
+
+
+    char directions[] = {'w','a','s','d'};
+
+
+    return path;
+}
+
+
+
 vector<Move> IDA(Board board){
 
     depth_cost = 0;

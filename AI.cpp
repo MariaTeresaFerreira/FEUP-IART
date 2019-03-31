@@ -12,7 +12,7 @@ vector<Move> IDA(Board board){
     while(path.empty() && depth_cost <= IDA_LIMIT){
 
         path = DFS(board);
-        cout << "depth cost: " << depth_cost << endl;
+        cout << "DEPTH cost: " << depth_cost << endl;
         depth_cost++;
 
     }
@@ -31,7 +31,7 @@ vector<Move> DFS(Board board, int total_cost){
         return path;
     }
 
-    cout << "total cost: " << total_cost << endl;
+    cout << "TOTAL cost: " << total_cost << endl;
 
     for(unsigned int i = 0; i < board.getPieces().size(); i++){
         for(unsigned int j = 0; j < 4; ++j){
@@ -224,6 +224,7 @@ vector<Move> greedy(Board board)
 
     releaseNodes(openSet);
     releaseNodes(closedSet);
+    path.pop_back();
 
     std::reverse(path.begin(), path.end());
     return path;

@@ -126,7 +126,9 @@ void Game::AIGame(Board b){
     std::vector<Move> path;
 
     while(true){
-        std::cout << "Select algorithm: " << std::endl << "1 - AStar" << std::endl << "2 - Greedy" << std::endl << "3 - DFS (Depth-First Search)" << std::endl;
+        std::cout << "Select algorithm: " << std::endl << "1 - AStar" << std::endl
+                  << "2 - Greedy" << std::endl << "3 - DFS (Depth-First Search)" << std::endl
+                  << "4 - IDA (Iterative Deepening Algorithm)" << std::endl;
         std::cin >> algorithm;
         if(algorithm == 1){
             path = AStar(this->getBoardGame());
@@ -139,11 +141,12 @@ void Game::AIGame(Board b){
         } else if(algorithm == 3){
             path = DFS(this->getBoardGame());
 
-            for(auto move: path){
-                std::cout << move.x << " " << move.y << " " << move.direction << std::endl;
-            }
             break;
-        }
+        }else if(algorithm == 4){
+            path = IDA(this->getBoardGame());
+
+            break;
+    }
     }
 
     for(unsigned int i = 0; i < path.size(); i++){
@@ -169,6 +172,7 @@ void Game::AIGame(Board b){
     }
 
 }
+
 
 Board Game::getBoardGame() {
     return this->board;

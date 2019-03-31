@@ -2,15 +2,36 @@
 
 using namespace std;
 
+int depth_cost = DEPTH_LIMIT;
+
+vector<Move> IDA(Board board){
+
+    depth_cost = 0;
+    vector<Move> path;
+
+    while(path.empty() && depth_cost <= IDA_LIMIT){
+
+        path = DFS(board);
+        cout << "depth cost: " << depth_cost << endl;
+        depth_cost++;
+
+    }
+
+    return path;
+}
+
+
 
 vector<Move> DFS(Board board, int total_cost){
 
     char directions[] = {'w','a','s','d'};
     vector<Move> path;
 
-    if(total_cost > DEPTH_LIMIT){
+    if(total_cost > depth_cost){
         return path;
     }
+
+    cout << "total cost: " << total_cost << endl;
 
     for(unsigned int i = 0; i < board.getPieces().size(); i++){
         for(unsigned int j = 0; j < 4; ++j){
@@ -26,8 +47,6 @@ vector<Move> DFS(Board board, int total_cost){
                 Cell c = board.getPieces().at(i).getCells().at(0);
                 new_board.movePiece(c, directions[j]);
                 if (!board.possibleMove(c, directions[j])){
-                    cout << "not possible move" << endl;
-                    cout << c << directions[j]<< endl;
                     continue;
                 }
 
@@ -132,6 +151,7 @@ vector<Move> AStar(Board board)
 
     releaseNodes(openSet);
     releaseNodes(closedSet);
+    path.pop_back();
 
     reverse(path.begin(), path.end());
     return path;

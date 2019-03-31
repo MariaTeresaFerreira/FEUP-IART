@@ -28,6 +28,8 @@ std::vector<Move> BFS(Board board);
 
 Node* findNodeOnList(std::set<Node*>& nodes_, Board board);
 unsigned int heuristic(Board board);
+unsigned int heuristic_2(Board board);
+unsigned int heuristic_3(Board board);
 void releaseNodes(std::set<Node*> & nodes_);
 
 

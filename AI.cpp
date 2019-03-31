@@ -7,7 +7,7 @@ int depth_cost = DEPTH_LIMIT;
 
 vector<Move> BFS(Board board)
 {
-    int level = 0;
+    unsigned int level = 0;
     queue<Node*> q;
     queue<Node*> empty;
     Node *n = new Node(board);
@@ -26,16 +26,16 @@ vector<Move> BFS(Board board)
 
 
         current = q.front();
+    
+    cout << current->board << endl;
+    current->board.printBoard();
+
         q.pop();
 
         if(current->board.isGameFinished()){
             break;
         }
 
-        if(current->G > level){
-            level++;
-            cout << "depth level: " << level << endl;
-        }
 
         for(unsigned int i = 0; i < current->board.getPieces().size(); i++) {
                 for (unsigned int j = 0; j < 4; j++) {
@@ -43,13 +43,13 @@ vector<Move> BFS(Board board)
                     Board new_board = current->board;
 
                     Cell c = board.getPieces().at(i).getCells().at(0);
-                    new_board.movePiece(c, directions[j]);
+                    
                     if (!board.possibleMove(c, directions[j])) {
                         continue;
                     }
 
 
-
+                    new_board.movePiece(c, directions[j]);
                     new_board.cellsAdjacent();
                     new_board.putMatrixEmpty();
                     new_board.putPiecesMatrix();
@@ -62,7 +62,6 @@ vector<Move> BFS(Board board)
 
                 }
             }
-
 
 
     }
@@ -310,8 +309,104 @@ vector<Move> greedy(Board board)
     return path;
 }
 
+/*Heuristic regarding distance from blocks w/ same color bigger than 1*/
+unsigned int heuristic_3(Board board){
+    vector<Piece> red;
+    vector<Piece> green;
+    vector<Piece> blue;
+    vector<Piece> yellow;
+    unsigned int heu = 0;
 
+    for(unsigned int i = 0; i < board.getPieces().size(); i++){
+        if(board.getPieces()[i].getColor() == "red")
+            red.push_back(board.getPieces()[i]);
+        else if(board.getPieces()[i].getColor() == "blue")
+            blue.push_back(board.getPieces()[i]);
+        else if(board.getPieces()[i].getColor() == "green")
+            green.push_back(board.getPieces()[i]);
+        else if(board.getPieces()[i].getColor() == "yellow")
+            yellow.push_back(board.getPieces()[i]);
+    }
 
+    if(red.size() > 1 ){
+        heu += red.size();
+        for(unsigned int i = 0; i < red.size(); i++){
+            for(unsigned int j = (i + 1); j < red.size(); j++){
+                heu += red[i].getPieceDistance(red[j]);
+            }               
+        }
+    }
+
+    if(blue.size() > 1){
+        heu += blue.size();
+        for(unsigned int i = 0; i < blue.size(); i++){
+            for(unsigned int j = (i + 1); j < blue.size(); j++){
+                heu += blue[i].getPieceDistance(blue[j]);
+            }               
+        }
+    }
+
+    if(green.size() > 1){
+        heu += green.size();
+        for(unsigned int i = 0; i < green.size(); i++){
+            for(unsigned int j = (i + 1); j < green.size(); j++){
+                heu += green[i].getPieceDistance(green[j]);
+            }               
+        }
+    }
+
+    if(yellow.size() > 1){
+        heu += yellow.size();
+        for(unsigned int i = 0; i < yellow.size(); i++){
+            for(unsigned int j = (i + 1); j < yellow.size(); j++){
+                heu += yellow[i].getPieceDistance(yellow[j]);
+            }               
+        }
+    }
+    return heu;
+
+}
+
+/*Heuristic regarding blocks from same color bigger than 1*/
+unsigned int heuristic_2(Board board){
+    vector<Piece> red;
+    vector<Piece> green;
+    vector<Piece> blue;
+    vector<Piece> yellow;
+    unsigned int heu = 0;
+
+    for(unsigned int i = 0; i < board.getPieces().size(); i++){
+        if(board.getPieces()[i].getColor() == "red")
+            red.push_back(board.getPieces()[i]);
+        else if(board.getPieces()[i].getColor() == "blue")
+            blue.push_back(board.getPieces()[i]);
+        else if(board.getPieces()[i].getColor() == "green")
+            green.push_back(board.getPieces()[i]);
+        else if(board.getPieces()[i].getColor() == "yellow")
+            yellow.push_back(board.getPieces()[i]);
+    }
+
+    if(red.size() > 1 ){
+        heu += red.size();
+    }
+
+    if(blue.size() > 1){
+        heu += blue.size();
+    }
+
+    if(green.size() > 1){
+        heu += green.size();
+    }
+
+    if(yellow.size() > 1){
+        heu += yellow.size();
+    }
+
+    return heu;
+
+}
+
+/*Optimal Heuristic regarding distance of blocks from same color*/
 unsigned int heuristic(Board board){
     vector<Piece> red;
     vector<Piece> green;

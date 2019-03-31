@@ -24,26 +24,30 @@ vector<Move> DFS(Board board, int total_cost){
 
                 Board new_board = board;
                 Cell c = board.getPieces().at(i).getCells().at(0);
-                
+                new_board.movePiece(c, directions[j]);
                 if (!board.possibleMove(c, directions[j])){
                     cout << "not possible move" << endl;
                     cout << c << directions[j]<< endl;
                     continue;
                 }
-                new_board.movePiece(c, directions[j]);
+
                 
                 new_board.cellsAdjacent();
                 new_board.putMatrixEmpty();
                 new_board.putPiecesMatrix();
 
-                path.push_back(new_move);
 
             if(new_board.isGameFinished()){
+                path.push_back(new_move);
                 return path;
             }
 
             vector<Move> returning_path = DFS(new_board, total_cost + 1);
 
+            if(returning_path.empty())
+                continue;
+
+            path.push_back(new_move);
             path.insert(path.end(), returning_path.begin(), returning_path.end());
 
             return path;

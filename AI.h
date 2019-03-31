@@ -10,7 +10,7 @@
 #include <set>
 #include <vector>
 
-#define DEPTH_LIMIT 20
+#define DEPTH_LIMIT 10
 
 typedef struct{
     int x;

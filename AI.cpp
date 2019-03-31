@@ -2,6 +2,57 @@
 
 using namespace std;
 
+
+vector<Move> DFS(Board board, int total_cost){
+
+    char directions[] = {'w','a','s','d'};
+    vector<Move> path;
+
+    if(total_cost > DEPTH_LIMIT){
+        return path;
+    }
+
+    for(unsigned int i = 0; i < board.getPieces().size(); i++){
+        for(unsigned int j = 0; j < 4; ++j){
+            Move new_move;
+            new_move.x = board.getPieces().at(i).getCells().at(0).getX(); 
+            new_move.y = board.getPieces().at(i).getCells().at(0).getY();
+            new_move.direction = directions[j];
+
+                
+                
+
+                Board new_board = board;
+                Cell c = board.getPieces().at(i).getCells().at(0);
+                
+                if (!board.possibleMove(c, directions[j])){
+                    cout << "not possible move" << endl;
+                    cout << c << directions[j]<< endl;
+                    continue;
+                }
+                new_board.movePiece(c, directions[j]);
+                
+                new_board.cellsAdjacent();
+                new_board.putMatrixEmpty();
+                new_board.putPiecesMatrix();
+
+                path.push_back(new_move);
+
+            if(new_board.isGameFinished()){
+                return path;
+            }
+
+            vector<Move> returning_path = DFS(new_board, total_cost + 1);
+
+            path.insert(path.end(), returning_path.begin(), returning_path.end());
+
+            return path;
+        }
+    }
+
+    return path;
+}
+
 vector<Move> AStar(Board board)
 {
     Node* current = nullptr;
@@ -153,6 +204,8 @@ vector<Move> greedy(Board board)
     std::reverse(path.begin(), path.end());
     return path;
 }
+
+
 
 unsigned int heuristic(Board board){
     vector<Piece> red;

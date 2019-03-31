@@ -3,7 +3,6 @@
 //
 
 #include "Game.h"
-
 #include <string>
 #include <vector>
 
@@ -127,20 +126,22 @@ void Game::AIGame(Board b){
     std::vector<Move> path;
 
     while(true){
-        std::cout << "Select algorithm: " << std::endl << "1 - AStar" << std::endl << "2 - " << std::endl;
+        std::cout << "Select algorithm: " << std::endl << "1 - AStar" << std::endl << "2 - Greedy" << std::endl << "3 - DFS (Depth-First Search)" << std::endl;
         std::cin >> algorithm;
         if(algorithm == 1){
-
-
             path = AStar(this->getBoardGame());
-
-
 
             break;
         } else if(algorithm == 2){
             path = greedy(this->getBoardGame());
             
-            std::cout << "teste afscdfcwsdz";
+            break;
+        } else if(algorithm == 3){
+            path = DFS(this->getBoardGame());
+
+            for(auto move: path){
+                std::cout << move.x << " " << move.y << " " << move.direction << std::endl;
+            }
             break;
         }
     }

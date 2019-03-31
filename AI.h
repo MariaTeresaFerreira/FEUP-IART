@@ -10,6 +10,8 @@
 #include <set>
 #include <vector>
 
+#define DEPTH_LIMIT 20
+
 typedef struct{
     int x;
     int y;
@@ -17,10 +19,11 @@ typedef struct{
 } Move;
 
 std::vector<Move> AStar(Board board);
+std::vector<Move> greedy(Board board);
+std::vector<Move> DFS(Board board, int total_cost = 0);
 Node* findNodeOnList(std::set<Node*>& nodes_, Board board);
 unsigned int heuristic(Board board);
 void releaseNodes(std::set<Node*> & nodes_);
-std::vector<Move> greedy(Board board);
 
 
 

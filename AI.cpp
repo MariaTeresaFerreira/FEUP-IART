@@ -350,7 +350,6 @@ unsigned int heuristic_3(Board board){
     vector<Piece> yellow;
     unsigned int heu = 0;
 
-    cout << "33333333333333333333333333333333" << endl;
     for(unsigned int i = 0; i < board.getPieces().size(); i++){
         if(board.getPieces()[i].getColor() == "red")
             red.push_back(board.getPieces()[i]);
@@ -409,7 +408,6 @@ unsigned int heuristic_2(Board board){
     vector<Piece> yellow;
     unsigned int heu = 0;
 
-    cout << "222222222222222222222222222222" << endl;
     for(unsigned int i = 0; i < board.getPieces().size(); i++){
         if(board.getPieces()[i].getColor() == "red")
             red.push_back(board.getPieces()[i]);
@@ -449,7 +447,6 @@ unsigned int heuristic(Board board){
     vector<Piece> yellow;
     unsigned int heu = 0;
 
-    cout << "11111111111111111111111111111" << endl;
     for(unsigned int i = 0; i < board.getPieces().size(); i++){
         if(board.getPieces()[i].getColor() == "red")
             red.push_back(board.getPieces()[i]);

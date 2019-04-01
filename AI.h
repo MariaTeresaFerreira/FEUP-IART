@@ -7,9 +7,12 @@
 #include "Node.h"
 #include "Cell.h"
 #include "Piece.h"
+#include "Game.h"
 #include <set>
 #include <vector>
 #include <queue>
+
+
 
 #define DEPTH_LIMIT 10
 #define IDA_LIMIT 20

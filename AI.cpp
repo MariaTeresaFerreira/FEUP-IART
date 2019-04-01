@@ -57,8 +57,8 @@ vector<Move> BFS(Board board)
 
     int level = 0;
     queue<Node*> q;
-    Node *n = new Node(board);
-    Node *current = n;
+    Node *current = new Node(board);
+    //Node *current = n;
     current->G = 0;
 
     q.push(current);

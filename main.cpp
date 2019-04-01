@@ -7,6 +7,9 @@
 
 
 int main() {
+
+
+
     //lvl1 easy
 
     Cell cellb1 = Cell(0,0);

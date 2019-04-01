@@ -18,15 +18,15 @@
 
     void Game::run(){
 
-        int gameMode;
+        std::string gameMode;
 
         while(true){
             std::cout << "Select game mode: " << std::endl << "1 - Human" << std::endl << "2 - AI" << std::endl;
             std::cin >> gameMode;
-            if(gameMode == 1){
+            if(gameMode == "1"){
                 break;
                 //Jogo humano normal
-            } else if(gameMode == 2){
+            } else if(gameMode == "2"){
                 AIGame(this->board);
                 //Jogo AI
                 return;
@@ -122,7 +122,7 @@
 
 void Game::AIGame(Board b){
 
-    int algorithm;
+    std::string algorithm;
     std::vector<Move> path;
     std::chrono::duration<double> time_span;
 
@@ -136,7 +136,7 @@ void Game::AIGame(Board b){
                   << "4 - IDA (Iterative Deepening Algorithm)" << std::endl
                   << "5 - BFS (Breadth First Search)";
         std::cin >> algorithm;
-        if(algorithm == 1){
+        if(algorithm == "1"){
 
             std::chrono::high_resolution_clock::time_point t1 = std::chrono::high_resolution_clock::now();
             path = AStar(this->getBoardGame());
@@ -145,7 +145,7 @@ void Game::AIGame(Board b){
 
 
             break;
-        } else if(algorithm == 2){
+        } else if(algorithm == "2"){
 
             std::chrono::high_resolution_clock::time_point t1 = std::chrono::high_resolution_clock::now();
             path = greedy(this->getBoardGame());
@@ -155,7 +155,7 @@ void Game::AIGame(Board b){
 
             
             break;
-        } else if(algorithm == 3){
+        } else if(algorithm == "3"){
 
 
             std::chrono::high_resolution_clock::time_point t1 = std::chrono::high_resolution_clock::now();
@@ -164,7 +164,7 @@ void Game::AIGame(Board b){
             time_span = std::chrono::duration_cast<std::chrono::duration<double> >(t2 - t1);
 
             break;
-        }else if(algorithm == 4){
+        }else if(algorithm == "4"){
 
             std::chrono::high_resolution_clock::time_point t1 = std::chrono::high_resolution_clock::now();
             path = IDA(this->getBoardGame());
@@ -173,7 +173,7 @@ void Game::AIGame(Board b){
 
 
             break;
-        }else if(algorithm == 5){
+        }else if(algorithm == "5"){
 
         std::chrono::high_resolution_clock::time_point t1 = std::chrono::high_resolution_clock::now();
         path = BFS(this->getBoardGame());

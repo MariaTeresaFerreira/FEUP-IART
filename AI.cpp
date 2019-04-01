@@ -7,9 +7,56 @@ int depth_cost = DEPTH_LIMIT;
 
 vector<Move> BFS(Board board)
 {
+
+    //-----------------FINAL BOARD----------------------
+    Cell cellb1 = Cell(0,0);
+    Cell cellb2 = Cell(1,0);
+    Cell cellb3 = Cell(0,1);
+
+    Cell cellg1 = Cell(1,1);
+    Cell cellg2 = Cell(1,2);
+    Cell cellg3 = Cell(1,3);
+    Cell cellg4 = Cell(2,3);
+
+    Cell cellr1 = Cell(2,1);
+    Cell cellr2 = Cell(3,1);
+    Cell cellr3 = Cell(3,2);
+    Cell cellr4 = Cell(3,3);
+
+    std::vector<Cell> cells1;
+    std::vector<Cell> cells2;
+    std::vector<Cell> cells3;
+
+    cells1.push_back(cellb1);
+    cells1.push_back(cellb2);
+    cells1.push_back(cellb3);
+
+    cells2.push_back(cellg1);
+    cells2.push_back(cellg2);
+    cells2.push_back(cellg3);
+    cells2.push_back(cellg4);
+
+    cells3.push_back(cellr1);
+    cells3.push_back(cellr2);
+    cells3.push_back(cellr3);
+    cells3.push_back(cellr4);
+
+    Piece piece1 = Piece("blue", cells1);
+    Piece piece2 = Piece("green", cells2);
+    Piece piece3 = Piece("red", cells3);
+
+    std::vector<Piece> pieces;
+
+    pieces.push_back(piece1);
+    pieces.push_back(piece2);
+    pieces.push_back(piece3);
+
+    Board final_board = Board(4,4,pieces);
+
+    //-----------------FINAL BOARD----------------------
+
     int level = 0;
     queue<Node*> q;
-    queue<Node*> empty;
     Node *n = new Node(board);
     Node *current = n;
     current->G = 0;
@@ -23,12 +70,11 @@ vector<Move> BFS(Board board)
 
     while(!q.empty()){
 
-
-
         current = q.front();
         q.pop();
 
         if(current->board.isGameFinished()){
+        //if(current->board.getPieces() == final_board.getPieces()){
             break;
         }
 
@@ -38,33 +84,28 @@ vector<Move> BFS(Board board)
         }
 
         for(unsigned int i = 0; i < current->board.getPieces().size(); i++) {
-                for (unsigned int j = 0; j < 4; j++) {
+            for (unsigned int j = 0; j < 4; j++) {
+                Board new_board = current->board;
+                Cell c = board.getPieces().at(i).getCells().at(0);
 
-                    Board new_board = current->board;
-
-                    Cell c = board.getPieces().at(i).getCells().at(0);
-                    new_board.movePiece(c, directions[j]);
-                    if (!board.possibleMove(c, directions[j])) {
-                        continue;
-                    }
-
-
-
-                    new_board.cellsAdjacent();
-                    new_board.putMatrixEmpty();
-                    new_board.putPiecesMatrix();
-
-                    Node *current_temp = new Node(new_board, current, c.getX(), c.getY(), directions[j]);
-                    current_temp->G = current->G+1;
-
-                    q.push(current_temp);
-
-
+                if (!board.possibleMove(c, directions[j])) {
+                    continue;
                 }
+
+                new_board.movePiece(c, directions[j]);
+
+
+
+                new_board.cellsAdjacent();
+                new_board.putMatrixEmpty();
+                new_board.putPiecesMatrix();
+
+                Node *current_temp = new Node(new_board, current, c.getX(), c.getY(), directions[j]);
+                current_temp->G = current->G+1;
+
+                q.push(current_temp);
             }
-
-
-
+        }
     }
 
     while (current != nullptr) {

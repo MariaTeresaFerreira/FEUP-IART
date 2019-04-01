@@ -4,247 +4,96 @@
 #include "Board.h"
 #include "Game.h"
 #include "AI.h"
+#include <fstream>
+
+
 
 
 int main() {
-
-    std::string game_level;
-    std::cout << "Please select level" << std::endl;
-    std::cout << "1 - Easy" << std::endl;
-    std::cout << "2 - Medium" << std::endl;
-    std::cout << "3 - Hard" << std::endl;
-    std::cin >> game_level;
-
+    int col;
+    int lin;
     std::vector<Piece> pieces;
-while(true){
-    if(game_level == "1"){
-        //lvl1 easy
 
-        std::cout << "Easy level selected" << std::endl;
+    std::string lines;
+    std::string columns;
 
-        Cell cellb1 = Cell(0,0);
+    std::string numPieces;
+    std::string piece;
 
-        Cell cellb2 = Cell(3,0);
+    std::string color;
 
-        Cell cellb3 = Cell(0,3);
+    std::string strY;
+    std::string strX;
+    
+    long stop;
+    long lastStop;
 
-        Cell cellg1 = Cell(1,0);
-        Cell cellg2 = Cell(1,1);
-        Cell cellg3 = Cell(1,2);
-        Cell cellg4 = Cell(2,2);
+    std::ifstream fileBoard;
+    int game_level = 0;
 
-        Cell cellr1 = Cell(2,1);
-        Cell cellr2 = Cell(3,1);
-        Cell cellr3 = Cell(3,2);
-        Cell cellr4 = Cell(3,3);
+    while(game_level < 1 || game_level > 3){
 
-        std::vector<Cell> cells1;
-        std::vector<Cell> cells2;
-        std::vector<Cell> cells3;
-        std::vector<Cell> cells4;
-        std::vector<Cell> cells5;
+        std::cout << "Please select level" << std::endl;
+        std::cout << "1 - Easy" << std::endl;
+        std::cout << "2 - Medium" << std::endl;
+        std::cout << "3 - Hard" << std::endl;
+        std::cin >> game_level;
 
-        cells1.push_back(cellb1);
-
-        cells2.push_back(cellb2);
-
-        cells3.push_back(cellb3);
-
-        cells4.push_back(cellg1);
-        cells4.push_back(cellg2);
-        cells4.push_back(cellg3);
-        cells4.push_back(cellg4);
-
-        cells5.push_back(cellr1);
-        cells5.push_back(cellr2);
-        cells5.push_back(cellr3);
-        cells5.push_back(cellr4);
-
-        Piece piece1 = Piece("blue", cells1);
-        Piece piece2 = Piece("blue", cells2);
-        Piece piece3 = Piece("blue", cells3);
-        Piece piece4 = Piece("green", cells4);
-        Piece piece5 = Piece("red", cells5);
-
-        pieces.push_back(piece1);
-        pieces.push_back(piece2);
-        pieces.push_back(piece3);
-        pieces.push_back(piece4);
-        pieces.push_back(piece5);
+        if(game_level == 1){
+        fileBoard.open("nivel1.txt");
         break;
-
-    } else if( game_level == "2"){
-        //lvl2 easy
-
-        std::cout << "Medium level selected" << std::endl;
-
-        Cell cellr1 = Cell(1,0);
-        Cell cellr2 = Cell(1,1);
-
-        Cell cellb1 = Cell(2,1);
-        Cell cellb2 = Cell(3,1);
-
-        Cell cellr3 = Cell(2,2);
-        Cell cellr4 = Cell(3,2);
-
-        Cell cellb3 = Cell(1,2);
-        Cell cellb4 = Cell(1,3);
-
-        std::vector<Cell> cells1;
-        std::vector<Cell> cells2;
-        std::vector<Cell> cells3;
-        std::vector<Cell> cells4;
-
-        cells1.push_back(cellr1);
-        cells1.push_back(cellr2);
-
-        cells2.push_back(cellb1);
-        cells2.push_back(cellb2);
-
-        cells3.push_back(cellr3);
-        cells3.push_back(cellr4);
-
-        cells4.push_back(cellb3);
-        cells4.push_back(cellb4);
-
-        Piece piece1 = Piece("red", cells1);
-        Piece piece2 = Piece("blue", cells2);
-        Piece piece3 = Piece("red", cells3);
-        Piece piece4 = Piece("blue", cells4);
-
-        pieces.push_back(piece1);
-        pieces.push_back(piece2);
-        pieces.push_back(piece3);
-        pieces.push_back(piece4);
+        }
+        else if(game_level == 2){
+        fileBoard.open("nivel2.txt");
         break;
-    } else if (game_level == "3"){
-
-        //lvl 1 hard
-
-        std::cout << "Hard level selected" << std::endl;
-
-        Cell cellb1 = Cell(0, 0);
-        Cell cellb2 = Cell(1, 0);
-        Cell cellb3 = Cell(3, 2);
-        Cell cellb4 = Cell(2, 3);
-
-        Cell cellg1 = Cell(3, 0);
-        Cell cellg2 = Cell(1, 3);
-
-        Cell cellr1 = Cell(0, 1);
-        Cell cellr2 = Cell(1, 1);
-        Cell cellr3 = Cell(2, 1);
-        Cell cellr4 = Cell(0, 2);
-        Cell cellr5 = Cell(1, 2);
-        Cell cellr6 = Cell(2, 2);
-
-
-
-        std::vector<Cell> cells1;
-        std::vector<Cell> cells2;
-        std::vector<Cell> cells3;
-        std::vector<Cell> cells4;
-        std::vector<Cell> cells5;
-        std::vector<Cell> cells6;
-
-        cells1.push_back(cellb1);
-        cells1.push_back(cellb2);
-
-        cells2.push_back(cellg1);
-
-        cells3.push_back(cellr1);
-        cells3.push_back(cellr2);
-        cells3.push_back(cellr3);
-        cells3.push_back(cellr4);
-        cells3.push_back(cellr5);
-        cells3.push_back(cellr6);
-
-        cells4.push_back(cellb3);
-
-        cells5.push_back(cellg2);
-
-        cells6.push_back(cellb4);
-
-        Piece piece1 = Piece("blue", cells1);
-        Piece piece2 = Piece("green", cells2);
-        Piece piece3 = Piece("red", cells3);
-        Piece piece4 = Piece("blue", cells4);
-        Piece piece5 = Piece("green", cells5);
-        Piece piece6 = Piece("blue", cells6);
-
-
-
-
-        pieces.push_back(piece1);
-        pieces.push_back(piece2);
-        pieces.push_back(piece3);
-        pieces.push_back(piece4);
-        pieces.push_back(piece5);
-        pieces.push_back(piece6);
+        }
+        else if(game_level == 3){
+        fileBoard.open("nivel3.txt");
         break;
+        }
     }
+    
+    if (fileBoard.is_open()) {
+        while (!fileBoard.eof()) {
 
-}
-    Board board = Board(4,4,pieces);
+            std::getline(fileBoard, lines);
+            std::getline(fileBoard, columns);            
+            lin = atoi( lines.c_str() );
+            col = atoi( columns.c_str() );
+            
+            std::getline(fileBoard, numPieces);
+            int nPiece = atoi( numPieces.c_str() );
 
-    //std::cout << board.hasPieceInCell(Cell(0,0)) << std::endl;
-    //std::cout << board.hasPieceInCell(Cell(0,1)) << std::endl;
 
+            for(int i = 1; i <= nPiece; i++){
+                std::getline(fileBoard, piece);
+                lastStop = piece.find_last_of(';');
+                color = piece.substr(lastStop+1);
+                std::vector<Cell> cells;
 
+                while(lastStop != stop){
+                    stop = piece.find_first_of(';');
+                    strX = piece.substr(0,stop);
+                    piece = piece.substr(stop+1); 
+                    stop = piece.find_first_of(';');
+                    strY = piece.substr(0,stop);
+
+                    lastStop = piece.find_last_of(';');
+                    piece = piece.substr(stop+1);
+                    
+                    cells.push_back(Cell(atoi( strX.c_str() ),atoi( strY.c_str() )));
+                }
+                pieces.push_back(Piece(color, cells));                  
+            }
+        }
+    }
+    Board board = Board(col,lin,pieces);
+
+    fileBoard.close();
+    
     Game game = Game(board);
-    game.run();
 
+    game.run();
 
     return 0;
 }
-
-
-//-----------------FINAL BOARD----------------------
-/*
-Cell cellb1 = Cell(0,0);
-Cell cellb2 = Cell(1,0);
-Cell cellb3 = Cell(0,1);
-
-Cell cellg1 = Cell(1,1);
-Cell cellg2 = Cell(1,2);
-Cell cellg3 = Cell(1,3);
-Cell cellg4 = Cell(2,3);
-
-Cell cellr1 = Cell(2,1);
-Cell cellr2 = Cell(3,1);
-Cell cellr3 = Cell(3,2);
-Cell cellr4 = Cell(3,3);
-
-std::vector<Cell> cells1;
-std::vector<Cell> cells2;
-std::vector<Cell> cells3;
-
-cells1.push_back(cellb1);
-cells1.push_back(cellb2);
-cells1.push_back(cellb3);
-
-cells2.push_back(cellg1);
-cells2.push_back(cellg2);
-cells2.push_back(cellg3);
-cells2.push_back(cellg4);
-
-cells3.push_back(cellr1);
-cells3.push_back(cellr2);
-cells3.push_back(cellr3);
-cells3.push_back(cellr4);
-
-Piece piece1 = Piece("blue", cells1);
-Piece piece2 = Piece("green", cells2);
-Piece piece3 = Piece("red", cells3);
-
-std::vector<Piece> pieces;
-
-pieces.push_back(piece1);
-pieces.push_back(piece2);
-pieces.push_back(piece3);
-
-Board final_board = Board(4,4,pieces);
- */
-
-//-----------------FINAL BOARD----------------------
-

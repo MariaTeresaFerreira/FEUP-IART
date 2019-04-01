@@ -23,8 +23,8 @@ typedef struct{
     char direction;
 } Move;
 
-std::vector<Move> AStar(Board board);
-std::vector<Move> greedy(Board board);
+std::vector<Move> AStar(Board board, std::string heuristic_choice);
+std::vector<Move> greedy(Board board, std::string heuristic_choice);
 std::vector<Move> DFS(Board board, int total_cost = 0);
 std::vector<Move> IDA(Board board);
 std::vector<Move> BFS(Board board);

@@ -9,8 +9,6 @@ int depth_cost = DEPTH_LIMIT;
 
 vector<Move> BFS(Board board)
 {
-
-    int level = 0;
     queue<Node*> q;
     Node *current = new Node(board);
 
@@ -169,7 +167,7 @@ vector<Move> DFS(Board board, int total_cost){
     return path;
 }
 
-vector<Move> AStar(Board board)
+vector<Move> AStar(Board board, string heuristic_choice)
 {
     Node* current = nullptr;
     set<Node*> openSet, closedSet;
@@ -218,7 +216,14 @@ vector<Move> AStar(Board board)
                     
                     successor = new Node(new_board, current, c.getX(), c.getY(), directions[i]);
                     successor->G = totalCost;
+                    
+                    if(heuristic_choice == "1"){
                     successor->H = heuristic(successor->board);
+                    } else if(heuristic_choice == "2"){
+                    successor->H = heuristic_2(successor->board);
+                    } else if(heuristic_choice == "3"){
+                    successor->H = heuristic_3(successor->board);
+                    }
                     openSet.insert(successor);
                 }
                 else if (totalCost < successor->G) {
@@ -257,7 +262,7 @@ vector<Move> AStar(Board board)
     return path;
 }
 
-vector<Move> greedy(Board board)
+vector<Move> greedy(Board board, string heuristic_choice)
 {
     Node* current = nullptr;
     set<Node*> openSet, closedSet;
@@ -301,7 +306,14 @@ vector<Move> greedy(Board board)
                 if (successor == nullptr) {
                     
                     successor = new Node(new_board, current, c.getX(), c.getY(), directions[i]);
+                                        
+                    if(heuristic_choice == "1"){
                     successor->H = heuristic(successor->board);
+                    } else if(heuristic_choice == "2"){
+                    successor->H = heuristic_2(successor->board);
+                    } else if(heuristic_choice == "3"){
+                    successor->H = heuristic_3(successor->board);
+                    }
                     openSet.insert(successor);
                 }
                 
@@ -338,6 +350,7 @@ unsigned int heuristic_3(Board board){
     vector<Piece> yellow;
     unsigned int heu = 0;
 
+    cout << "33333333333333333333333333333333" << endl;
     for(unsigned int i = 0; i < board.getPieces().size(); i++){
         if(board.getPieces()[i].getColor() == "red")
             red.push_back(board.getPieces()[i]);
@@ -396,6 +409,7 @@ unsigned int heuristic_2(Board board){
     vector<Piece> yellow;
     unsigned int heu = 0;
 
+    cout << "222222222222222222222222222222" << endl;
     for(unsigned int i = 0; i < board.getPieces().size(); i++){
         if(board.getPieces()[i].getColor() == "red")
             red.push_back(board.getPieces()[i]);
@@ -435,6 +449,7 @@ unsigned int heuristic(Board board){
     vector<Piece> yellow;
     unsigned int heu = 0;
 
+    cout << "11111111111111111111111111111" << endl;
     for(unsigned int i = 0; i < board.getPieces().size(); i++){
         if(board.getPieces()[i].getColor() == "red")
             red.push_back(board.getPieces()[i]);

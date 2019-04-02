@@ -31,8 +31,6 @@ vector<Move> BFS(Board board)
         q.pop();
 
         if(current->board.isGameFinished()){
-            cout << "Game is finished" << endl;
-            cout << current->board << endl;
             current_print = current;
 
 
@@ -52,9 +50,6 @@ vector<Move> BFS(Board board)
                 if (!new_board.possibleMove(c, directions[j])) {
                     continue;
                 }
-
-                cout << c << directions[j] << endl;
-                cout << "found possible move" << endl;
 
                 new_board.movePiece(c, directions[j]);
 
@@ -87,8 +82,6 @@ vector<Move> BFS(Board board)
 
     path.pop_back();
     reverse(path.begin(), path.end());
-
-    cout << "current board" << current_print->board << endl;
 
     return path;
 }

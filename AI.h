@@ -12,6 +12,9 @@
 #include <vector>
 #include <queue>
 
+
+extern int node_counter;
+
 typedef struct{
     int x;
     int y;

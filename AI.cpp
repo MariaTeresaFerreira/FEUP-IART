@@ -2,9 +2,11 @@
 
 using namespace std;
 
+
 #define DEPTH_LIMIT 15
 #define IDA_LIMIT 20
 
+int node_counter = 0;
 int depth_cost = DEPTH_LIMIT;
 
 
@@ -25,6 +27,7 @@ vector<Move> BFS(Board board)
 
     while(!q.empty()){
         current = q.front();
+        node_counter++;
 
     //cout << current->board << endl;
     //current->board.printBoard();
@@ -102,6 +105,8 @@ vector<Move> IDA(Board board){
 
     }
 
+
+
     return path;
 }
 
@@ -146,6 +151,7 @@ vector<Move> DFS(Board board, int total_cost){
                 return path;
             }
 
+            node_counter++;
             vector<Move> returning_path = DFS(new_board, total_cost + 1);
 
             if(returning_path.empty())
@@ -170,11 +176,11 @@ vector<Move> AStar(Board board, string heuristic_choice)
 
 
     
-    
     char directions[] = {'w','a','s','d'};
 
     while (!openSet.empty()) {
         current = *openSet.begin();
+        node_counter++;
         for (auto node : openSet) {
             if (node->getScore() <= current->getScore()) {
                 current = node;
@@ -186,6 +192,8 @@ vector<Move> AStar(Board board, string heuristic_choice)
         }
 
         closedSet.insert(current);
+
+
         openSet.erase(std::find(openSet.begin(), openSet.end(), current));
 
         for (unsigned int j = 0; j < current->board.getPieces().size(); j++){
@@ -241,18 +249,16 @@ vector<Move> AStar(Board board, string heuristic_choice)
         current = current->parent;
     }
 
-    cout << closedSet.size() << " - Astar nodes" << endl;
-
     releaseNodes(openSet);
     releaseNodes(closedSet);
     path.pop_back();
 
     //node_number = closedSet.size();
 
-    //cout << "------------- node number: " << node_number << endl;
-
 
     reverse(path.begin(), path.end());
+
+
     return path;
 }
 
@@ -267,6 +273,7 @@ vector<Move> greedy(Board board, string heuristic_choice)
 
     while (!openSet.empty()) {
         current = *openSet.begin();
+        node_counter++;
         for (auto node : openSet) {
             if (node->H <= current->H) {
                 current = node;
@@ -313,7 +320,10 @@ vector<Move> greedy(Board board, string heuristic_choice)
                 
             }
         }
+        //cout << closedSet.size() << " - Greedy nodes" << endl;
     }
+
+
 
     while (current != nullptr) {
 
@@ -326,7 +336,7 @@ vector<Move> greedy(Board board, string heuristic_choice)
         path.push_back(m);
         current = current->parent;
     }
-    cout << closedSet.size() << " - Greedy nodes" << endl;
+
 
     releaseNodes(openSet);
     releaseNodes(closedSet);

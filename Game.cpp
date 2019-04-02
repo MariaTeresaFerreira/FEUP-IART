@@ -35,6 +35,33 @@
 
         while(true){
 
+            std::string input;
+
+            while(true){
+                std::cout << "Do you want a hint? (y/n)" << std::endl;
+                std::cin >> input;
+
+                if(input == "y"){
+                    std::vector<Move> path = BFS(this->getBoardGame());
+
+                    int x = path.at(0).x;
+                    int y = path.at(0).y;
+                    char direction = path.at(0).direction;
+                    std::cout << "Try the move x: " << x
+                              << " y: " << y
+                              << " direction: " << direction << std::endl;
+                    break;
+
+                }else if( input == "n"){
+                    break;
+                }
+
+            }
+
+
+
+
+
             Cell inputCell;
             while(true){
                 std::cout << "Input a Valid Cell to play" << std::endl;

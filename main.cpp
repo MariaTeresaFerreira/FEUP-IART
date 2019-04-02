@@ -3,7 +3,6 @@
 #include "Piece.h"
 #include "Board.h"
 #include "Game.h"
-#include "AI.h"
 #include <fstream>
 
 

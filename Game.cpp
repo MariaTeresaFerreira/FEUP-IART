@@ -244,8 +244,8 @@ void Game::AIGame(Board b){
 
 
     }
-    //std::cout << "Node number: " << node_number << std::endl;
-    std::cout << "Execution time -  " << time_span.count() << " seconds."<< std::endl;
+    std::cout << "Node number: " << node_counter << std::endl;
+    std::cout << "Execution time:  " << time_span.count() << " seconds."<< std::endl;
 
 }
 

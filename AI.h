@@ -14,8 +14,10 @@
 
 
 
-#define DEPTH_LIMIT 10
+#define DEPTH_LIMIT 30
 #define IDA_LIMIT 20
+
+extern int node_counter;
 
 typedef struct{
     int x;

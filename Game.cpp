@@ -165,12 +165,14 @@ void Game::AIGame(Board b){
                   << "5 - BFS (Breadth First Search)";
         std::cin >> algorithm;
 
+            if(algorithm == "1" || algorithm == "2"){
             std::cout << "Select Heuristic: " << std::endl
                     << "1 - Distance of blocks from SAME COLOR" << std::endl
                     << "2 - Blocks(from same color) BIGGER THAN 1" << std::endl
                     << "3 - Distance from blocks w/ SAME COLOR BIGGER THAN 1" << std::endl;
 
             std::cin >> heuristic_choice;
+            }
 
             if(algorithm == "1"){
 

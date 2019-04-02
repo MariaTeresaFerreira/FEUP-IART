@@ -12,11 +12,6 @@
 #include <vector>
 #include <queue>
 
-
-
-#define DEPTH_LIMIT 10
-#define IDA_LIMIT 20
-
 typedef struct{
     int x;
     int y;

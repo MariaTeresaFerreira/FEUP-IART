@@ -2,9 +2,10 @@
 
 using namespace std;
 
+#define DEPTH_LIMIT 15
+#define IDA_LIMIT 20
+
 int depth_cost = DEPTH_LIMIT;
-
-
 
 
 vector<Move> BFS(Board board)

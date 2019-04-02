@@ -15,8 +15,6 @@ vector<Move> BFS(Board board)
     queue<Node*> q;
     Node *current = new Node(board);
 
-    Node *current_print = current;
-
     current->G = 0;
 
     q.push(current);
@@ -29,16 +27,9 @@ vector<Move> BFS(Board board)
         current = q.front();
         node_counter++;
 
-    //cout << current->board << endl;
-    //current->board.printBoard();
-
         q.pop();
 
         if(current->board.isGameFinished()){
-            current_print = current;
-
-
-        //if(current->board.getPieces() == final_board.getPieces()){
             break;
         }
 

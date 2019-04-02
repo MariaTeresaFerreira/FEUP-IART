@@ -38,6 +38,7 @@
             std::string input;
 
             while(true){
+                this->draw();
                 std::cout << "Do you want a hint? (y/n)" << std::endl;
                 std::cin >> input;
 

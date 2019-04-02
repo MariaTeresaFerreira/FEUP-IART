@@ -35,6 +35,33 @@
 
         while(true){
 
+            std::string input;
+
+            while(true){
+                std::cout << "Do you want a hint? (y/n)" << std::endl;
+                std::cin >> input;
+
+                if(input == "y"){
+                    std::vector<Move> path = AStar(this->getBoardGame(), "3");
+
+                    int x = path.at(0).x;
+                    int y = path.at(0).y;
+                    char direction = path.at(0).direction;
+                    std::cout << "Try the move x: " << x
+                              << " y: " << y
+                              << " direction: " << direction << std::endl;
+                    break;
+
+                }else if( input == "n"){
+                    break;
+                }
+
+            }
+
+
+
+
+
             Cell inputCell;
             while(true){
                 std::cout << "Input a Valid Cell to play" << std::endl;
@@ -123,6 +150,7 @@
 void Game::AIGame(Board b){
 
     std::string algorithm;
+    std::string heuristic_choice;
     std::vector<Move> path;
     std::chrono::duration<double> time_span;
 
@@ -136,55 +164,66 @@ void Game::AIGame(Board b){
                   << "4 - IDA (Iterative Deepening Algorithm)" << std::endl
                   << "5 - BFS (Breadth First Search)";
         std::cin >> algorithm;
-        if(algorithm == "1"){
+
+            if(algorithm == "1" || algorithm == "2"){
+            std::cout << "Select Heuristic: " << std::endl
+                    << "1 - Distance of blocks from SAME COLOR" << std::endl
+                    << "2 - Blocks(from same color) BIGGER THAN 1" << std::endl
+                    << "3 - Distance from blocks w/ SAME COLOR BIGGER THAN 1" << std::endl;
+
+            std::cin >> heuristic_choice;
+            }
+
+            if(algorithm == "1"){
+
+                std::chrono::high_resolution_clock::time_point t1 = std::chrono::high_resolution_clock::now();
+                path = AStar(this->getBoardGame(), heuristic_choice);
+                std::chrono::high_resolution_clock::time_point t2 = std::chrono::high_resolution_clock::now();
+                time_span = std::chrono::duration_cast<std::chrono::duration<double> >(t2 - t1);
+
+
+                break;
+            } else if(algorithm == "2"){
+
+                std::chrono::high_resolution_clock::time_point t1 = std::chrono::high_resolution_clock::now();
+                path = greedy(this->getBoardGame(), heuristic_choice);
+                std::chrono::high_resolution_clock::time_point t2 = std::chrono::high_resolution_clock::now();
+                time_span = std::chrono::duration_cast<std::chrono::duration<double> >(t2 - t1);
+
+
+                
+                break;
+            } else if(algorithm == "3"){
+
+
+                std::chrono::high_resolution_clock::time_point t1 = std::chrono::high_resolution_clock::now();
+                path = DFS(this->getBoardGame());
+                std::chrono::high_resolution_clock::time_point t2 = std::chrono::high_resolution_clock::now();
+                time_span = std::chrono::duration_cast<std::chrono::duration<double> >(t2 - t1);
+
+                break;
+            }else if(algorithm == "4"){
+
+                std::chrono::high_resolution_clock::time_point t1 = std::chrono::high_resolution_clock::now();
+                path = IDA(this->getBoardGame());
+                std::chrono::high_resolution_clock::time_point t2 = std::chrono::high_resolution_clock::now();
+                time_span = std::chrono::duration_cast<std::chrono::duration<double> >(t2 - t1);
+
+
+                break;
+            }else if(algorithm == "5"){
 
             std::chrono::high_resolution_clock::time_point t1 = std::chrono::high_resolution_clock::now();
-            path = AStar(this->getBoardGame());
+            path = BFS(this->getBoardGame());
             std::chrono::high_resolution_clock::time_point t2 = std::chrono::high_resolution_clock::now();
             time_span = std::chrono::duration_cast<std::chrono::duration<double> >(t2 - t1);
 
 
             break;
-        } else if(algorithm == "2"){
-
-            std::chrono::high_resolution_clock::time_point t1 = std::chrono::high_resolution_clock::now();
-            path = greedy(this->getBoardGame());
-            std::chrono::high_resolution_clock::time_point t2 = std::chrono::high_resolution_clock::now();
-            time_span = std::chrono::duration_cast<std::chrono::duration<double> >(t2 - t1);
-
+            }
 
             
-            break;
-        } else if(algorithm == "3"){
-
-
-            std::chrono::high_resolution_clock::time_point t1 = std::chrono::high_resolution_clock::now();
-            path = DFS(this->getBoardGame());
-            std::chrono::high_resolution_clock::time_point t2 = std::chrono::high_resolution_clock::now();
-            time_span = std::chrono::duration_cast<std::chrono::duration<double> >(t2 - t1);
-
-            break;
-        }else if(algorithm == "4"){
-
-            std::chrono::high_resolution_clock::time_point t1 = std::chrono::high_resolution_clock::now();
-            path = IDA(this->getBoardGame());
-            std::chrono::high_resolution_clock::time_point t2 = std::chrono::high_resolution_clock::now();
-            time_span = std::chrono::duration_cast<std::chrono::duration<double> >(t2 - t1);
-
-
-            break;
-        }else if(algorithm == "5"){
-
-        std::chrono::high_resolution_clock::time_point t1 = std::chrono::high_resolution_clock::now();
-        path = BFS(this->getBoardGame());
-        std::chrono::high_resolution_clock::time_point t2 = std::chrono::high_resolution_clock::now();
-        time_span = std::chrono::duration_cast<std::chrono::duration<double> >(t2 - t1);
-
-
-        break;
-        }
-
-    }
+            }
 
     for(unsigned int i = 0; i < path.size(); i++){
 
@@ -207,8 +246,8 @@ void Game::AIGame(Board b){
 
 
     }
-    //std::cout << "Node number: " << node_number << std::endl;
-    std::cout << "Execution time -  " << time_span.count() << " seconds."<< std::endl;
+    std::cout << "Node number: " << node_counter << std::endl;
+    std::cout << "Execution time:  " << time_span.count() << " seconds."<< std::endl;
 
 }
 

@@ -13,9 +13,7 @@
 #include <queue>
 
 
-
-#define DEPTH_LIMIT 10
-#define IDA_LIMIT 20
+extern int node_counter;
 
 typedef struct{
     int x;
@@ -23,8 +21,8 @@ typedef struct{
     char direction;
 } Move;
 
-std::vector<Move> AStar(Board board);
-std::vector<Move> greedy(Board board);
+std::vector<Move> AStar(Board board, std::string heuristic_choice);
+std::vector<Move> greedy(Board board, std::string heuristic_choice);
 std::vector<Move> DFS(Board board, int total_cost = 0);
 std::vector<Move> IDA(Board board);
 std::vector<Move> BFS(Board board);

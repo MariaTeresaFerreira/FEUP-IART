@@ -2,15 +2,16 @@
 
 using namespace std;
 
+
+#define DEPTH_LIMIT 15
+#define IDA_LIMIT 20
+
+int node_counter = 0;
 int depth_cost = DEPTH_LIMIT;
-
-
 
 
 vector<Move> BFS(Board board)
 {
-
-    int level = 0;
     queue<Node*> q;
     Node *current = new Node(board);
 
@@ -26,6 +27,7 @@ vector<Move> BFS(Board board)
 
     while(!q.empty()){
         current = q.front();
+        node_counter++;
 
     //cout << current->board << endl;
     //current->board.printBoard();
@@ -33,8 +35,6 @@ vector<Move> BFS(Board board)
         q.pop();
 
         if(current->board.isGameFinished()){
-            cout << "Game is finished" << endl;
-            cout << current->board << endl;
             current_print = current;
 
 
@@ -54,9 +54,6 @@ vector<Move> BFS(Board board)
                 if (!new_board.possibleMove(c, directions[j])) {
                     continue;
                 }
-
-                cout << c << directions[j] << endl;
-                cout << "found possible move" << endl;
 
                 new_board.movePiece(c, directions[j]);
 
@@ -90,8 +87,6 @@ vector<Move> BFS(Board board)
     path.pop_back();
     reverse(path.begin(), path.end());
 
-    cout << "current board" << current_print->board << endl;
-
     return path;
 }
 
@@ -109,6 +104,8 @@ vector<Move> IDA(Board board){
         depth_cost++;
 
     }
+
+
 
     return path;
 }
@@ -154,6 +151,7 @@ vector<Move> DFS(Board board, int total_cost){
                 return path;
             }
 
+            node_counter++;
             vector<Move> returning_path = DFS(new_board, total_cost + 1);
 
             if(returning_path.empty())
@@ -169,7 +167,7 @@ vector<Move> DFS(Board board, int total_cost){
     return path;
 }
 
-vector<Move> AStar(Board board)
+vector<Move> AStar(Board board, string heuristic_choice)
 {
     Node* current = nullptr;
     set<Node*> openSet, closedSet;
@@ -178,11 +176,11 @@ vector<Move> AStar(Board board)
 
 
     
-    
     char directions[] = {'w','a','s','d'};
 
     while (!openSet.empty()) {
         current = *openSet.begin();
+        node_counter++;
         for (auto node : openSet) {
             if (node->getScore() <= current->getScore()) {
                 current = node;
@@ -194,6 +192,8 @@ vector<Move> AStar(Board board)
         }
 
         closedSet.insert(current);
+
+
         openSet.erase(std::find(openSet.begin(), openSet.end(), current));
 
         for (unsigned int j = 0; j < current->board.getPieces().size(); j++){
@@ -218,7 +218,14 @@ vector<Move> AStar(Board board)
                     
                     successor = new Node(new_board, current, c.getX(), c.getY(), directions[i]);
                     successor->G = totalCost;
+                    
+                    if(heuristic_choice == "1"){
                     successor->H = heuristic(successor->board);
+                    } else if(heuristic_choice == "2"){
+                    successor->H = heuristic_2(successor->board);
+                    } else if(heuristic_choice == "3"){
+                    successor->H = heuristic_3(successor->board);
+                    }
                     openSet.insert(successor);
                 }
                 else if (totalCost < successor->G) {
@@ -242,22 +249,20 @@ vector<Move> AStar(Board board)
         current = current->parent;
     }
 
-    cout << closedSet.size() << " - Astar nodes" << endl;
-
     releaseNodes(openSet);
     releaseNodes(closedSet);
     path.pop_back();
 
     //node_number = closedSet.size();
 
-    //cout << "------------- node number: " << node_number << endl;
-
 
     reverse(path.begin(), path.end());
+
+
     return path;
 }
 
-vector<Move> greedy(Board board)
+vector<Move> greedy(Board board, string heuristic_choice)
 {
     Node* current = nullptr;
     set<Node*> openSet, closedSet;
@@ -268,6 +273,7 @@ vector<Move> greedy(Board board)
 
     while (!openSet.empty()) {
         current = *openSet.begin();
+        node_counter++;
         for (auto node : openSet) {
             if (node->H <= current->H) {
                 current = node;
@@ -301,13 +307,23 @@ vector<Move> greedy(Board board)
                 if (successor == nullptr) {
                     
                     successor = new Node(new_board, current, c.getX(), c.getY(), directions[i]);
+                                        
+                    if(heuristic_choice == "1"){
                     successor->H = heuristic(successor->board);
+                    } else if(heuristic_choice == "2"){
+                    successor->H = heuristic_2(successor->board);
+                    } else if(heuristic_choice == "3"){
+                    successor->H = heuristic_3(successor->board);
+                    }
                     openSet.insert(successor);
                 }
                 
             }
         }
+        //cout << closedSet.size() << " - Greedy nodes" << endl;
     }
+
+
 
     while (current != nullptr) {
 
@@ -320,7 +336,7 @@ vector<Move> greedy(Board board)
         path.push_back(m);
         current = current->parent;
     }
-    cout << closedSet.size() << " - Greedy nodes" << endl;
+
 
     releaseNodes(openSet);
     releaseNodes(closedSet);

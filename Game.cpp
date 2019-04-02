@@ -42,7 +42,7 @@
                 std::cin >> input;
 
                 if(input == "y"){
-                    std::vector<Move> path = BFS(this->getBoardGame());
+                    std::vector<Move> path = AStar(this->getBoardGame(), "3");
 
                     int x = path.at(0).x;
                     int y = path.at(0).y;

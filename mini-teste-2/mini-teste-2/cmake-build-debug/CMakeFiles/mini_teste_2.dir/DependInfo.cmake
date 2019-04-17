@@ -4,9 +4,9 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "C:/Users/GBernardo/Downloads/mini-teste-2/mini-teste-2/Board.cpp" "C:/Users/GBernardo/Downloads/mini-teste-2/mini-teste-2/cmake-build-debug/CMakeFiles/mini_teste_2.dir/Board.cpp.obj"
-  "C:/Users/GBernardo/Downloads/mini-teste-2/mini-teste-2/Game.cpp" "C:/Users/GBernardo/Downloads/mini-teste-2/mini-teste-2/cmake-build-debug/CMakeFiles/mini_teste_2.dir/Game.cpp.obj"
-  "C:/Users/GBernardo/Downloads/mini-teste-2/mini-teste-2/main.cpp" "C:/Users/GBernardo/Downloads/mini-teste-2/mini-teste-2/cmake-build-debug/CMakeFiles/mini_teste_2.dir/main.cpp.obj"
+  "C:/Users/GBernardo/Documents/FEUP/3ano/2semestre/iart/FEUP-IART/mini-teste-2/mini-teste-2/Board.cpp" "C:/Users/GBernardo/Documents/FEUP/3ano/2semestre/iart/FEUP-IART/mini-teste-2/mini-teste-2/cmake-build-debug/CMakeFiles/mini_teste_2.dir/Board.cpp.obj"
+  "C:/Users/GBernardo/Documents/FEUP/3ano/2semestre/iart/FEUP-IART/mini-teste-2/mini-teste-2/Game.cpp" "C:/Users/GBernardo/Documents/FEUP/3ano/2semestre/iart/FEUP-IART/mini-teste-2/mini-teste-2/cmake-build-debug/CMakeFiles/mini_teste_2.dir/Game.cpp.obj"
+  "C:/Users/GBernardo/Documents/FEUP/3ano/2semestre/iart/FEUP-IART/mini-teste-2/mini-teste-2/main.cpp" "C:/Users/GBernardo/Documents/FEUP/3ano/2semestre/iart/FEUP-IART/mini-teste-2/mini-teste-2/cmake-build-debug/CMakeFiles/mini_teste_2.dir/main.cpp.obj"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

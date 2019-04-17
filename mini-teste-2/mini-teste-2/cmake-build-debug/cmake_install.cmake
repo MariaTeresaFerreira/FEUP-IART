@@ -1,4 +1,4 @@
-# Install script for directory: C:/Users/GBernardo/Downloads/mini-teste-2/mini-teste-2
+# Install script for directory: C:/Users/GBernardo/Documents/FEUP/3ano/2semestre/iart/FEUP-IART/mini-teste-2/mini-teste-2
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -40,5 +40,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "C:/Users/GBernardo/Downloads/mini-teste-2/mini-teste-2/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "C:/Users/GBernardo/Documents/FEUP/3ano/2semestre/iart/FEUP-IART/mini-teste-2/mini-teste-2/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

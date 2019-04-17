@@ -42,10 +42,10 @@ RM = "C:\Program Files\JetBrains\CLion 2019.1\bin\cmake\win\bin\cmake.exe" -E re
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = C:\Users\GBernardo\Downloads\mini-teste-2\mini-teste-2
+CMAKE_SOURCE_DIR = C:\Users\GBernardo\Documents\FEUP\3ano\2semestre\iart\FEUP-IART\mini-teste-2\mini-teste-2
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = C:\Users\GBernardo\Downloads\mini-teste-2\mini-teste-2\cmake-build-debug
+CMAKE_BINARY_DIR = C:\Users\GBernardo\Documents\FEUP\3ano\2semestre\iart\FEUP-IART\mini-teste-2\mini-teste-2\cmake-build-debug
 
 # Include any dependencies generated for this target.
 include CMakeFiles/mini_teste_2.dir/depend.make
@@ -58,42 +58,42 @@ include CMakeFiles/mini_teste_2.dir/flags.make
 
 CMakeFiles/mini_teste_2.dir/main.cpp.obj: CMakeFiles/mini_teste_2.dir/flags.make
 CMakeFiles/mini_teste_2.dir/main.cpp.obj: ../main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\GBernardo\Downloads\mini-teste-2\mini-teste-2\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/mini_teste_2.dir/main.cpp.obj"
-	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\mini_teste_2.dir\main.cpp.obj -c C:\Users\GBernardo\Downloads\mini-teste-2\mini-teste-2\main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\GBernardo\Documents\FEUP\3ano\2semestre\iart\FEUP-IART\mini-teste-2\mini-teste-2\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/mini_teste_2.dir/main.cpp.obj"
+	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\mini_teste_2.dir\main.cpp.obj -c C:\Users\GBernardo\Documents\FEUP\3ano\2semestre\iart\FEUP-IART\mini-teste-2\mini-teste-2\main.cpp
 
 CMakeFiles/mini_teste_2.dir/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/mini_teste_2.dir/main.cpp.i"
-	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\GBernardo\Downloads\mini-teste-2\mini-teste-2\main.cpp > CMakeFiles\mini_teste_2.dir\main.cpp.i
+	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\GBernardo\Documents\FEUP\3ano\2semestre\iart\FEUP-IART\mini-teste-2\mini-teste-2\main.cpp > CMakeFiles\mini_teste_2.dir\main.cpp.i
 
 CMakeFiles/mini_teste_2.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/mini_teste_2.dir/main.cpp.s"
-	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\GBernardo\Downloads\mini-teste-2\mini-teste-2\main.cpp -o CMakeFiles\mini_teste_2.dir\main.cpp.s
+	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\GBernardo\Documents\FEUP\3ano\2semestre\iart\FEUP-IART\mini-teste-2\mini-teste-2\main.cpp -o CMakeFiles\mini_teste_2.dir\main.cpp.s
 
 CMakeFiles/mini_teste_2.dir/Board.cpp.obj: CMakeFiles/mini_teste_2.dir/flags.make
 CMakeFiles/mini_teste_2.dir/Board.cpp.obj: ../Board.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\GBernardo\Downloads\mini-teste-2\mini-teste-2\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/mini_teste_2.dir/Board.cpp.obj"
-	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\mini_teste_2.dir\Board.cpp.obj -c C:\Users\GBernardo\Downloads\mini-teste-2\mini-teste-2\Board.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\GBernardo\Documents\FEUP\3ano\2semestre\iart\FEUP-IART\mini-teste-2\mini-teste-2\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/mini_teste_2.dir/Board.cpp.obj"
+	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\mini_teste_2.dir\Board.cpp.obj -c C:\Users\GBernardo\Documents\FEUP\3ano\2semestre\iart\FEUP-IART\mini-teste-2\mini-teste-2\Board.cpp
 
 CMakeFiles/mini_teste_2.dir/Board.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/mini_teste_2.dir/Board.cpp.i"
-	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\GBernardo\Downloads\mini-teste-2\mini-teste-2\Board.cpp > CMakeFiles\mini_teste_2.dir\Board.cpp.i
+	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\GBernardo\Documents\FEUP\3ano\2semestre\iart\FEUP-IART\mini-teste-2\mini-teste-2\Board.cpp > CMakeFiles\mini_teste_2.dir\Board.cpp.i
 
 CMakeFiles/mini_teste_2.dir/Board.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/mini_teste_2.dir/Board.cpp.s"
-	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\GBernardo\Downloads\mini-teste-2\mini-teste-2\Board.cpp -o CMakeFiles\mini_teste_2.dir\Board.cpp.s
+	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\GBernardo\Documents\FEUP\3ano\2semestre\iart\FEUP-IART\mini-teste-2\mini-teste-2\Board.cpp -o CMakeFiles\mini_teste_2.dir\Board.cpp.s
 
 CMakeFiles/mini_teste_2.dir/Game.cpp.obj: CMakeFiles/mini_teste_2.dir/flags.make
 CMakeFiles/mini_teste_2.dir/Game.cpp.obj: ../Game.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\GBernardo\Downloads\mini-teste-2\mini-teste-2\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/mini_teste_2.dir/Game.cpp.obj"
-	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\mini_teste_2.dir\Game.cpp.obj -c C:\Users\GBernardo\Downloads\mini-teste-2\mini-teste-2\Game.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\GBernardo\Documents\FEUP\3ano\2semestre\iart\FEUP-IART\mini-teste-2\mini-teste-2\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/mini_teste_2.dir/Game.cpp.obj"
+	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\mini_teste_2.dir\Game.cpp.obj -c C:\Users\GBernardo\Documents\FEUP\3ano\2semestre\iart\FEUP-IART\mini-teste-2\mini-teste-2\Game.cpp
 
 CMakeFiles/mini_teste_2.dir/Game.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/mini_teste_2.dir/Game.cpp.i"
-	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\GBernardo\Downloads\mini-teste-2\mini-teste-2\Game.cpp > CMakeFiles\mini_teste_2.dir\Game.cpp.i
+	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\GBernardo\Documents\FEUP\3ano\2semestre\iart\FEUP-IART\mini-teste-2\mini-teste-2\Game.cpp > CMakeFiles\mini_teste_2.dir\Game.cpp.i
 
 CMakeFiles/mini_teste_2.dir/Game.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/mini_teste_2.dir/Game.cpp.s"
-	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\GBernardo\Downloads\mini-teste-2\mini-teste-2\Game.cpp -o CMakeFiles\mini_teste_2.dir\Game.cpp.s
+	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\GBernardo\Documents\FEUP\3ano\2semestre\iart\FEUP-IART\mini-teste-2\mini-teste-2\Game.cpp -o CMakeFiles\mini_teste_2.dir\Game.cpp.s
 
 # Object files for target mini_teste_2
 mini_teste_2_OBJECTS = \
@@ -111,7 +111,7 @@ mini_teste_2.exe: CMakeFiles/mini_teste_2.dir/build.make
 mini_teste_2.exe: CMakeFiles/mini_teste_2.dir/linklibs.rsp
 mini_teste_2.exe: CMakeFiles/mini_teste_2.dir/objects1.rsp
 mini_teste_2.exe: CMakeFiles/mini_teste_2.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\Users\GBernardo\Downloads\mini-teste-2\mini-teste-2\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable mini_teste_2.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\Users\GBernardo\Documents\FEUP\3ano\2semestre\iart\FEUP-IART\mini-teste-2\mini-teste-2\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable mini_teste_2.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\mini_teste_2.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -124,6 +124,6 @@ CMakeFiles/mini_teste_2.dir/clean:
 .PHONY : CMakeFiles/mini_teste_2.dir/clean
 
 CMakeFiles/mini_teste_2.dir/depend:
-	$(CMAKE_COMMAND) -E cmake_depends "MinGW Makefiles" C:\Users\GBernardo\Downloads\mini-teste-2\mini-teste-2 C:\Users\GBernardo\Downloads\mini-teste-2\mini-teste-2 C:\Users\GBernardo\Downloads\mini-teste-2\mini-teste-2\cmake-build-debug C:\Users\GBernardo\Downloads\mini-teste-2\mini-teste-2\cmake-build-debug C:\Users\GBernardo\Downloads\mini-teste-2\mini-teste-2\cmake-build-debug\CMakeFiles\mini_teste_2.dir\DependInfo.cmake --color=$(COLOR)
+	$(CMAKE_COMMAND) -E cmake_depends "MinGW Makefiles" C:\Users\GBernardo\Documents\FEUP\3ano\2semestre\iart\FEUP-IART\mini-teste-2\mini-teste-2 C:\Users\GBernardo\Documents\FEUP\3ano\2semestre\iart\FEUP-IART\mini-teste-2\mini-teste-2 C:\Users\GBernardo\Documents\FEUP\3ano\2semestre\iart\FEUP-IART\mini-teste-2\mini-teste-2\cmake-build-debug C:\Users\GBernardo\Documents\FEUP\3ano\2semestre\iart\FEUP-IART\mini-teste-2\mini-teste-2\cmake-build-debug C:\Users\GBernardo\Documents\FEUP\3ano\2semestre\iart\FEUP-IART\mini-teste-2\mini-teste-2\cmake-build-debug\CMakeFiles\mini_teste_2.dir\DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/mini_teste_2.dir/depend
 

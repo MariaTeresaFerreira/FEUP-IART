@@ -1,0 +1,32 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/GBernardo/Downloads/mini-teste-2/mini-teste-2/Board.h
+vector
+-
+
+C:/Users/GBernardo/Downloads/mini-teste-2/mini-teste-2/Game.cpp
+Game.h
+C:/Users/GBernardo/Downloads/mini-teste-2/mini-teste-2/Game.h
+
+C:/Users/GBernardo/Downloads/mini-teste-2/mini-teste-2/Game.h
+vector
+-
+Board.h
+C:/Users/GBernardo/Downloads/mini-teste-2/mini-teste-2/Board.h
+
+C:/Users/GBernardo/Downloads/mini-teste-2/mini-teste-2/main.cpp
+iostream
+-
+vector
+-
+Board.h
+C:/Users/GBernardo/Downloads/mini-teste-2/mini-teste-2/Board.h
+Game.h
+C:/Users/GBernardo/Downloads/mini-teste-2/mini-teste-2/Game.h
+

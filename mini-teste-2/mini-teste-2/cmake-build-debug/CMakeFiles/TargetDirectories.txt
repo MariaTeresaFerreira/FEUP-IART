@@ -1,0 +1,3 @@
+C:/Users/GBernardo/Downloads/mini-teste-2/mini-teste-2/cmake-build-debug/CMakeFiles/mini_teste_2.dir
+C:/Users/GBernardo/Downloads/mini-teste-2/mini-teste-2/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/GBernardo/Downloads/mini-teste-2/mini-teste-2/cmake-build-debug/CMakeFiles/rebuild_cache.dir

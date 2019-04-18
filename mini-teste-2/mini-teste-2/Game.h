@@ -7,6 +7,7 @@
 
 #include <vector>
 #include "Board.h"
+#include <iostream>
 
 
 class Game {
@@ -23,6 +24,9 @@ public:
     Board get_final_board();
     Board generate_final_board();
     bool isGameFinished();
+    void make_move(char dir);
+    bool is_move_valid(char dir);
+    vector<int> get_0_pos();
 };
 
 

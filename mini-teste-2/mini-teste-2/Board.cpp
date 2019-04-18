@@ -32,3 +32,7 @@ int Board::get_side_size(){
 vector<vector<int>> Board::get_current_board(){
     return this->board;
 }
+
+vector < vector <int> > Board::get_board(){
+    return this->board;
+}

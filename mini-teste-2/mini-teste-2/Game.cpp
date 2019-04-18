@@ -60,3 +60,49 @@ bool Game::isGameFinished() {
 
     return true;
 }
+
+
+vector<int> Game::get_0_pos(){
+
+    for(int i = 0; i < this->current_board.get_side_size(); i++){
+        for(int j = 0; j < this->current_board.get_side_size(); j++){
+            if(this->current_board.get_board()[i][j] == 0){
+                vector<int> coords {i, j};
+                return coords;
+            }
+        }
+    }
+
+}
+
+bool Game::is_move_valid(char dir){
+
+    vector<int> coords = this->get_0_pos();
+    int x = coords[0];
+    int y = coords[1];
+    int max = this->current_board.get_side_size() - 1;
+
+
+    switch(dir){
+        case 'a':
+            if(y == 0)
+                return false;
+            break;
+        case 'w':
+            if(x == 0)
+                return false;
+            break;
+        case 'd':
+            if(y == max)
+                return false;
+            break;
+        case 's':
+            if(x == max)
+                return false;
+            break;
+        default:
+            break;
+    }
+    return true;
+
+}

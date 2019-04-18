@@ -1,10 +1,8 @@
 #include "Node.h"
 
-Node::Node(Board board, Node* parent, int x, int y, char direction){
-    this->board = board;
+Node::Node(Game game, Node* parent, char direction){
+    this->game = game;
     this->parent = parent;
-    this->x = x;
-    this->y = y;
     this->direction = direction;
 }
 unsigned int Node::getScore(){

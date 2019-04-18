@@ -64,24 +64,33 @@ bool Game::isGameFinished() {
 
 vector<int> Game::get_0_pos(){
 
+    vector<int> coords{-1, -1};
     for(int i = 0; i < this->current_board.get_side_size(); i++){
         for(int j = 0; j < this->current_board.get_side_size(); j++){
             if(this->current_board.get_board()[i][j] == 0){
-                vector<int> coords {i, j};
-                return coords;
+                coords[0] = i;
+                coords[1] = j;
+
             }
         }
     }
+    if(coords[0] == -1){
+        cout << "error: get 0 pos" << endl << flush;
+
+    }
+    return coords;
 
 }
 
 bool Game::is_move_valid(char dir){
 
     vector<int> coords = this->get_0_pos();
-    int x = coords[0];
-    int y = coords[1];
-    int max = this->current_board.get_side_size() - 1;
 
+    int x = coords[0];
+
+    int y = coords[1];
+
+    int max = this->current_board.get_side_size() - 1;
 
     switch(dir){
         case 'a':

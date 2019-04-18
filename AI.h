@@ -27,6 +27,7 @@ std::vector<Move> DFS(Board board, int total_cost = 0);
 std::vector<Move> IDA(Board board);
 std::vector<Move> BFS(Board board);
 
+
 Node* findNodeOnList(std::set<Node*>& nodes_, Board board);
 unsigned int heuristic(Board board);
 unsigned int heuristic_2(Board board);

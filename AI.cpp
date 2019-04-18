@@ -10,6 +10,7 @@ int node_counter = 0;
 int depth_cost = DEPTH_LIMIT;
 
 
+
 vector<Move> BFS(Board board)
 {
     queue<Node*> q;
@@ -82,7 +83,7 @@ vector<Move> BFS(Board board)
 }
 
 
-
+/*
 vector<Move> IDA(Board board){
 
     depth_cost = 0;
@@ -335,9 +336,10 @@ vector<Move> greedy(Board board, string heuristic_choice)
 
     std::reverse(path.begin(), path.end());
     return path;
-}
+}*/
 
 /*Heuristic regarding distance from blocks w/ same color bigger than 1*/
+/*
 unsigned int heuristic_3(Board board){
     vector<Piece> red;
     vector<Piece> green;
@@ -394,8 +396,9 @@ unsigned int heuristic_3(Board board){
     return heu;
 
 }
-
+*/
 /*Heuristic regarding blocks from same color bigger than 1*/
+/*
 unsigned int heuristic_2(Board board){
     vector<Piece> red;
     vector<Piece> green;
@@ -433,8 +436,9 @@ unsigned int heuristic_2(Board board){
     return heu;
 
 }
-
+*/
 /*Optimal Heuristic regarding distance of blocks from same color*/
+/*
 unsigned int heuristic(Board board){
     vector<Piece> red;
     vector<Piece> green;
@@ -485,7 +489,7 @@ unsigned int heuristic(Board board){
         }
     }
     return heu;
-}
+}*/
 
 Node* findNodeOnList(set<Node*> & nodes_, Board board)
 {

@@ -5,18 +5,17 @@
 #include <string>
 #include <iostream>
 #include "Board.h"
+#include "Game.h"
 
 class Node {
     public:
-        Board board;
+        Game game;
         Node* parent;
         char direction;
-        int x;
-        int y;
         unsigned int G;
         unsigned int H;
 
-        Node(Board board, Node* parent = NULL, int x = -1, int y = -1, char direction = 'f');
+        Node(Game game, Node* parent = NULL, char direction = 'f');
         
         unsigned int getScore();
 

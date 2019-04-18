@@ -58,7 +58,14 @@ void Board::update_board(char dir, int x, int y){
             prev_y = y;
             break;
         default:
+            prev_x =  -1;
+            prev_y = -1;
+
             break;
+    }
+
+    if(prev_x < 0 || prev_y <0){
+        cout << "Error: update board coords" << endl;
     }
 
     prev_value = this->get_board()[prev_x][prev_y];

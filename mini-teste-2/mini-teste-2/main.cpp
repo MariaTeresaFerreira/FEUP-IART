@@ -3,13 +3,14 @@
 #include <vector>
 #include "Board.h"
 #include "Game.h"
+#include "AI.h"
 using namespace std;
 
 int main() {
 
-    //vector<vector<int>> board_1{{1, 2, 3}, {5, 0, 6}, {4, 7, 8}};
+    vector<vector<int>> board_1{{1, 2, 3}, {5, 0, 6}, {4, 7, 8}};
     //vector<vector<int>> board_1{{1, 2, 3}, {0, 5, 6}, {4, 7, 8}};
-    vector<vector<int>> board_1{{1, 3, 6}, {4, 7, 8}, {5, 2, 0}};
+    //vector<vector<int>> board_1{{1, 3, 6}, {4, 7, 8}, {5, 2, 0}};
     /*
     vector<vector<int>> board_3{{1, 6, 2}, {5, 7, 3}, {0, 4, 8}};
 
@@ -19,35 +20,31 @@ int main() {
 
     Board b = Board(board_1);
 
-    //cout << "initial board:" << endl;
+    cout << "initial board:" << endl;
     b.print_board();
-
     Game g = Game(board_1);
+    vector<Move> path = BFS(g);
 
-    g.make_move('w');
-    cout << endl << endl << "w" << endl;
-    g.get_current_board().print_board();
+    for(int i = 0; i < path.size(); i++)
 
+    {
+        //cout << flush << "teste";
+        cout << path.at(i).direction << endl;
+    }
+
+    /*
     g.make_move('a');
-    cout << endl << endl << "a" << endl;
-    g.get_current_board().print_board();
-
+    b.print_board();
     g.make_move('s');
-    cout << endl << endl << "s" << endl;
-    g.get_current_board().print_board();
-
+    b.print_board();
     g.make_move('d');
-    cout << endl << endl << "d" << endl;
-    g.get_current_board().print_board();
+    b.print_board();
+    g.make_move('d');
+    b.print_board();*/
 
 
-    //g.get_final_board().print_board();
 
 
-
-    if(g.isGameFinished())
-        cout << "WON" << endl;
-    else cout << "NOT WON" << endl;
 
 
 

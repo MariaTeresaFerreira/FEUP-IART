@@ -66,3 +66,4 @@ void Board::update_board(char dir, int x, int y){
     this->board[prev_x][prev_y] = 0;
 
 }
+

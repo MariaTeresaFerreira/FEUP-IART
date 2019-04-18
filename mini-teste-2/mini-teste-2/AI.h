@@ -20,7 +20,7 @@ typedef struct{
 
 //std::vector<Move> AStar(Board board, std::string heuristic_choice);
 //std::vector<Move> greedy(Board board, std::string heuristic_choice);
-//std::vector<Move> BFS(Board board);
+std::vector<Move> BFS(Game game);
 
 Node* findNodeOnList(std::set<Node*>& nodes_, Board board);
 //unsigned int heuristic(Board board); Hamming

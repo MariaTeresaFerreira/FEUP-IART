@@ -10,10 +10,10 @@ int node_counter = 0;
 int depth_cost = DEPTH_LIMIT;
 
 
-vector<Move> BFS(Board board)
+vector<Move> BFS(Game game)
 {
     queue<Node*> q;
-    Node *current = new Node(board);
+    Node *current = new Node(game);
 
     current->G = 0;
 
@@ -29,46 +29,31 @@ vector<Move> BFS(Board board)
 
         q.pop();
 
-        //TODO FINISHED CONDITION
-        if(current->board.isGameFinished()){
+        if(current->game.isGameFinished()){
             break;
         }
 
-//TODO GET SIZE BOARD
-        for(unsigned int i = 0; i < current->board.getPieces().size(); i++) {
-            for (unsigned int j = 0; j < 4; j++) {
+        for(unsigned int i = 0; i < 4; i++){
+            Game new_game = current->game;
 
-                Board new_board = current->board;
-                Cell c = new_board.getPieces().at(i).getCells().at(0);
-
-
-//TODO GET POSSIBLE MOVE
-                if (!new_board.possibleMove(c, directions[j])) {
-                    continue;
-                }
-
-                new_board.movePiece(c, directions[j]);
-
-
-
-                new_board.cellsAdjacent();
-                new_board.putMatrixEmpty();
-                new_board.putPiecesMatrix();
-
-                Node *current_temp = new Node(new_board, current, c.getX(), c.getY(), directions[j]);
-                current_temp->G = current->G+1;
-
-                q.push(current_temp);
-
+            if(!new_game.is_move_valid(directions[i])){
+                continue;
             }
+
+            new_game.make_move(directions[i]);
+
+            Node *current_temp = new Node(new_game, current, directions[j]);
+            current_temp->G = current->G+1;
+
+            q.push(current_temp);
+
+
         }
+
     }
 
     while (current != nullptr) {
-
         Move m;
-        m.x = current->x;
-        m.y = current->y;
         m.direction = current->direction;
         path.push_back(m);
         current = current->parent;

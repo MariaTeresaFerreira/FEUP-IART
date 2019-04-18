@@ -29,3 +29,6 @@ void Board::print_board(){
 int Board::get_side_size(){
     return this->side_size;
 }
+vector<vector<int>> Board::get_current_board(){
+    return this->board;
+}

@@ -27,6 +27,10 @@ int main() {
 
     g.get_final_board().print_board();
 
+    if(g.isGameFinished())
+        cout << "WON" << endl;
+    else cout << "NOT WON" << endl;
+
 
 
 

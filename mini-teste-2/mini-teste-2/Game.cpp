@@ -44,3 +44,19 @@ Board Game::get_final_board() {
 Board Game::get_current_board()& {
     return this->current_board;
 }
+
+bool Game::isGameFinished() {
+    int side_size = this->current_board.get_side_size();
+
+    vector <vector <int> > board =  this->current_board.get_current_board();
+    vector <vector <int> > final =  this->final_board.get_current_board();
+
+    for(int i = 0; i< side_size; i++){
+        for (int j = 0; j < side_size; j++){
+            if(board[i][j] != final[i][j]) return false;
+            else continue;
+        }
+    }
+
+    return true;
+}

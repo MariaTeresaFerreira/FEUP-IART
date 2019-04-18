@@ -18,6 +18,7 @@ public:
     Board(vector<vector<int>> board);
     void print_board();
     int get_side_size();
+    vector<vector<int>> get_current_board();
 
 };
 

@@ -22,6 +22,7 @@ public:
     Board get_current_board() & ;
     Board get_final_board();
     Board generate_final_board();
+    bool isGameFinished();
 };
 
 

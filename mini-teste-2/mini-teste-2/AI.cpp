@@ -67,66 +67,11 @@ vector<Move> BFS(Game game)
     return path;
 }
 
-vector<Move> DFS(Board board, int total_cost){
-
-    char directions[] = {'w','a','s','d'};
-    vector<Move> path;
-
-    if(total_cost > depth_cost){
-        return path;
-    }
-
-    cout << "TOTAL cost: " << total_cost << endl;
-
-    for(unsigned int i = 0; i < board.getPieces().size(); i++){
-        for(unsigned int j = 0; j < 4; ++j){
-            Move new_move;
-            new_move.x = board.getPieces().at(i).getCells().at(0).getX(); 
-            new_move.y = board.getPieces().at(i).getCells().at(0).getY();
-            new_move.direction = directions[j];
-
-                
-                
-
-                Board new_board = board;
-                Cell c = board.getPieces().at(i).getCells().at(0);
-                new_board.movePiece(c, directions[j]);
-                if (!board.possibleMove(c, directions[j])){
-                    continue;
-                }
-
-                
-                new_board.cellsAdjacent();
-                new_board.putMatrixEmpty();
-                new_board.putPiecesMatrix();
-
-
-            if(new_board.isGameFinished()){
-                path.push_back(new_move);
-                return path;
-            }
-
-            node_counter++;
-            vector<Move> returning_path = DFS(new_board, total_cost + 1);
-
-            if(returning_path.empty())
-                continue;
-
-            path.push_back(new_move);
-            path.insert(path.end(), returning_path.begin(), returning_path.end());
-
-            return path;
-        }
-    }
-
-    return path;
-}
-
-vector<Move> AStar(Board board, string heuristic_choice)
+vector<Move> AStar(Game game, string heuristic_choice)
 {
     Node* current = nullptr;
     set<Node*> openSet, closedSet;
-    openSet.insert(new Node(board));
+    openSet.insert(new Node(game));
     vector<Move> path;
 
 
@@ -142,7 +87,7 @@ vector<Move> AStar(Board board, string heuristic_choice)
             }
         }
 
-        if (current->board.isGameFinished()) {
+        if (current->game.isGameFinished()) {
             break;
         }
 
@@ -155,31 +100,25 @@ vector<Move> AStar(Board board, string heuristic_choice)
 
             for (unsigned int i = 0; i < 4; ++i) {
 
-                Board new_board = current->board;
-                Cell c = current->board.getPieces().at(j).getCells().at(0);
-                new_board.movePiece(c, directions[i]);
-                if (!current->board.possibleMove(c, directions[i]) ||
+                Game new_game = current->game;
+                if (!new_game.is_move_valid(directions[i]) ||
                     findNodeOnList(closedSet, new_board)) {
                     continue;
                 }
-                new_board.cellsAdjacent();
-                new_board.putMatrixEmpty();
-                new_board.putPiecesMatrix();
+                new_game.make_move(directions[i]);
 
                 unsigned int totalCost = current->G + 1;
 
-                Node *successor = findNodeOnList(openSet, new_board);
+                Node *successor = findNodeOnList(openSet, new_game);
                 if (successor == nullptr) {
                     
-                    successor = new Node(new_board, current, c.getX(), c.getY(), directions[i]);
+                    successor = new Node(new_game, current, directions[i]);
                     successor->G = totalCost;
                     
                     if(heuristic_choice == "1"){
-                    successor->H = heuristic(successor->board);
+                    successor->H = heuristic_hamming(successor->game);
                     } else if(heuristic_choice == "2"){
                     successor->H = heuristic_2(successor->board);
-                    } else if(heuristic_choice == "3"){
-                    successor->H = heuristic_3(successor->board);
                     }
                     openSet.insert(successor);
                 }
@@ -193,9 +132,6 @@ vector<Move> AStar(Board board, string heuristic_choice)
 
     
     while (current != nullptr) {
-
-
-
         Move m;
         m.x = current->x;
         m.y = current->y;
@@ -217,11 +153,11 @@ vector<Move> AStar(Board board, string heuristic_choice)
     return path;
 }
 
-vector<Move> greedy(Board board, string heuristic_choice)
+vector<Move> greedy(Game game, string heuristic_choice)
 {
     Node* current = nullptr;
     set<Node*> openSet, closedSet;
-    openSet.insert(new Node(board));
+    openSet.insert(new Node(game));
     vector<Move> path;
     
     char directions[] = {'w','a','s','d'};
@@ -235,7 +171,7 @@ vector<Move> greedy(Board board, string heuristic_choice)
             }
         }
 
-        if (current->board.isGameFinished()) {
+        if (current-> game.isGameFinished()) {
             break;
         }
 
@@ -246,29 +182,24 @@ vector<Move> greedy(Board board, string heuristic_choice)
 
             for (unsigned int i = 0; i < 4; ++i) {
 
-                Board new_board = current->board;
-                Cell c = current->board.getPieces().at(j).getCells().at(0);
-                new_board.movePiece(c, directions[i]);
-                if (!current->board.possibleMove(c, directions[i]) ||
-                    findNodeOnList(closedSet, new_board)) {
+                Game new_game = current->game;
+                if (!new_game.is_move_valid(directions[i]) ||
+                    findNodeOnList(closedSet, new_game)) {
                     continue;
                 }
-                new_board.cellsAdjacent();
-                new_board.putMatrixEmpty();
-                new_board.putPiecesMatrix();
+
+                new_game.make_move(directions[i]);
 
 
-                Node *successor = findNodeOnList(openSet, new_board);
+                Node *successor = findNodeOnList(openSet, new_game);
                 if (successor == nullptr) {
                     
-                    successor = new Node(new_board, current, c.getX(), c.getY(), directions[i]);
+                    successor = new Node(new_game, current, directions[i]);
                                         
                     if(heuristic_choice == "1"){
-                    successor->H = heuristic(successor->board);
+                    successor->H = heuristic_hamming(successor->game);
                     } else if(heuristic_choice == "2"){
-                    successor->H = heuristic_2(successor->board);
-                    } else if(heuristic_choice == "3"){
-                    successor->H = heuristic_3(successor->board);
+                    successor->H = heuristic_manhattan(successor->game);
                     }
                     openSet.insert(successor);
                 }
@@ -281,9 +212,6 @@ vector<Move> greedy(Board board, string heuristic_choice)
 
 
     while (current != nullptr) {
-
-
-
         Move m;
         m.x = current->x;
         m.y = current->y;
@@ -302,12 +230,23 @@ vector<Move> greedy(Board board, string heuristic_choice)
 }
 
 //TODO
-unsigned int heuristic_manhattan(Board board){
+unsigned int heuristic_manhattan(Game game){
 
 }
-//TODO
-unsigned int heuristic_hamming(Board board){
+unsigned int heuristic_hamming(Game game){
+    int side_size = this->current_board.get_side_size();
+    int conflicts = 0;
 
+    vector <vector <int> > board =  game.current_board.get_current_board();
+    vector <vector <int> > final =  game.final_board.get_current_board();
+
+    for(int i = 0; i< side_size; i++){
+        for (int j = 0; j < side_size; j++){
+            if(board[i][j] != final[i][j])conflicts++;
+            else continue;
+        }
+    }
+    return conflicts;
 }
 
 Node* findNodeOnList(set<Node*> & nodes_, Board board)

@@ -9,7 +9,6 @@
 
 #include "Node.h"
 
-
 extern int node_counter;
 
 typedef struct{
@@ -18,12 +17,12 @@ typedef struct{
     char direction;
 } Move;
 
-//std::vector<Move> AStar(Board board, std::string heuristic_choice);
-//std::vector<Move> greedy(Board board, std::string heuristic_choice);
+std::vector<Move> AStar(Board board, std::string heuristic_choice);
+std::vector<Move> greedy(Game game, std::string heuristic_choice);
 std::vector<Move> BFS(Game game);
 
 Node* findNodeOnList(std::set<Node*>& nodes_, Board board);
-//unsigned int heuristic(Board board); Hamming
+unsigned int heuristic_hamming(Game game);
 //unsigned int heuristic_2(Board board); Manhattan
 void releaseNodes(std::set<Node*> & nodes_);
 

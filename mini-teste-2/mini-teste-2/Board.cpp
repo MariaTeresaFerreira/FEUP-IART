@@ -36,3 +36,33 @@ vector<vector<int>> Board::get_current_board(){
 vector < vector <int> > Board::get_board(){
     return this->board;
 }
+
+void Board::update_board(char dir, int x, int y){
+    int prev_x, prev_y;
+    int prev_value;
+    switch(dir){
+        case 'a':
+            prev_x = x;
+            prev_y = y - 1;
+            break;
+        case 'w':
+            prev_x = x - 1;
+            prev_y = y;
+            break;
+        case 'd':
+            prev_x = x;
+            prev_y = y + 1;
+            break;
+        case 's':
+            prev_x = x + 1;
+            prev_y = y;
+            break;
+        default:
+            break;
+    }
+
+    prev_value = this->get_board()[prev_x][prev_y];
+    this->board[x][y] = prev_value;
+    this->board[prev_x][prev_y] = 0;
+
+}

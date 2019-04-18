@@ -106,3 +106,14 @@ bool Game::is_move_valid(char dir){
     return true;
 
 }
+
+
+
+void Game::make_move(char dir){
+    vector<int> coords = this->get_0_pos();
+    int x = coords[0];
+    int y = coords[1];
+    this->current_board.update_board(dir, x, y);
+
+
+}

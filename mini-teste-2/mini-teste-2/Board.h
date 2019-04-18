@@ -20,6 +20,7 @@ public:
     int get_side_size();
     vector<vector<int>> get_current_board();
     vector < vector <int> > get_board();
+    void update_board(char dir, int x, int y);
 
 };
 

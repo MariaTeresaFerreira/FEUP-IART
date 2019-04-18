@@ -24,11 +24,25 @@ int main() {
 
     Game g = Game(board_1);
 
-    //g.get_current_board().print_board();
+    g.make_move('w');
+    cout << endl << endl << "w" << endl;
+    g.get_current_board().print_board();
+
+    g.make_move('a');
+    cout << endl << endl << "a" << endl;
+    g.get_current_board().print_board();
+
+    g.make_move('s');
+    cout << endl << endl << "s" << endl;
+    g.get_current_board().print_board();
+
+    g.make_move('d');
+    cout << endl << endl << "d" << endl;
+    g.get_current_board().print_board();
 
 
     //g.get_final_board().print_board();
-    
+
 
 
     if(g.isGameFinished())

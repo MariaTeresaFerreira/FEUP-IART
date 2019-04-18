@@ -29,7 +29,6 @@ vector<Move> BFS(Game game)
 
     while(!q.empty()){
 
-
         current = q.front();
         node_counter++;
 
@@ -77,6 +76,7 @@ vector<Move> BFS(Game game)
 
     return path;
 }
+/*
 
 vector<Move> AStar(Game game, string heuristic_choice)
 {
@@ -276,4 +276,4 @@ void releaseNodes(set<Node*> & nodes_)
         delete *it;
         it = nodes_.erase(it);
     }
-}
+}*/

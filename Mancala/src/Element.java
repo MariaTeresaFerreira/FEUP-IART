@@ -1,5 +1,3 @@
-import com.googlecode.lanterna.graphics.TextGraphics;
-
 public abstract class Element {
     private Position position;
 
@@ -13,5 +11,5 @@ public abstract class Element {
         return position.toString();
     };
 
-    public abstract void draw(TextGraphics graphics);
+    public abstract void draw();
 }

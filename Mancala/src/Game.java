@@ -1,4 +1,7 @@
 import java.io.IOException;
+import java.util.Scanner;
+
+import java.io.InputStreamReader;
 
 
 public class Game {
@@ -19,11 +22,30 @@ public class Game {
 
     }
 
-    public void run(){
+    public void run() throws IOException {
+        Scanner in = new Scanner(System.in);
 
-        this.draw();
+        while (true){
+            this.draw();
 
-        //read imput and process it
+            while(true){
+                System.out.print("Player 1, Insert a column between 1 and 6:");
+                int a = in.nextInt();
+
+                if(board.moveFinished(1, a))
+                    break;
+            }
+
+            while(true){
+                System.out.print("Player 2, Insert a column between 1 and 6:");
+                int b = in.nextInt();
+
+                if(board.moveFinished(2,b));
+                    break;
+
+            }
+
+        }
 
     }
 }

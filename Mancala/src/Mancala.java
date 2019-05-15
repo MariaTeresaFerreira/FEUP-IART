@@ -24,12 +24,20 @@ public class Mancala extends Element {
         return position.getY();
     }
 
+    public int getScore() {
+        return score;
+    }
+
     public void setX(int x) {
         position.setX(x);
     }
 
     public void setY(int y) {
         position.setY(y);
+    }
+
+    public void setScore(int score) {
+        this.score = score;
     }
 
     public Position getPosition() {

@@ -53,30 +53,6 @@ public class Board {
     public void setHeight(int height) {
         this.height = height;
     }
-/*
-    public void processKey(KeyStroke key){
-        System.out.println(key);
-
-        switch (key.getKeyType()){
-            case F1:
-                this.houses.get(2).setRocks( this.houses.get(2).getRocks() + 2 );
-                break;
-
-            case ArrowDown:
-                break;
-
-            case ArrowLeft:
-                break;
-
-            case ArrowRight:
-                break;
-        }
-
-        if (key.getKeyType() == KeyType.Character && key.getCharacter() == 'q')
-            System.out.println("letter q pressed");
-
-    }
-*/
 
     public void draw(){
 
@@ -103,6 +79,49 @@ public class Board {
 
         System.out.println();
 
+    }
+
+    public boolean moveFinished(int player, int column){
+
+        if(player == 1){
+            int rocks = housesUp.get(column).getScore();
+            housesUp.get(column).setScore(0);
+            move(1,column, rocks);
+        }
+        else if( player == 2){
+            int rocks = housesDown.get(column).getScore();
+            housesDown.get(column).setScore(0);
+            move(2,column, rocks);
+        }
+        return false;
 
     }
+
+    private int move(int player, int column, int rocks){
+        int finalPos = 0;
+        for(int i = rocks; i > 0; i--){
+
+        }
+        return finalPos;
+    }
+
+    private void addRock(int player, int column){
+        if(player == 1){
+            housesUp.get(column).setScore(housesUp.get(column).getScore()+1);
+        }
+        else if( player == 2){
+            housesDown.get(column).setScore(housesDown.get(column).getScore()+1);        }
+    }
+/*
+    private int incrementPos(int line, int column){
+        if(line == 2 && column == 6){
+            return 16;
+        }
+        else if(line == 1 && column == 1){
+            return 21;
+        }
+
+    }
+*/
+
 }

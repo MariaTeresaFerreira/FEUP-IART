@@ -40,6 +40,14 @@ public class Board {
         return activePlayer;
     }
 
+    public void nextPlayer(){
+        if(this.activePlayer == 0)
+            this.activePlayer = 1;
+        else
+            this.activePlayer = 0;
+        return;
+    }
+
     public Boolean getGameOver() {
         return gameOver;
     }

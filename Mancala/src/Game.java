@@ -14,10 +14,6 @@ public class Game {
     }
 
     private void draw(){
-        for(int i = 0; i < 20; i++){
-            System.out.println();
-        }
-
         board.draw();
 
     }
@@ -25,12 +21,22 @@ public class Game {
     public void run() throws IOException {
         Scanner in = new Scanner(System.in);
 
-        while (true){
+        while (!board.getGameOver()){
+            int player = board.getActivePlayer() + 1;
+            System.out.println("Player " + player + " Insert a column between 1 and 6:");
+
             this.draw();
+            int a = in.nextInt();
+            board.move(board.getActivePlayer(), a);
+            board.nextPlayer();
+
+
+
+
 /*
             while(true){
                 System.out.print("Player 1, Insert a column between 1 and 6:");
-                int a = in.nextInt();
+
 
                 if(board.moveFinished(1, a))
                     break;

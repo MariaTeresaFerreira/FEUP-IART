@@ -27,7 +27,7 @@ public class Game {
 
         while (true){
             this.draw();
-
+/*
             while(true){
                 System.out.print("Player 1, Insert a column between 1 and 6:");
                 int a = in.nextInt();
@@ -44,6 +44,8 @@ public class Game {
                     break;
 
             }
+            */
+
 
         }
 

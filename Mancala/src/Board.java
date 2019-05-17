@@ -63,29 +63,29 @@ public class Board {
 
         System.out.println();
 
-        for (Mancala house : housesUp){
+        for (int i = 0; i < N_PITS; i++){
             System.out.print("  ");
-            house.draw();
+            System.out.print(pits[0][i]);
         }
 
         System.out.println();
 
-        for (Mancala score : scores){
-            score.draw();
+        for (int i = 0; i < N_PLAYERS; i++){
+            System.out.print(mancalas[i]);
             System.out.print("                  ");
         }
 
         System.out.println();
 
-        for (Mancala house : housesDown){
+        for (int i = 0; i < N_PITS; i++){
             System.out.print("  ");
-            house.draw();
+            System.out.print(pits[1][i]);
         }
 
         System.out.println();
 
     }
-
+/*
     public boolean moveFinished(int player, int column){
 
         if(player == 1){

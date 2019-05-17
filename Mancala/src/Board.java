@@ -86,6 +86,7 @@ public class Board {
     }
 
     public boolean move(int side, int pit){
+        repeatTurn = false;
 
         if (side != activePlayer)
             return false;
@@ -93,40 +94,32 @@ public class Board {
         if (pits[side][pit] == 0)
             return false;
 
-        if(repeatTurn)
-            repeatTurn = false;
-
         int rocks = pits[side][pit];
         pits[side][pit] = 0;
 
         while (rocks > 0){
 
             pit = nextPit(pit);
-            System.out.println(pit);
 
             if(pit == 0){
 
                 if(side == activePlayer){
-                    mancalas[side]++;
-                    --rocks;
+                    mancalas[side] += 1;
+                    rocks -= 1;
 
                     if(rocks == 0){
                         checkEmpty();
                         repeatTurn = true;
-                        break;
+                        return false;
                     }
                 }
                 side = nextSide(side);
             }
-            pits[side][pit]++;
-            --rocks;
+            pits[side][pit] += 1;
+            rocks -= 1;
         }
-        System.out.println("Olá");
         endTurn(side, pit);
 
-        if(repeatTurn) {
-            return false;
-        }
         return true;
     }
 

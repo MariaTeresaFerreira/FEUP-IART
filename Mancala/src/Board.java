@@ -108,7 +108,7 @@ public class Board {
                     rocks--;
 
                     if(rocks == 0){
-                        //check if side empty
+                        checkEmpty();
                         repeatTurn = true;
                         return;
                     }
@@ -120,7 +120,7 @@ public class Board {
             pits[side][pit]++;
             rocks--;
         }
-        //Change side
+        endTurn(side, pit);
     }
 
     private int nextPit(int pit)
@@ -135,6 +135,62 @@ public class Board {
         if (side++ >= N_PLAYERS)
             side = 0;
         return side;
+    }
+
+    private void endGame(int side)
+    {
+        gameOver = true;
+
+        // empties the remainder of the board
+        for (int i = 0; i < N_PITS; i++) {
+            mancalas[side] += pits[side][i];
+            pits[side][i] = 0;
+        }
+/*
+        // sets the winner as the active player
+        if (mancalas[activePlayer] == mancalas[nextSide(activePlayer)])
+            activePlayer = -1;
+        else if (mancalas[activePlayer] < mancalas[nextSide(activePlayer)])
+            activePlayer = nextSide(activePlayer);
+
+ */
+    }
+
+    private void checkEmpty() {
+
+        int empty;
+        for (int i = 0; i < N_PLAYERS; i++)
+        {
+            empty = 0;
+            for (int j = 0; j < N_PITS; j++)
+            {
+                if (pits[i][j] == 0)
+                    empty++;
+            }
+
+            if (empty == N_PITS)
+            {
+                endGame(nextSide(i));
+                break;
+            }
+        }
+    }
+
+    private void endTurn(int side, int pit){
+
+        if (side == activePlayer && pits[side][pit] == 1)
+        {
+            mancalas[side] += 1 + pits[nextSide(side)][N_PITS - pit - 1];
+            pits[side][pit] = 0;
+            pits[nextSide(side)][N_PITS - pit - 1] = 0;
+            repeatTurn = true;
+        }
+        else
+        {
+            activePlayer = nextSide(activePlayer);
+        }
+
+        checkEmpty();
     }
 
 

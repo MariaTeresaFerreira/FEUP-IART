@@ -1,57 +1,62 @@
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class Board {
-    private int width;
-    private int height;
-    private List<Mancala> scores;
-    private List<Mancala> housesUp;
-    private List<Mancala> housesDown;
+    public static final int N_PLAYERS = 2;
+    public static final int N_PITS = 6;
+    public static final int N_STONES = 4;
 
 
+    private int[] mancalas;
+    private int[][] pits;
+    private int activePlayer;
+    private Boolean gameOver;
 
-    public Board(int w, int h){
-        width = w;
-        height = h;
 
-        this.scores = createScores();
-        this.housesUp = createHouses(1);
-        this.housesDown = createHouses(2);
-    }
+    public Board(){
+        pits = new int[N_PLAYERS][N_PITS];
+        mancalas = new int[N_PLAYERS];
+        activePlayer = 0;
+        gameOver = false;
 
-    private List<Mancala> createHouses(int line) {
-        List<Mancala> houses = new ArrayList<>();
+        for (int p = 0; p < N_PLAYERS; p++)
+        {
+            mancalas[p] = 0;
 
-        for (int c = 1; c <= width; c++) {
-                houses.add(new Mancala(c, line, 4));
+            for (int col = 0; col < N_PITS; col++)
+                pits[p][col] = N_STONES;
         }
-        return houses;
     }
 
-    private List<Mancala> createScores() {
-        List<Mancala> scores = new ArrayList<>();
-
-        scores.add(new Mancala(0, 1, 0));
-        scores.add(new Mancala(7, 2, 0));
-
-        return scores;
+    public int[] getMancalas() {
+        return mancalas;
     }
 
-
-    public int getHeight() {
-        return height;
+    public int[][] getPits() {
+        return pits;
     }
 
-    public int getWidth() {
-        return width;
+    public int getActivePlayer() {
+        return activePlayer;
     }
 
-    public void setWidth(int width) {
-        this.width = width;
+    public Boolean getGameOver() {
+        return gameOver;
     }
 
-    public void setHeight(int height) {
-        this.height = height;
+    public void setMancalas(int[] mancalas) {
+        this.mancalas = mancalas;
+    }
+
+    public void setPits(int[][] pits) {
+        this.pits = pits;
+    }
+
+    public void setActivePlayer(int activePlayer) {
+        this.activePlayer = activePlayer;
+    }
+
+    public void setGameOver(Boolean gameOver) {
+        this.gameOver = gameOver;
     }
 
     public void draw(){

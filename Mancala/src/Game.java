@@ -9,7 +9,7 @@ public class Game {
     private Board board;
 
     public Game(){
-        board = new Board(6,2);
+        board = new Board();
 
     }
 

@@ -9,6 +9,7 @@ public class Board {
     private int[] mancalas;
     private int[][] pits;
     private int activePlayer;
+    private Boolean repeatTurn;
     private Boolean gameOver;
 
 
@@ -83,50 +84,59 @@ public class Board {
         }
 
         System.out.println();
-
-    }
-/*
-    public boolean moveFinished(int player, int column){
-
-        if(player == 1){
-            int rocks = housesUp.get(column).getScore();
-            housesUp.get(column).setScore(0);
-            move(1,column, rocks);
-        }
-        else if( player == 2){
-            int rocks = housesDown.get(column).getScore();
-            housesDown.get(column).setScore(0);
-            move(2,column, rocks);
-        }
-        return false;
-
     }
 
-    private int move(int player, int column, int rocks){
-        int finalPos = 0;
-        for(int i = rocks; i > 0; i--){
+    public void move(int side, int pit){
 
+        if (side != activePlayer)
+            return;
+
+        if (pits[side][pit] == 0)
+            return;
+
+        int rocks = pits[side][pit];
+        pits[side][pit] = 0;
+
+        while (rocks > 0){
+
+            pit = nextPit(pit);
+
+            if(pit == 0){
+
+                if(side == activePlayer){
+                    mancalas[side]++;
+                    rocks--;
+
+                    if(rocks == 0){
+                        //check if side empty
+                        repeatTurn = true;
+                        return;
+                    }
+                }
+
+                side = nextSide(side);
+            }
+
+            pits[side][pit]++;
+            rocks--;
         }
-        return finalPos;
+        //Change side
     }
 
-    private void addRock(int player, int column){
-        if(player == 1){
-            housesUp.get(column).setScore(housesUp.get(column).getScore()+1);
-        }
-        else if( player == 2){
-            housesDown.get(column).setScore(housesDown.get(column).getScore()+1);        }
+    private int nextPit(int pit)
+    {
+        if (pit++ >= N_PITS)
+            pit = 0;
+        return pit;
     }
-/*
-    private int incrementPos(int line, int column){
-        if(line == 2 && column == 6){
-            return 16;
-        }
-        else if(line == 1 && column == 1){
-            return 21;
-        }
 
+    private int nextSide(int side)
+    {
+        if (side++ >= N_PLAYERS)
+            side = 0;
+        return side;
     }
-*/
+
+
 
 }

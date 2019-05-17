@@ -27,24 +27,26 @@ public class Game {
 
         while (true){
             this.draw();
-/*
-            while(true){
+
+            while (true){
                 System.out.print("Player 1, Insert a column between 1 and 6:");
                 int a = in.nextInt();
-
-                if(board.moveFinished(1, a))
+                if(board.move(0,a)) {
                     break;
+                }
+                draw();
             }
 
-            while(true){
+            this.draw();
+
+            while (true){
                 System.out.print("Player 2, Insert a column between 1 and 6:");
                 int b = in.nextInt();
-
-                if(board.moveFinished(2,b));
+                if(board.move(1,b)){
                     break;
-
+                }
+                draw();
             }
-            */
 
 
         }

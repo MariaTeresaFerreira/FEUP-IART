@@ -2,9 +2,8 @@ import java.util.*;
 
 public class Board {
     public static final int N_PLAYERS = 2;
-    public static final int N_PITS = 6;
     public static final int N_STONES = 4;
-
+    public static final int N_PITS = 6;
 
     private int[] mancalas;
     private int[][] pits;
@@ -12,12 +11,12 @@ public class Board {
     private Boolean repeatTurn;
     private Boolean gameOver;
 
-
     public Board(){
         pits = new int[N_PLAYERS][N_PITS];
         mancalas = new int[N_PLAYERS];
         activePlayer = 0;
         gameOver = false;
+        repeatTurn = false;
 
         for (int p = 0; p < N_PLAYERS; p++)
         {
@@ -64,7 +63,7 @@ public class Board {
 
         System.out.println();
 
-        for (int i = 0; i < N_PITS; i++){
+        for (int i = N_PITS - 1; i >= 0; i--){
             System.out.print("  ");
             System.out.print(pits[0][i]);
         }
@@ -86,13 +85,16 @@ public class Board {
         System.out.println();
     }
 
-    public void move(int side, int pit){
+    public boolean move(int side, int pit){
 
         if (side != activePlayer)
-            return;
+            return false;
 
         if (pits[side][pit] == 0)
-            return;
+            return false;
+
+        if(repeatTurn)
+            repeatTurn = false;
 
         int rocks = pits[side][pit];
         pits[side][pit] = 0;
@@ -100,39 +102,46 @@ public class Board {
         while (rocks > 0){
 
             pit = nextPit(pit);
+            System.out.println(pit);
 
             if(pit == 0){
 
                 if(side == activePlayer){
                     mancalas[side]++;
-                    rocks--;
+                    --rocks;
 
                     if(rocks == 0){
                         checkEmpty();
                         repeatTurn = true;
-                        return;
+                        break;
                     }
                 }
-
                 side = nextSide(side);
             }
-
             pits[side][pit]++;
-            rocks--;
+            --rocks;
         }
+        System.out.println("Olá");
         endTurn(side, pit);
+
+        if(repeatTurn) {
+            return false;
+        }
+        return true;
     }
 
     private int nextPit(int pit)
     {
-        if (pit++ >= N_PITS)
+        pit += 1;
+        if (pit == N_PITS)
             pit = 0;
         return pit;
     }
 
     private int nextSide(int side)
     {
-        if (side++ >= N_PLAYERS)
+        side += 1;
+        if (side == N_PLAYERS)
             side = 0;
         return side;
     }
@@ -141,19 +150,10 @@ public class Board {
     {
         gameOver = true;
 
-        // empties the remainder of the board
         for (int i = 0; i < N_PITS; i++) {
             mancalas[side] += pits[side][i];
             pits[side][i] = 0;
         }
-/*
-        // sets the winner as the active player
-        if (mancalas[activePlayer] == mancalas[nextSide(activePlayer)])
-            activePlayer = -1;
-        else if (mancalas[activePlayer] < mancalas[nextSide(activePlayer)])
-            activePlayer = nextSide(activePlayer);
-
- */
     }
 
     private void checkEmpty() {
@@ -192,7 +192,5 @@ public class Board {
 
         checkEmpty();
     }
-
-
 
 }

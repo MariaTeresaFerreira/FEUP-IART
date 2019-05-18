@@ -30,7 +30,7 @@ public class Game {
 
             while (true){
                 System.out.print("Player 1, Insert a column between 1 and 6:");
-                int a = in.nextInt();
+                int a = translateInput(in.nextInt(), board.getActivePlayer());
                 if(board.move(0,a)) {
                     break;
                 }
@@ -41,7 +41,7 @@ public class Game {
 
             while (true){
                 System.out.print("Player 2, Insert a column between 1 and 6:");
-                int b = in.nextInt();
+                int b = translateInput(in.nextInt(), board.getActivePlayer());
                 if(board.move(1,b)){
                     break;
                 }
@@ -52,4 +52,57 @@ public class Game {
         }
 
     }
+
+    private int translateInput(int i, int player) {
+        int j = -1;
+
+        if(player == 0){
+            switch(i) {
+                case 1:
+                    j = 5;
+                    break;
+                case 2:
+                    j = 4;
+                    break;
+                case 3:
+                    j = 3;
+                    break;
+                case 4:
+                    j = 2;
+                    break;
+                case 5:
+                    j = 1;
+                    break;
+                case 6:
+                    j = 0;
+                    break;
+            }
+        }
+
+        if(player == 1){
+            switch(i) {
+                case 1:
+                    j = 0;
+                    break;
+                case 2:
+                    j = 1;
+                    break;
+                case 3:
+                    j = 2;
+                    break;
+                case 4:
+                    j = 3;
+                    break;
+                case 5:
+                    j = 4;
+                    break;
+                case 6:
+                    j = 5;
+                    break;
+            }
+        }
+
+        return j;
+    }
+
 }

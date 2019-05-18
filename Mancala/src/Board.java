@@ -186,4 +186,8 @@ public class Board {
         checkEmpty();
     }
 
+    public int getBoardScore(){
+        return mancalas[0] - mancalas[1];
+    }
+
 }

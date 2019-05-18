@@ -14,7 +14,7 @@ public class Game {
     }
 
     private void draw(){
-        for(int i = 0; i < 20; i++){
+        for(int i = 0; i < 10; i++){
             System.out.println();
         }
 
@@ -28,18 +28,22 @@ public class Game {
         while (true){
             this.draw();
 
+
             while (true){
+                System.out.println("current board score: " + board.getBoardScore());
                 System.out.print("Player 1, Insert a column between 1 and 6:");
                 int a = translateInput(in.nextInt(), board.getActivePlayer());
                 if(board.move(0,a)) {
                     break;
                 }
                 draw();
+
             }
 
             this.draw();
 
             while (true){
+                System.out.println("current board score: " + board.getBoardScore());
                 System.out.print("Player 2, Insert a column between 1 and 6:");
                 int b = translateInput(in.nextInt(), board.getActivePlayer());
                 if(board.move(1,b)){
@@ -100,6 +104,9 @@ public class Game {
                     j = 5;
                     break;
             }
+        }
+        if(j == -1){
+            System.out.println("input error");
         }
 
         return j;

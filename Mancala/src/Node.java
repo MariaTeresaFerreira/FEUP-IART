@@ -6,10 +6,10 @@ public class Node {
     public int boardScore;
     public boolean isRoot;
 
-    public Node(Board board, int lastPlayer, int lastMove, int boardScore) {
+    public Node(Board board) {
         this.board = board;
-        this.lastPlayer = lastPlayer;
-        this.lastMove = lastMove;
+        this.lastPlayer = -1;
+        this.lastMove = -1;
         this.boardScore = this.board.getBoardScore();
         this.isRoot = true;
 

@@ -2,6 +2,7 @@ import java.io.IOException;
 import java.util.Scanner;
 
 import java.io.InputStreamReader;
+import java.util.Vector;
 
 
 public class Game {
@@ -31,7 +32,17 @@ public class Game {
 
             while (true){
                 System.out.println("current board score: " + board.getBoardScore());
-                System.out.print("Player 1, Insert the column you want to play between 1 and 6:");
+                System.out.println("Player 1, Insert the column you want to play between 1 and 6:");
+
+
+                System.out.print("valid moves :");
+                for(int i = 0; i < board.getValidMoves().size(); i++){
+                    System.out.print(board.getValidMoves().get(i));
+                }
+                System.out.print("\n");
+                System.out.print("valid moves size:");
+                System.out.println(board.getValidMoves().size());
+
                 int a = translateInput(in.nextInt(), board.getActivePlayer());
                 if(board.move(0,a)) {
                     break;
@@ -44,7 +55,16 @@ public class Game {
 
             while (true){
                 System.out.println("current board score: " + board.getBoardScore());
-                System.out.print("Player 2, Insert the column you want to play between 1 and 6:");
+                System.out.println("Player 2, Insert the column you want to play between 1 and 6:");
+
+                System.out.print("valid moves :");
+                for(int i = 0; i < board.getValidMoves().size(); i++){
+                    System.out.print(board.getValidMoves().get(i));
+                }
+                System.out.print("\n");
+                System.out.print("valid moves size:");
+                System.out.println(board.getValidMoves().size());
+
                 int b = translateInput(in.nextInt(), board.getActivePlayer());
                 if(board.move(1,b)){
                     break;

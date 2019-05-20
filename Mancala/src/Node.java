@@ -1,10 +1,12 @@
+import java.util.List;
+
 public class Node {
-    public Node parent;
     public Board board;
     public int lastPlayer;
     public int lastMove;
     public int boardScore;
     public boolean isRoot;
+    public List<Node> children;
 
     public Node(Board board) {
         this.board = board;
@@ -15,8 +17,7 @@ public class Node {
 
     }
 
-    public Node(Node parent, Board board, int lastPlayer, int lastMove) {
-        this.parent = parent;
+    public Node(Board board, int lastPlayer, int lastMove) {
         this.board = board;
         this.lastPlayer = lastPlayer;
         this.lastMove = lastMove;

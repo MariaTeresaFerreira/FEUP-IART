@@ -193,4 +193,32 @@ public class Board {
         return mancalas[0] - mancalas[1];
     }
 
+
+
+    public Vector<Integer> getValidMoves(){
+        Vector<Integer> validPlays = new Vector<>();
+        if(this.getActivePlayer() == 1){
+            for(int i = 1; i < 7 ; i++){
+                if(pits[this.getActivePlayer()][i-1] != 0)
+                    validPlays.add(new Integer(i));
+            }
+        } else if(this.getActivePlayer() == 0){
+            if(pits[this.getActivePlayer()][5] != 0){
+                validPlays.add(new Integer(1));
+            }if(pits[this.getActivePlayer()][4] != 0){
+                validPlays.add(new Integer(2));
+            }if(pits[this.getActivePlayer()][3] != 0){
+                validPlays.add(new Integer(3));
+            }if(pits[this.getActivePlayer()][2] != 0){
+                validPlays.add(new Integer(4));
+            }if(pits[this.getActivePlayer()][1] != 0){
+                validPlays.add(new Integer(5));
+            }if(pits[this.getActivePlayer()][0] != 0){
+                validPlays.add(new Integer(6));
+            }
+        }
+
+        return validPlays;
+    }
+
 }

@@ -195,7 +195,7 @@ public class Board {
 
 
 
-    public Vector<Integer> getValidMoves(){
+    public Vector<Integer> getValidTranslatedMoves(){
         Vector<Integer> validPlays = new Vector<>();
         if(this.getActivePlayer() == 1){
             for(int i = 1; i < 7 ; i++){
@@ -216,6 +216,16 @@ public class Board {
             }if(pits[this.getActivePlayer()][0] != 0){
                 validPlays.add(new Integer(6));
             }
+        }
+
+        return validPlays;
+    }
+
+    public Vector<Integer> getValidMoves(){
+        Vector<Integer> validPlays = new Vector<>();
+        for(int i = 0; i < 6; i++){
+            if(pits[this.getActivePlayer()][i] != 0)
+                validPlays.add(new Integer(i));
         }
 
         return validPlays;

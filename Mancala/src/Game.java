@@ -27,51 +27,14 @@ public class Game {
         Scanner in = new Scanner(System.in);
 
         while (!board.getGameOver()){
-            this.draw();
-
-
-            while (true){
-                System.out.println("current board score: " + board.getBoardScore());
-                System.out.println("Player 1, Insert the column you want to play between 1 and 6:");
-
-
-                System.out.print("valid moves :");
-                for(int i = 0; i < board.getValidMoves().size(); i++){
-                    System.out.print(board.getValidMoves().get(i));
-                }
-                System.out.print("\n");
-                System.out.print("valid moves size:");
-                System.out.println(board.getValidMoves().size());
-
-                int a = translateInput(in.nextInt(), board.getActivePlayer());
-                if(board.move(0,a)) {
-                    break;
-                }
-                draw();
-
-            }
 
             this.draw();
 
-            while (true){
-                System.out.println("current board score: " + board.getBoardScore());
-                System.out.println("Player 2, Insert the column you want to play between 1 and 6:");
+            completeMove(0,in);
 
-                System.out.print("valid moves :");
-                for(int i = 0; i < board.getValidMoves().size(); i++){
-                    System.out.print(board.getValidMoves().get(i));
-                }
-                System.out.print("\n");
-                System.out.print("valid moves size:");
-                System.out.println(board.getValidMoves().size());
+            this.draw();
 
-                int b = translateInput(in.nextInt(), board.getActivePlayer());
-                if(board.move(1,b)){
-                    break;
-                }
-                draw();
-            }
-
+            completeMove(1,in);
         }
 
     }
@@ -129,6 +92,31 @@ public class Game {
         }
 
         return j;
+    }
+
+    void completeMove(int player, Scanner in){
+
+        while (true){
+            System.out.println("current board score: " + board.getBoardScore());
+            System.out.println("Player " + (player + 1 ) + ", Insert the column you want to play between 1 and 6:");
+
+
+            System.out.print("valid moves :");
+            for(int i = 0; i < board.getValidMoves().size(); i++){
+                System.out.print(board.getValidMoves().get(i));
+            }
+            System.out.println();
+            System.out.print("valid moves size:");
+            System.out.println(board.getValidMoves().size());
+
+            int a = translateInput(in.nextInt(), board.getActivePlayer());
+            if(board.move(player,a)) {
+                break;
+            }
+            draw();
+
+        }
+
     }
 
 }

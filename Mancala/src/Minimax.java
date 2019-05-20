@@ -16,10 +16,12 @@ public abstract class Minimax {
         possiblePlays.forEach(n -> {
             Board newBoard = parent.board;
             newBoard.move(activePlayer, n);
+            if(!newBoard.getGameOver()){
             Node newNode = new Node(newBoard, activePlayer, n);
             parent.addChild(newNode);
             if(newBoard.getValidMoves().size() > 0)
                 constructTree(newNode);
+            }
         });
 
     }

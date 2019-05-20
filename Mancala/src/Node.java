@@ -24,4 +24,8 @@ public class Node {
         this.boardScore = this.board.getBoardScore();
         this.isRoot = false;
     }
+
+    public void addChild(Node n){
+        children.add(n);
+    }
 }

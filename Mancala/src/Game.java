@@ -8,10 +8,13 @@ import java.util.Vector;
 public class Game {
 
     private Board board;
+    private int mode = 0;
+    private Scanner in;
 
-    public Game(){
+
+    public Game() throws IOException {
         board = new Board();
-
+        in = new Scanner(System.in);
     }
 
     private void draw(){
@@ -24,7 +27,26 @@ public class Game {
     }
 
     public void run() throws IOException {
-        Scanner in = new Scanner(System.in);
+
+        while(mode < 1 || mode > 3) {
+            System.out.println("Insert the mode of the game you want to play:");
+            System.out.println("1 for Human vs Human");
+            System.out.println("2 for Human vs AI");
+            System.out.println("3 for AI vs AI");
+
+            int mode = in.nextInt();
+
+            if (mode == 1) {
+                humanVsHuman();
+            } else if (mode == 2) {
+                humanVsAI();
+            } else if (mode == 3) {
+                aIVsAI();
+            }
+        }
+    }
+
+    private void humanVsHuman() throws IOException {
 
         while (!board.getGameOver()){
 
@@ -36,7 +58,36 @@ public class Game {
 
             completeMove(1,in);
         }
+    }
 
+    private void humanVsAI() throws IOException {
+
+        while (!board.getGameOver()){
+
+            this.draw();
+
+            completeMove(0,in);
+
+            this.draw();
+
+            //AI move
+        }
+    }
+
+    private void aIVsAI() throws IOException {
+
+        while (!board.getGameOver()){
+
+            this.draw();
+
+            in.next();
+            //AI move
+
+            this.draw();
+
+            in.next();
+            //AI move
+        }
     }
 
     private int translateInput(int i, int player) {
@@ -114,7 +165,6 @@ public class Game {
                 break;
             }
             draw();
-
         }
 
     }

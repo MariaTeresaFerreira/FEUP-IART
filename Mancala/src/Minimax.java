@@ -5,28 +5,74 @@ import java.util.Vector;
 
 public abstract class Minimax {
     private Tree tree;
+    private int depthCounter;
 
-    public void constructTree(Board b){
+    public void constructTree(Board b, int depth){
         Node root = new Node(b);
         this.tree = new Tree(root);
-        constructTree(root);
+        constructTree(root, depth);
     }
 
-    protected void constructTree(Node parent){
-        Vector<Integer> possiblePlays = parent.board.getValidMoves();
-        int activePlayer = parent.board.getActivePlayer();
-        possiblePlays.forEach(n -> {
-            Board newBoard = parent.board;
-            newBoard.move(activePlayer, n);
-            if(!newBoard.getGameOver()){
-            Node newNode = new Node(newBoard, activePlayer, n);
-            parent.addChild(newNode);
-            if(newBoard.getValidMoves().size() > 0)
-                constructTree(newNode);
+    public void constructTree(Node parent, int depth){
+        depthCounter = 0;
+        if(depth < depthCounter){
+            Vector<Integer> possiblePlays = parent.board.getValidMoves();
+            possiblePlays.forEach(play -> {
+                Board newBoard = new Board(parent.board);
+                newBoard.move(newBoard.getActivePlayer(), play);
+                Node newNode = new Node(newBoard, parent.board.getActivePlayer(), play);
+                parent.addChild(newNode);
+                if(!newBoard.getGameOver()){
+                    depthCounter++; //TODO: isto esta mal, ver como contar a depth
+                    constructTree(newNode, depth);
+                }
+            });
+        }
+    }
+
+    public int getTreeBoardScores(){
+        Node root = this.tree.getRoot();
+        return getTreeBoardScores(root);
+    }
+
+    private int getTreeBoardScores(Node parent) {
+        List<Node> children = parent.children;
+        if(parent.board.getActivePlayer() == 0){ //max
+            int chosenValue = Integer.MIN_VALUE;
+            for(Node child : children){
+                int currValue;
+                if(child.board.getGameOver() || child.children.size() == 0){ // é folha
+                    child.inheritedScore = child.boardScore;
+                    currValue = child.inheritedScore;
+                } else{
+                    currValue = getTreeBoardScores(child);
+                }
+
+                if(currValue > chosenValue)
+                    chosenValue = currValue;
             }
-        });
+            return chosenValue;
+        } else {
+            int chosenValue = Integer.MAX_VALUE;
+            for(Node child : children){
+                int currValue;
+                if(child.board.getGameOver() || child.children.size() == 0){ // é folha
+                    child.inheritedScore = child.boardScore;
+                    currValue = child.inheritedScore;
+                } else{
+                    currValue = getTreeBoardScores(child);
+                }
+
+                if(currValue < chosenValue)
+                    chosenValue = currValue;
+            }
+            return chosenValue;
+        }
+
+
 
     }
+
 
     public boolean checkWin(){
         Node root = this.tree.getRoot();

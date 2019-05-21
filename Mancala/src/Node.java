@@ -2,7 +2,7 @@ import java.util.List;
 
 public class Node {
     public Board board;
-    public int lastPlayer;
+    public int lastPlayer; //parent player
     public int lastMove;
     public int boardScore;
     public boolean isRoot;

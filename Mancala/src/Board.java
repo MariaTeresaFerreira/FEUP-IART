@@ -25,6 +25,14 @@ public class Board {
         }
     }
 
+    public Board(Board board){
+        this.mancalas = board.mancalas;
+        this.pits[0] = board.pits[0].clone();
+        this.pits[1] = board.pits[1].clone();
+        this.activePlayer = board.activePlayer;
+        this.gameOver = new Boolean(board.gameOver.booleanValue());
+    }
+
     public int[] getMancalas() {
         return mancalas;
     }

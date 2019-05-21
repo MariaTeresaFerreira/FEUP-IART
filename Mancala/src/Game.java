@@ -153,12 +153,12 @@ public class Game {
 
 
             System.out.print("valid moves :");
-            for(int i = 0; i < board.getValidMoves().size(); i++){
+            for(int i = 0; i < board.getValidTranslatedMoves().size(); i++){
                 System.out.print(board.getValidMoves().get(i));
             }
             System.out.println();
             System.out.print("valid moves size:");
-            System.out.println(board.getValidMoves().size());
+            System.out.println(board.getValidTranslatedMoves().size());
 
             int a = translateInput(in.nextInt(), board.getActivePlayer());
             if(board.move(player,a)) {

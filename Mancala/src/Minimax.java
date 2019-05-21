@@ -1,4 +1,6 @@
+import java.util.Comparator;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Vector;
 
 public abstract class Minimax {
@@ -6,7 +8,7 @@ public abstract class Minimax {
 
     public void constructTree(Board b){
         Node root = new Node(b);
-        tree = new Tree(root);
+        this.tree = new Tree(root);
         constructTree(root);
     }
 
@@ -26,4 +28,49 @@ public abstract class Minimax {
 
     }
 
+    public boolean checkWin(){
+        Node root = this.tree.getRoot();
+        checkWin(root);
+        return root.inheritedScore == 1;
+    }
+
+    public void checkWin(Node parent){
+        List<Node> children = parent.children;
+        children.forEach(child -> {
+            if(child.board.getGameOver()){
+                if(child.board.getBoardScore() > 0)
+                    child.inheritedWinner = 1;
+                else if(child.board.getBoardScore() < 0)
+                    child.inheritedWinner = -1;
+                else if(child.board.getBoardScore() == 0)
+                    child.inheritedWinner = 0;
+            } else
+                checkWin(child);
+        });
+
+        Node bestChild= findBestChild(parent.board.getActivePlayer(), children); //TODO verificar isto
+        parent.inheritedScore = bestChild.inheritedScore;
+
+    }
+
+    private Node findBestChild(int activePlayer, List<Node> children) {
+        Comparator<Node> byScoreComparator = new scoreComparator();
+        boolean maxPlayer;
+        if(activePlayer == 0)
+            maxPlayer = true;
+        else
+            maxPlayer = false;
+        return children.stream().max(maxPlayer ? byScoreComparator : byScoreComparator.reversed()).orElseThrow(NoSuchElementException::new);
+
+    }
+
+
+
+}
+
+class scoreComparator implements Comparator<Node> {
+    @Override
+    public int compare(Node firstNode, Node secondNode) {
+        return (firstNode.inheritedScore - secondNode.inheritedScore);
+    }
 }

@@ -7,6 +7,8 @@ public class Node {
     public int boardScore;
     public boolean isRoot;
     public List<Node> children;
+    public int inheritedWinner;
+    public int inheritedScore;
 
     public Node(Board board) {
         this.board = board;
@@ -14,6 +16,8 @@ public class Node {
         this.lastMove = -1;
         this.boardScore = this.board.getBoardScore();
         this.isRoot = true;
+        this.inheritedScore = -1;
+        this.inheritedWinner = -1;
 
     }
 
@@ -23,6 +27,9 @@ public class Node {
         this.lastMove = lastMove;
         this.boardScore = this.board.getBoardScore();
         this.isRoot = false;
+        this.inheritedScore = -1;
+        this.inheritedWinner = -1;
+
     }
 
     public void addChild(Node n){

@@ -105,9 +105,6 @@ public class Board {
     public boolean move(int pit){
         int side = activePlayer;
 
-<<<<<<< HEAD
-=======
-
         if (side != activePlayer)
             return false;
 
@@ -115,7 +112,6 @@ public class Board {
         System.out.println("side:" + side);
         System.out.println("pit:" + pit);
 
->>>>>>> 6bdb5df7fc8dbdc99f1702e92d698332f6976bec
         if (pits[side][pit] == 0)
             return false;
 

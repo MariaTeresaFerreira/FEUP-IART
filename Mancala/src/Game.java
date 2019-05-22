@@ -66,11 +66,8 @@ public class Game {
 
             this.draw();
 
-<<<<<<< HEAD
             //completeMove(0,in);
-=======
             //completeMove(in);
->>>>>>> 6bdb5df7fc8dbdc99f1702e92d698332f6976bec
 
             this.draw();
 
@@ -84,13 +81,12 @@ public class Game {
 
             this.draw();
             Minimax.constructTree(board);
-            int move = Minimax.getTreeBoardScores();
-            System.out.println("score: " + move);
+            int score = Minimax.getTreeBoardScores();
+            System.out.println("score: " + score);
             System.out.println("move: " + Minimax.chosenPlay);
             board.move(Minimax.chosenPlay);
 
             in.next();
->>>>>>> 6bdb5df7fc8dbdc99f1702e92d698332f6976bec
         }
     }
 
@@ -148,7 +144,6 @@ public class Game {
 
         return j;
     }
-<<<<<<< HEAD
     
 /*
     void completeMove(int move){
@@ -159,8 +154,6 @@ public class Game {
         draw();
     }
     */
-=======
-
     void completeMove(int player, Scanner in){
 
         while (true){
@@ -184,7 +177,5 @@ public class Game {
         }
 
     }
-
->>>>>>> 6bdb5df7fc8dbdc99f1702e92d698332f6976bec
 
 }

@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.sql.SQLOutput;
 import java.util.Scanner;
 
 import java.io.InputStreamReader;
@@ -79,7 +80,9 @@ public class Game {
             this.draw();
             Minimax.constructTree(board);
             int move = Minimax.getTreeBoardScores();
-            board.move(move);
+            System.out.println("score: " + move);
+            System.out.println("move: " + Minimax.chosenPlay);
+            board.move(Minimax.chosenPlay);
 
             in.next();
         }

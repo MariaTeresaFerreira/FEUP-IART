@@ -6,6 +6,7 @@ import java.util.Vector;
 public class Minimax {
     public static Tree tree;
     public static int depthMax = 5;
+    public static int chosenPlay = -1;
 
     public static void constructTree(Board b){
         Node root = new Node(b);
@@ -51,8 +52,11 @@ public class Minimax {
                     currValue = getTreeBoardScores(child);
                 }
 
-                if(currValue > chosenValue)
+                if(currValue > chosenValue){
                     chosenValue = currValue;
+                    chosenPlay = child.lastMove;
+                }
+
             }
             return chosenValue;
         } else {
@@ -66,8 +70,11 @@ public class Minimax {
                     currValue = getTreeBoardScores(child);
                 }
 
-                if(currValue < chosenValue)
+                if(currValue < chosenValue){
                     chosenValue = currValue;
+                    chosenPlay = child.lastMove;
+                }
+
             }
             return chosenValue;
         }

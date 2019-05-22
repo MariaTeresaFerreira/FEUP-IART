@@ -65,7 +65,11 @@ public class Game {
 
             this.draw();
 
+<<<<<<< HEAD
             //completeMove(0,in);
+=======
+            //completeMove(in);
+>>>>>>> 6bdb5df7fc8dbdc99f1702e92d698332f6976bec
 
             this.draw();
 
@@ -80,10 +84,16 @@ public class Game {
             this.draw();
             Minimax.constructTree(board);
             int move = Minimax.getTreeBoardScores();
+<<<<<<< HEAD
             this.board.move(move);
 
             in.next();
             //AI move
+=======
+            board.move(move);
+
+            in.next();
+>>>>>>> 6bdb5df7fc8dbdc99f1702e92d698332f6976bec
         }
     }
 
@@ -141,6 +151,7 @@ public class Game {
 
         return j;
     }
+<<<<<<< HEAD
     
 /*
     void completeMove(int move){
@@ -151,5 +162,32 @@ public class Game {
         draw();
     }
     */
+=======
+
+    void completeMove(int player, Scanner in){
+
+        while (true){
+            System.out.println("current board score: " + board.getBoardScore());
+            System.out.println("Player " + (player + 1 ) + ", Insert the column you want to play between 1 and 6:");
+
+
+            System.out.print("valid moves :");
+            for(int i = 0; i < board.getValidTranslatedMoves().size(); i++){
+                System.out.print(board.getValidMoves().get(i));
+            }
+            System.out.println();
+            System.out.print("valid moves size:");
+            System.out.println(board.getValidTranslatedMoves().size());
+
+            int a = translateInput(in.nextInt(), board.getActivePlayer());
+            if(board.move(a)) {
+                break;
+            }
+            draw();
+        }
+
+    }
+
+>>>>>>> 6bdb5df7fc8dbdc99f1702e92d698332f6976bec
 
 }

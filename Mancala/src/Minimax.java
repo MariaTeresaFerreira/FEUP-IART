@@ -16,7 +16,12 @@ public class Minimax {
     public static void constructTree(Node parent, int depth){
         if(depth < depthMax){
             Vector<Integer> possiblePlays = parent.board.getValidMoves();
-            possiblePlays.forEach(play -> {
+            System.out.print("valid moves :");
+            for(int i = 0; i < possiblePlays.size(); i++){
+                System.out.print(possiblePlays.get(i));
+            }
+            System.out.println();
+            for(Integer play : possiblePlays){
                 Board newBoard = new Board(parent.board);
                 newBoard.move(play);
                 Node newNode = new Node(newBoard, parent.board.getActivePlayer(), play);
@@ -24,7 +29,7 @@ public class Minimax {
                 if(!newBoard.getGameOver()){
                     constructTree(newNode, depth+1);
                 }
-            });
+            }
         }
     }
 

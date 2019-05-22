@@ -101,7 +101,8 @@ public class Board {
         System.out.println();
     }
 
-    public boolean move(int side, int pit){
+    public boolean move(int pit){
+        int side = activePlayer;
 
         if (side != activePlayer)
             return false;

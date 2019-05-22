@@ -51,12 +51,10 @@ public class Game {
         while (!board.getGameOver()){
 
             this.draw();
+            int mov = in.nextInt();
 
-            completeMove(0,in);
+            board.move(mov);
 
-            this.draw();
-
-            completeMove(1,in);
         }
     }
 
@@ -79,6 +77,9 @@ public class Game {
         while (!board.getGameOver()){
 
             this.draw();
+            Minimax.constructTree(board);
+            int move = Minimax.getTreeBoardScores();
+            //completeMove(move);
 
             in.next();
             //AI move
@@ -161,12 +162,21 @@ public class Game {
             System.out.println(board.getValidTranslatedMoves().size());
 
             int a = translateInput(in.nextInt(), board.getActivePlayer());
-            if(board.move(player,a)) {
+            if(board.move(a)) {
                 break;
             }
             draw();
         }
 
     }
+/*
+    void completeMove(int move){
+        int a = translateInput(in.nextInt(), board.getActivePlayer());
+        if(board.move(a)) {
+            break;
+        }
+        draw();
+    }
+    */
 
 }

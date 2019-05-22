@@ -64,7 +64,7 @@ public class Game {
 
             this.draw();
 
-            completeMove(0,in);
+            //completeMove(in);
 
             this.draw();
 
@@ -79,15 +79,9 @@ public class Game {
             this.draw();
             Minimax.constructTree(board);
             int move = Minimax.getTreeBoardScores();
-            //completeMove(move);
+            board.move(move);
 
             in.next();
-            //AI move
-
-            this.draw();
-
-            in.next();
-            //AI move
         }
     }
 
@@ -169,14 +163,6 @@ public class Game {
         }
 
     }
-/*
-    void completeMove(int move){
-        int a = translateInput(in.nextInt(), board.getActivePlayer());
-        if(board.move(a)) {
-            break;
-        }
-        draw();
-    }
-    */
+
 
 }

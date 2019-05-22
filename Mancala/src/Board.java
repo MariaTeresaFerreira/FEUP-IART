@@ -26,11 +26,12 @@ public class Board {
     }
 
     public Board(Board board){
-        this.mancalas = board.mancalas;
-        this.pits[0] = board.pits[0].clone();
-        this.pits[1] = board.pits[1].clone();
-        this.activePlayer = board.activePlayer;
-        this.gameOver = new Boolean(board.gameOver.booleanValue());
+        mancalas = board.mancalas;
+        pits = new int[N_PLAYERS][N_PITS];
+        pits[0] = board.pits[0].clone();
+        pits[1] = board.pits[1].clone();
+        activePlayer = board.activePlayer;
+        gameOver = new Boolean(board.gameOver.booleanValue());
     }
 
     public int[] getMancalas() {
@@ -104,8 +105,13 @@ public class Board {
     public boolean move(int pit){
         int side = activePlayer;
 
+
         if (side != activePlayer)
             return false;
+
+
+        System.out.println("side:" + side);
+        System.out.println("pit:" + pit);
 
         if (pits[side][pit] == 0)
             return false;

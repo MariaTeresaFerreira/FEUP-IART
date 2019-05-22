@@ -105,6 +105,8 @@ public class Board {
     public boolean move(int pit){
         int side = activePlayer;
 
+<<<<<<< HEAD
+=======
 
         if (side != activePlayer)
             return false;
@@ -113,6 +115,7 @@ public class Board {
         System.out.println("side:" + side);
         System.out.println("pit:" + pit);
 
+>>>>>>> 6bdb5df7fc8dbdc99f1702e92d698332f6976bec
         if (pits[side][pit] == 0)
             return false;
 
@@ -169,6 +172,12 @@ public class Board {
             mancalas[side] += pits[side][i];
             pits[side][i] = 0;
         }
+
+        this.draw();
+        if(this.mancalas[0] > this.mancalas[1])
+            System.out.println("Player 1 Won");
+        else
+            System.out.println("Player 2 Won");
     }
 
     private void checkEmpty() {

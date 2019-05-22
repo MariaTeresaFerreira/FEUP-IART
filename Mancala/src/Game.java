@@ -52,10 +52,11 @@ public class Game {
         while (!board.getGameOver()){
 
             this.draw();
+
+            System.out.println("Player " + (board.getActivePlayer() + 1 ) + ", Insert the column you want to play between 1 and 6:");
             int mov = in.nextInt();
 
-            board.move(mov);
-
+            board.move(translateInput(mov, board.getActivePlayer()));
         }
     }
 
@@ -65,7 +66,11 @@ public class Game {
 
             this.draw();
 
+<<<<<<< HEAD
+            //completeMove(0,in);
+=======
             //completeMove(in);
+>>>>>>> 6bdb5df7fc8dbdc99f1702e92d698332f6976bec
 
             this.draw();
 
@@ -85,6 +90,7 @@ public class Game {
             board.move(Minimax.chosenPlay);
 
             in.next();
+>>>>>>> 6bdb5df7fc8dbdc99f1702e92d698332f6976bec
         }
     }
 
@@ -142,6 +148,18 @@ public class Game {
 
         return j;
     }
+<<<<<<< HEAD
+    
+/*
+    void completeMove(int move){
+        int a = translateInput(in.nextInt(), board.getActivePlayer());
+        if(board.move(a)) {
+            break;
+        }
+        draw();
+    }
+    */
+=======
 
     void completeMove(int player, Scanner in){
 
@@ -167,5 +185,6 @@ public class Game {
 
     }
 
+>>>>>>> 6bdb5df7fc8dbdc99f1702e92d698332f6976bec
 
 }

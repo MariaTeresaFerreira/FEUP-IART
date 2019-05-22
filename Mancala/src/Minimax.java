@@ -18,7 +18,7 @@ public class Minimax {
             Vector<Integer> possiblePlays = parent.board.getValidMoves();
             possiblePlays.forEach(play -> {
                 Board newBoard = new Board(parent.board);
-                //newBoard.move(newBoard.getActivePlayer(), play);
+                newBoard.move(play);
                 Node newNode = new Node(newBoard, parent.board.getActivePlayer(), play);
                 parent.addChild(newNode);
                 if(!newBoard.getGameOver()){

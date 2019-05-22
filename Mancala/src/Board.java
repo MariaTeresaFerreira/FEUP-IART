@@ -9,6 +9,7 @@ public class Board {
     private int[][] pits;
     private int activePlayer;
     private Boolean gameOver;
+    private Boolean playAgain;
 
     public Board(){
         pits = new int[N_PLAYERS][N_PITS];
@@ -31,7 +32,8 @@ public class Board {
         pits[0] = board.pits[0].clone();
         pits[1] = board.pits[1].clone();
         activePlayer = board.activePlayer;
-        gameOver = new Boolean(board.gameOver.booleanValue());
+        gameOver = board.gameOver;
+        playAgain = board.playAgain;
     }
 
     public int[] getMancalas() {
@@ -102,18 +104,16 @@ public class Board {
         System.out.println();
     }
 
-    public boolean move(int pit){
+    public void move(int pit){
         int side = activePlayer;
+        playAgain = false;
 
         if (side != activePlayer)
-            return false;
+            return;
 
-
-        System.out.println("side:" + side);
-        System.out.println("pit:" + pit);
 
         if (pits[side][pit] == 0)
-            return false;
+            return;
 
         int rocks = pits[side][pit];
         pits[side][pit] = 0;
@@ -130,8 +130,7 @@ public class Board {
 
                     if(rocks == 0){
                         checkEmpty();
-
-                        return false;
+                        playAgain = true;
                     }
                 }
                 side = nextSide(side);
@@ -140,8 +139,6 @@ public class Board {
             rocks -= 1;
         }
         turnEnd(side, pit);
-
-        return true;
     }
 
     private int nextPit(int pit)
@@ -204,7 +201,8 @@ public class Board {
             pits[nextSide(side)][N_PITS - pit - 1] = 0;
         }
 
-        activePlayer = nextSide(activePlayer);
+        if(!playAgain)
+            activePlayer = nextSide(activePlayer);
 
         checkEmpty();
     }
@@ -212,8 +210,6 @@ public class Board {
     public int getBoardScore(){
         return mancalas[0] - mancalas[1];
     }
-
-
 
     public Vector<Integer> getValidTranslatedMoves(){
         Vector<Integer> validPlays = new Vector<>();

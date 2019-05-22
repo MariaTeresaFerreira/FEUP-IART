@@ -8,6 +8,8 @@ public class Minimax {
     public static int depthMax = 5;
     public static int chosenPlay = -1;
 
+    public static int counter = 0;
+
     public static void constructTree(Board b){
         Node root = new Node(b);
         tree = new Tree(root);
@@ -17,11 +19,15 @@ public class Minimax {
     public static void constructTree(Node parent, int depth){
         if(depth < depthMax){
             Vector<Integer> possiblePlays = parent.board.getValidMoves();
-            System.out.print("valid moves :");
+
+            /*System.out.print("valid moves :");
+
             for(int i = 0; i < possiblePlays.size(); i++){
-                System.out.print(possiblePlays.get(i));
+                System.out.print(possiblePlays.get(i) + " -> ");
             }
             System.out.println();
+            */
+
             for(Integer play : possiblePlays){
                 Board newBoard = new Board(parent.board);
                 newBoard.move(play);
@@ -40,12 +46,14 @@ public class Minimax {
     }
 
     private static int getTreeBoardScores(Node parent) {
+        
         List<Node> children = parent.children;
+
         if(parent.board.getActivePlayer() == 0){ //max
-            int chosenValue = Integer.MIN_VALUE;
+            int chosenValue = 10;
             for(Node child : children){
                 int currValue;
-                if(child.board.getGameOver() || child.children.size() == 0){ // é folha
+                 // é folha
                     child.inheritedScore = child.boardScore;
                     System.out.println("------------BOARD SCORE: " + child.boardScore);
                     System.out.println("--------GET BOARD SCORE: " + child.board.getBoardScore());
@@ -53,9 +61,7 @@ public class Minimax {
                     System.out.println("mancala 1: " + child.board.getMancalas()[0]);
                     child.board.draw();
                     currValue = child.inheritedScore;
-                } else{
-                    currValue = getTreeBoardScores(child);
-                }
+                
 
                 if(currValue > chosenValue){
                     chosenValue = currValue;
@@ -68,12 +74,10 @@ public class Minimax {
             int chosenValue = Integer.MAX_VALUE;
             for(Node child : children){
                 int currValue;
-                if(child.board.getGameOver() || child.children.size() == 0){ // é folha
+                 // é folha
                     child.inheritedScore = child.boardScore;
                     currValue = child.inheritedScore;
-                } else{
-                    currValue = getTreeBoardScores(child);
-                }
+                
 
                 if(currValue < chosenValue){
                     chosenValue = currValue;
@@ -83,6 +87,5 @@ public class Minimax {
             }
             return chosenValue;
         }
-
     }
 }

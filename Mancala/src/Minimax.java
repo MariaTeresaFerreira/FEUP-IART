@@ -5,8 +5,8 @@ import java.util.Vector;
 
 public class Minimax {
     public static Tree tree;
-    public static int depthMax = 7;
-    public static int chosenPlay = -1;
+    public static int depthMax = 1;
+    public static int nodeCounter = 0;
 
     public static int counter = 0;
 
@@ -45,6 +45,7 @@ public class Minimax {
                 //newBoard.move(translateInput(Integer.valueOf(possiblePlays.elementAt(i)), parent.board.getActivePlayer()));
                 newBoard.move(possiblePlays.elementAt(i));
                 Node newNode = new Node(newBoard, parent.board.getActivePlayer(), possiblePlays.elementAt(i));
+                nodeCounter++;
                 parent.addChild(newNode);
                 if(!newBoard.getGameOver()){
                     constructTree(newNode, depth+1);

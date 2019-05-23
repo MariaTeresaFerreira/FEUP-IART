@@ -113,6 +113,8 @@ public class Game {
         }else{
             System.out.println("Error");
         }
+
+        System.out.println("node number: " + Minimax.nodeCounter);
     }
 
     private int translateInput(int i, int player) { //de 1 a 6 para 0 a 5

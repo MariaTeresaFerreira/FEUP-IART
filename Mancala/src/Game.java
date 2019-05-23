@@ -56,7 +56,7 @@ public class Game {
             System.out.println("Player " + (board.getActivePlayer() + 1 ) + ", Insert the column you want to play between 1 and 6:");
             int mov = in.nextInt();
 
-            board.move(translateInput(mov, board.getActivePlayer()));
+            this.board = board.getResult(this.board,translateInput(mov, board.getActivePlayer()));
         }
     }
 
@@ -77,24 +77,21 @@ public class Game {
     private void aIVsAI() throws IOException {
 
         while (!board.getGameOver()){
-
+            Minimax mini = new Minimax(this);
+ 
             this.draw();
-            Minimax.constructTree(board);
-            int score = Minimax.getTreeBoardScores();
+            System.out.println("Isto é no game");
 
-            System.out.println("score: " + score);
-            System.out.println();
-            
-            System.out.println("move: " + Minimax.chosenPlay);
-            board.move(Minimax.chosenPlay);
+            Board anex = new Board(this.board);
+            int mov = mini.makeDecision(anex);
 
-            board.draw();
+            this.board = board.getResult(this.board,translateInput(mov, board.getActivePlayer()));
 
             in.next();
         }
     }
 
-    private int translateInput(int i, int player) {
+    public int translateInput(int i, int player) {
         int j = -1;
 
         if(player == 0){
@@ -147,5 +144,12 @@ public class Game {
         }
 
         return j;
+    }
+
+    /**
+     * @return the board
+     */
+    public Board getBoard() {
+        return board;
     }
 }

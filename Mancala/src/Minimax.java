@@ -4,88 +4,128 @@ import java.util.NoSuchElementException;
 import java.util.Vector;
 
 public class Minimax {
-    public static Tree tree;
+    public static Game gameInitial;
     public static int depthMax = 5;
     public static int chosenPlay = -1;
 
-    public static int counter = 0;
-
-    public static void constructTree(Board b){
-        Node root = new Node(b);
-        tree = new Tree(root);
-        constructTree(root, 0);
+    Minimax(Game game){
+        this.gameInitial = game;
     }
 
-    public static void constructTree(Node parent, int depth){
-        if(depth < depthMax){
-            Vector<Integer> possiblePlays = parent.board.getValidMoves();
+    public int makeDecision(Board state) {
+        int result = 0;
+        int resultValue = Integer.MIN_VALUE;
+        int player = state.getActivePlayer();
+        for (int action : state.getValidTranslatedMoves()) {
+            
+            for(int i = 0; i < 10; i++)
+                System.out.println("Olá");
 
-            /*System.out.print("valid moves :");
+            int value = minValue(state.getResult(state, translate(action,state.getActivePlayer())), player, depthMax);
 
-            for(int i = 0; i < possiblePlays.size(); i++){
-                System.out.print(possiblePlays.get(i) + " -> ");
-            }
-            System.out.println();
-            */
-
-            for(Integer play : possiblePlays){
-                Board newBoard = new Board(parent.board);
-                newBoard.move(play);
-                Node newNode = new Node(newBoard, parent.board.getActivePlayer(), play);
-                parent.addChild(newNode);
-                if(!newBoard.getGameOver()){
-                    constructTree(newNode, depth+1);
-                }
+            if (value > resultValue) {
+                result = action;
+                resultValue = value;
             }
         }
-    }
-
-    public static int getTreeBoardScores(){
-        Node root = tree.getRoot();
-        return getTreeBoardScores(root);
-    }
-
-    private static int getTreeBoardScores(Node parent) {
         
-        List<Node> children = parent.children;
-
-        if(parent.board.getActivePlayer() == 0){ //max
-            int chosenValue = 10;
-            for(Node child : children){
-                int currValue;
-                 // é folha
-                    child.inheritedScore = child.boardScore;
-                    System.out.println("------------BOARD SCORE: " + child.boardScore);
-                    System.out.println("--------GET BOARD SCORE: " + child.board.getBoardScore());
-                    System.out.println("mancala 0: " + child.board.getMancalas()[0]);
-                    System.out.println("mancala 1: " + child.board.getMancalas()[0]);
-                    child.board.draw();
-                    currValue = child.inheritedScore;
-                
-
-                if(currValue > chosenValue){
-                    chosenValue = currValue;
-                    chosenPlay = child.lastMove;
-                }
-
-            }
-            return chosenValue;
-        } else { //min
-            int chosenValue = Integer.MAX_VALUE;
-            for(Node child : children){
-                int currValue;
-                 // é folha
-                    child.inheritedScore = child.boardScore;
-                    currValue = child.inheritedScore;
-                
-
-                if(currValue < chosenValue){
-                    chosenValue = currValue;
-                    chosenPlay = child.lastMove;
-                }
-
-            }
-            return chosenValue;
-        }
+        System.out.println("Result: " + result);
+        return result;
     }
+
+    public int maxValue(Board state, int player, int depth) { // returns an utility
+        // value
+        System.out.println("Max -> Depth: " + depth);
+        if (state.getGameOver() || depth == 0){
+            return state.getBoardScore();
+        }
+        int value = Integer.MIN_VALUE;
+
+        for (int action : state.getValidTranslatedMoves()){
+            System.out.println("max -> action: " + action);
+            state.draw();
+            //state.getResult(state, translate(action,state.getActivePlayer())).draw();
+            if(state.getResult(state, translate(action,state.getActivePlayer())).getPlayAgain())
+                value = Math.max(value, maxValue(state.getResult(state, translate(action,state.getActivePlayer())), player, depth - 1));
+            else
+                value = Math.min(value, minValue(state.getResult(state, translate(action,state.getActivePlayer())), player, depth - 1));
+        }
+        return value;
+    }
+
+    public int minValue(Board state, int player, int depth) { // returns an utility
+        // value
+        System.out.println("Min -> Depth: " + depth);
+        if (state.getGameOver() || depth == 0)
+            return state.getBoardScore();
+        int value = Integer.MAX_VALUE;
+
+        for (int action : state.getValidTranslatedMoves()){
+            System.out.println("min -> action: " + action);
+            state.draw();
+            //state.getResult(state, translate(action,state.getActivePlayer())).draw();
+            if(state.getResult(state, translate(action,state.getActivePlayer())).getPlayAgain())
+                value = Math.min(value, minValue(state.getResult(state, translate(action,state.getActivePlayer())), player, depth - 1));
+            else
+                value = Math.max(value, maxValue(state.getResult(state, translate(action,state.getActivePlayer())), player, depth - 1));
+        }
+        return value;
+    }
+
+
+ public int translate(int i, int player) {
+        int j = -1;
+
+        if(player == 0){
+            switch(i) {
+                case 1:
+                    j = 5;
+                    break;
+                case 2:
+                    j = 4;
+                    break;
+                case 3:
+                    j = 3;
+                    break;
+                case 4:
+                    j = 2;
+                    break;
+                case 5:
+                    j = 1;
+                    break;
+                case 6:
+                    j = 0;
+                    break;
+            }
+        }
+
+        if(player == 1){
+            switch(i) {
+                case 1:
+                    j = 0;
+                    break;
+                case 2:
+                    j = 1;
+                    break;
+                case 3:
+                    j = 2;
+                    break;
+                case 4:
+                    j = 3;
+                    break;
+                case 5:
+                    j = 4;
+                    break;
+                case 6:
+                    j = 5;
+                    break;
+            }
+        }
+        if(j == -1){
+            System.out.println("input error");
+        }
+
+        return j;
+    }
+
 }

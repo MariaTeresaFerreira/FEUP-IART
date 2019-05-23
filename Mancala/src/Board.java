@@ -68,6 +68,13 @@ public class Board {
         this.gameOver = gameOver;
     }
 
+    /**
+     * @return the playAgain
+     */
+    public Boolean getPlayAgain() {
+        return playAgain;
+    }
+
     public void draw(){
 
         System.out.println();
@@ -245,6 +252,46 @@ public class Board {
         }
 
         return validPlays;
+    }
+
+    public Board getResult(Board board, int pit){
+        int side = board.activePlayer;
+        board.playAgain = false;
+
+        if (side != board.activePlayer)
+            return null;
+
+        if (board.pits[side][pit] == 0){
+            playAgain = true;
+            return board;
+        }
+
+        int rocks = board.pits[side][pit];
+        board.pits[side][pit] = 0;
+
+        while (rocks > 0){
+
+            pit = board.nextPit(pit);
+
+            if(pit == 0){
+
+                if(side == board.activePlayer){
+                    board.mancalas[side] += 1;
+                    rocks -= 1;
+
+                    if(rocks == 0){
+                        board.checkEmpty();
+                        board.playAgain = true;
+                    }
+                }
+                side = board.nextSide(side);
+            }
+            board.pits[side][pit] += 1;
+            rocks -= 1;
+        }
+        board.turnEnd(side, pit);
+
+        return board;
     }
 
 }

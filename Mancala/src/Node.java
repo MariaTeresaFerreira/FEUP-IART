@@ -8,6 +8,7 @@ public class Node {
     public int boardScore;
     public boolean isRoot;
     public Vector<Node> children;
+    public int inheritedWinner;
     public int inheritedScore;
 
     public Node(Board board) {
@@ -18,6 +19,7 @@ public class Node {
         this.boardScore = this.board.getBoardScore();
         this.isRoot = true;
         this.inheritedScore = -1;
+        this.inheritedWinner = -1;
 
     }
 
@@ -29,6 +31,7 @@ public class Node {
         this.boardScore = this.board.getBoardScore();
         this.isRoot = false;
         this.inheritedScore = -1;
+        this.inheritedWinner = -1;
 
     }
 

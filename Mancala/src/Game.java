@@ -81,15 +81,12 @@ public class Game {
             System.out.println("\n");
             this.draw();
             Minimax.constructTree(board);
-            int score = Minimax.getTreeBoardScores();
+            int score = Minimax.getTreeBoardScores()[0];
+            int play = Minimax.getTreeBoardScores()[1];
 
-            /*System.out.println("score: " + score);
-            System.out.println();
-
-            System.out.println("move: " + Minimax.chosenPlay);*/
-            //int move = this.translateInput(Minimax.chosenPlay, board.getActivePlayer());
             System.out.println("active player: " + board.getActivePlayer());
-            System.out.println("chosen Play: " + Minimax.chosenPlay);
+            System.out.println("chosen play: " + play);
+            System.out.println("board score: " + score);
             Vector<Integer> possiblePlays = board.getValidMoves();
 
             System.out.print("valid moves: ");
@@ -97,7 +94,9 @@ public class Game {
             for(int i = 0; i < possiblePlays.size(); i++){
                 System.out.print(possiblePlays.get(i) + " -> ");
             }
-            board.move(Minimax.chosenPlay);
+            System.out.print("\n");
+
+            board.move(play);
 
             //board.draw();
 

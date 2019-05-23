@@ -76,14 +76,16 @@ public class Game {
 
     private void aIVsAI() throws IOException {
 
+        this.draw();
         while (!board.getGameOver()){
 
             System.out.println("\n");
-            this.draw();
+
             Minimax.constructTree(board);
             int score = Minimax.getTreeBoardScores()[0];
             int play = Minimax.getTreeBoardScores()[1];
 
+            /*
             System.out.println("active player: " + board.getActivePlayer());
             System.out.println("chosen play: " + play);
             System.out.println("board score: " + score);
@@ -94,14 +96,22 @@ public class Game {
             for(int i = 0; i < possiblePlays.size(); i++){
                 System.out.print(possiblePlays.get(i) + " -> ");
             }
-            System.out.print("\n");
+            System.out.print("\n");*/
 
             board.move(play);
 
-            //board.draw();
+            board.draw();
 
+        }
 
-            //in.next();
+        if(board.getBoardScore() < 0){
+            System.out.println("Player 2 won!");
+        }else if(board.getBoardScore() > 0){
+            System.out.println("Player 1 won!");
+        }else if(board.getBoardScore() == 0){
+            System.out.println("Its a tie!");
+        }else{
+            System.out.println("Error");
         }
     }
 

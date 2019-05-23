@@ -209,11 +209,11 @@ public class Board {
             pits[side][i] = 0;
         }
 
-        this.draw();
+        /*this.draw();
         if(this.mancalas[0] > this.mancalas[1])
             System.out.println("Player 1 Won");
         else
-            System.out.println("Player 2 Won");
+            System.out.println("Player 2 Won");*/
     }
 
     private void checkEmpty() {

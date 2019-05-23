@@ -5,11 +5,11 @@ public class Board {
     public static final int N_STONES = 4;
     public static final int N_PITS = 6;
 
-    protected int[] mancalas;
-    protected int[][] pits;
-    protected int activePlayer;
-    protected Boolean gameOver;
-    protected Boolean playAgain;
+    private int[] mancalas;
+    private int[][] pits;
+    private int activePlayer;
+    private Boolean gameOver;
+    private Boolean playAgain;
 
     public Board(){
         pits = new int[N_PLAYERS][N_PITS];
@@ -66,6 +66,13 @@ public class Board {
 
     public void setGameOver(Boolean gameOver) {
         this.gameOver = gameOver;
+    }
+
+    /**
+     * @return the playAgain
+     */
+    public Boolean getPlayAgain() {
+        return playAgain;
     }
 
     public void draw(){
@@ -210,7 +217,7 @@ public class Board {
     public int getBoardScore(){
         return mancalas[0] - mancalas[1];
     }
-    
+
     public Vector<Integer> getValidTranslatedMoves(){
         Vector<Integer> validPlays = new Vector<>();
         if(this.getActivePlayer() == 1){
@@ -235,7 +242,7 @@ public class Board {
         }
 
         return validPlays;
-}
+    }
 
     public Vector<Integer> getValidMoves(){
         Vector<Integer> validPlays = new Vector<>();
@@ -246,40 +253,6 @@ public class Board {
 
         return validPlays;
     }
-
-    /*
-    public int minimax(Board board, int move, int depth, Boolean maxPlayer){
-        if(depth == 0 || gameOver)
-            return board.getBoardScore();
-
-        if(maxPlayer){
-            int maxEval = Integer.MIN_VALUE;
-            for(int column : getValidMoves()){
-                board.move(column);
-                int eval;
-                if(board.playAgain)
-                    eval = minimax(board, column, depth - 1, maxPlayer);
-                else
-                    eval = minimax(board, column, depth - 1, false);
-                maxEval = Math.max(maxEval, eval);
-            }
-            return maxEval;
-        }
-        else{
-            int minEval = Integer.MAX_VALUE;
-            for(int column : getValidMoves()){
-                board.move(column);
-                int eval;
-                if(board.playAgain)
-                    eval = minimax(board, column, depth - 1, maxPlayer);
-                else
-                    eval = minimax(board, column, depth - 1, true);
-                minEval = Math.min(minEval, eval);
-            }
-            return minEval;
-        }
-    }
-    */
 
     public Board getResult(Board board, int pit){
         int side = board.activePlayer;
@@ -318,4 +291,5 @@ public class Board {
 
         return board;
     }
+
 }

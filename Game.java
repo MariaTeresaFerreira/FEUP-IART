@@ -1,7 +1,6 @@
 import java.io.IOException;
 import java.sql.SQLOutput;
 import java.util.Scanner;
-import java.util.Random;
 
 import java.io.InputStreamReader;
 import java.util.Vector;
@@ -49,7 +48,6 @@ public class Game {
     }
 
     private void humanVsHuman() throws IOException {
-        Minimax mini = new Minimax(this);
 
         while (!board.getGameOver()){
 
@@ -58,11 +56,8 @@ public class Game {
             System.out.println("Player " + (board.getActivePlayer() + 1 ) + ", Insert the column you want to play between 1 and 6:");
             int mov = in.nextInt();
 
-            System.out.println(mini.makeDecision(this.getBoard()));
-
-            board.move(translateInput(mov, board.getActivePlayer()));
+            this.board = board.getResult(this.board,translateInput(mov, board.getActivePlayer()));
         }
-        run();
     }
 
     private void humanVsAI() throws IOException {
@@ -77,7 +72,6 @@ public class Game {
 
             //AI move
         }
-        run();
     }
 
     private void aIVsAI() throws IOException {
@@ -86,23 +80,13 @@ public class Game {
         while (!board.getGameOver()){
 
             this.draw();
-            //Minimax.constructTree(board);
-            //int score = Minimax.getTreeBoardScores();
+           
+            int mov = mini.makeDecision(this.board);
 
-            //System.out.println("score: " + score);
-            //System.out.println();
-            
-            //System.out.println("move: " + Minimax.chosenPlay);
-            Random rand = new Random();
-            int xy = rand.nextInt(6) + 1;
-            //System.out.println(board.minimax(this.board, xy, 5, true));
-            board.move(mini.makeDecision(this.board));
+            this.board = board.getResult(this.board,translateInput(mov, board.getActivePlayer()));
 
-            board.draw();
-
-            in.nextLine();
+            in.next();
         }
-        run();
     }
 
     private int translateInput(int i, int player) {

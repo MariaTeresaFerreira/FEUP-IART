@@ -11,6 +11,7 @@ public class Game {
     private Board board;
     private int mode = 0;
     private Scanner in;
+    public static int depthMax = 1;
 
 
     public Game() throws IOException {
@@ -19,7 +20,7 @@ public class Game {
     }
 
     private void draw(){
-        for(int i = 0; i < 10; i++){
+        for(int i = 0; i < 5; i++){
             System.out.println();
         }
 
@@ -75,21 +76,21 @@ public class Game {
     }
 
     private void aIVsAI() throws IOException {
-        Minimax mini = new Minimax(this);
 
         while (!board.getGameOver()){
-
+ 
             this.draw();
-           
-            int mov = mini.makeDecision(this.board);
+
+            System.out.println("IA " + (board.getActivePlayer() + 1 ) + ": ");
+            int mov = makeDecision(board);
 
             this.board = board.getResult(this.board,translateInput(mov, board.getActivePlayer()));
 
-            in.next();
+            in.nextLine();
         }
     }
 
-    private int translateInput(int i, int player) {
+    public int translateInput(int i, int player) {
         int j = -1;
 
         if(player == 0){
@@ -144,10 +145,97 @@ public class Game {
         return j;
     }
 
-    /**
-     * @return the board
-     */
     public Board getBoard() {
         return board;
+    }
+
+
+    public int makeDecision(Board sta) {
+        int result = 0;
+        int resultValue = 0;
+        int value = 0;
+        Board state = new Board(sta);
+
+        for (int action : state.getValidMoves()) {
+            Board b = new Board(state.getResult(state, action));
+            //System.out.println("Action: " + action);
+            //b.draw();
+
+            if(state.getActivePlayer() == 1){
+
+                value = minValue(b, depthMax - 1);
+                if(resultValue == 0)
+                    resultValue = Integer.MAX_VALUE;
+
+                if (value < resultValue) {
+                    result = action;
+                    resultValue = value;
+                }
+            }
+            else{
+
+                value = maxValue(b, depthMax - 1);
+                if(resultValue == 0)
+                    resultValue = Integer.MIN_VALUE;
+
+                if (value > resultValue) {
+                    result = action;
+                    resultValue = value;
+                }
+            }
+        }
+        
+        System.out.println("Result: " + result);
+        return result;
+    }
+
+    public int maxValue(Board sta, int depth) {
+        Board state = new Board(sta);
+        Board b;
+        //System.out.println("Max Depth: " + depth + " ActivePlayer: " + state.getActivePlayer());
+
+        if (state.getGameOver() || depth == 0){
+            System.out.println("Score Max: " + state.getBoardScore());
+            return state.getBoardScore();
+        }
+        int value = Integer.MIN_VALUE;
+
+        for (int action : state.getValidMoves()){
+            b = new Board(state.getResult(state, translateInput(action, state.getActivePlayer()) ));
+            //System.out.println("Max Action: " + action);
+           // b.draw();
+
+            if(b.getActivePlayer() == 1)
+                value = Math.min(value, minValue(b, depth - 1));
+            else
+                value = Math.max(value, maxValue(b, depth - 1));
+
+        }
+        System.out.println("Value: " + value);
+        return value;
+    }
+
+    public int minValue(Board sta, int depth) {
+        Board state = new Board(sta);
+        Board b;
+        //System.out.println("Min Depth: " + depth + " ActivePlayer: " + state.getActivePlayer());
+
+        if (state.getGameOver() || depth == 0){
+            System.out.println("Score Min: " + state.getBoardScore());
+            return state.getBoardScore();
+        }
+        int value = Integer.MAX_VALUE;
+
+        for (int action : state.getValidMoves()){
+            b = new Board(state.getResult(state, translateInput(action, state.getActivePlayer()) ));
+            //System.out.println("Min Action: " + action);
+            //b.draw();
+
+            if(b.getActivePlayer() == 1)
+                value = Math.min(value, minValue(b, depth - 1));
+            else
+                value = Math.max(value, maxValue(b, depth - 1));
+        }
+        return value;
     }
 }

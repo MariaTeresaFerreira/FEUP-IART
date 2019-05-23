@@ -5,11 +5,11 @@ public class Board {
     public static final int N_STONES = 4;
     public static final int N_PITS = 6;
 
-    private int[] mancalas;
-    private int[][] pits;
-    private int activePlayer;
-    private Boolean gameOver;
-    private Boolean playAgain;
+    protected int[] mancalas;
+    protected int[][] pits;
+    protected int activePlayer;
+    protected Boolean gameOver;
+    protected Boolean playAgain;
 
     public Board(){
         pits = new int[N_PLAYERS][N_PITS];
@@ -26,14 +26,23 @@ public class Board {
         }
     }
 
-    public Board(Board board){
-        mancalas = board.mancalas;
-        pits = new int[N_PLAYERS][N_PITS];
-        pits[0] = board.pits[0].clone();
-        pits[1] = board.pits[1].clone();
-        activePlayer = board.activePlayer;
-        gameOver = board.gameOver;
-        playAgain = board.playAgain;
+    public Board(Board board){        
+        this.pits = new int[N_PLAYERS][N_PITS];
+        this.mancalas = new int[N_PLAYERS];
+
+        for(int i = 0; i < N_PLAYERS; i++){
+            for(int j = 0; j < N_PITS; j++){
+                this.pits[i][j] = board.pits[i][j];
+            }
+        }
+
+        for(int l = 0; l < N_PLAYERS; l++){
+            this.mancalas[l] = board.mancalas[l];
+        }
+       
+        this.activePlayer = board.activePlayer;
+        this.gameOver = board.gameOver;
+        this.playAgain = board.playAgain;
     }
 
     public int[] getMancalas() {
@@ -111,13 +120,12 @@ public class Board {
         System.out.println();
     }
 
-    public void move(int pit){
+   public void move(int pit){
         int side = activePlayer;
         playAgain = false;
 
         if (side != activePlayer)
             return;
-
 
         if (pits[side][pit] == 0)
             return;
@@ -129,19 +137,26 @@ public class Board {
 
             pit = nextPit(pit);
 
+            //case when side changes
             if(pit == 0){
 
+                //when we change from player side to oponnet side
                 if(side == activePlayer){
+                    //put one rock in our mancala
                     mancalas[side] += 1;
                     rocks -= 1;
 
+                    //if ends in mancala player can play again if game is not finished
                     if(rocks == 0){
                         checkEmpty();
                         playAgain = true;
+                        return;
                     }
                 }
+                //changes side when pass to oponent side
                 side = nextSide(side);
             }
+            //put rock in house and subtracts one
             pits[side][pit] += 1;
             rocks -= 1;
         }
@@ -208,7 +223,7 @@ public class Board {
             pits[nextSide(side)][N_PITS - pit - 1] = 0;
         }
 
-        if(!playAgain)
+        if(!this.playAgain)
             activePlayer = nextSide(activePlayer);
 
         checkEmpty();
@@ -254,15 +269,19 @@ public class Board {
         return validPlays;
     }
 
-    public Board getResult(Board board, int pit){
+    public Board getResult(Board b, int pit){
+        Board board = new Board(b);
+
         int side = board.activePlayer;
         board.playAgain = false;
 
         if (side != board.activePlayer)
             return null;
 
-        if (board.pits[side][pit] == 0)
-            return null;
+        if (board.pits[side][pit] == 0){
+            playAgain = true;
+            return board;
+        }
 
         int rocks = board.pits[side][pit];
         board.pits[side][pit] = 0;
@@ -280,6 +299,7 @@ public class Board {
                     if(rocks == 0){
                         board.checkEmpty();
                         board.playAgain = true;
+                        return board;
                     }
                 }
                 side = board.nextSide(side);
@@ -291,5 +311,4 @@ public class Board {
 
         return board;
     }
-
 }

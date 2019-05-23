@@ -19,9 +19,9 @@ public class Game {
     }
 
     private void draw(){
-        for(int i = 0; i < 10; i++){
+        /*for(int i = 0; i < 10; i++){
             System.out.println();
-        }
+        }*/
 
         board.draw();
 
@@ -78,24 +78,38 @@ public class Game {
 
         while (!board.getGameOver()){
 
+            System.out.println("\n");
             this.draw();
             Minimax.constructTree(board);
             int score = Minimax.getTreeBoardScores();
 
-            System.out.println("score: " + score);
+            /*System.out.println("score: " + score);
             System.out.println();
-            
-            System.out.println("move: " + Minimax.chosenPlay);
+
+            System.out.println("move: " + Minimax.chosenPlay);*/
+            //int move = this.translateInput(Minimax.chosenPlay, board.getActivePlayer());
+            System.out.println("active player: " + board.getActivePlayer());
+            System.out.println("chosen Play: " + Minimax.chosenPlay);
+            Vector<Integer> possiblePlays = board.getValidMoves();
+
+            System.out.print("valid moves: ");
+
+            for(int i = 0; i < possiblePlays.size(); i++){
+                System.out.print(possiblePlays.get(i) + " -> ");
+            }
             board.move(Minimax.chosenPlay);
 
-            board.draw();
+            //board.draw();
 
-            in.next();
+
+            //in.next();
         }
     }
 
-    private int translateInput(int i, int player) {
+    private int translateInput(int i, int player) { //de 1 a 6 para 0 a 5
         int j = -1;
+
+        System.out.println("i: " + i);
 
         if(player == 0){
             switch(i) {
@@ -117,6 +131,8 @@ public class Game {
                 case 6:
                     j = 0;
                     break;
+                default:
+                    System.out.println("input error");
             }
         }
 

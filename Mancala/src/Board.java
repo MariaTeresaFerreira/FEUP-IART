@@ -27,7 +27,7 @@ public class Board {
     }
 
     public Board(Board board){
-        mancalas = board.mancalas;
+        mancalas = board.mancalas.clone();
         pits = new int[N_PLAYERS][N_PITS];
         pits[0] = board.pits[0].clone();
         pits[1] = board.pits[1].clone();
@@ -70,7 +70,7 @@ public class Board {
 
     public void draw(){
 
-        System.out.println();
+        //System.out.println();
 
         for (int i = N_PITS - 1; i >= 0; i--){
             if(pits[0][i] < 10)
@@ -104,7 +104,7 @@ public class Board {
         System.out.println();
     }
 
-    public void move(int pit){
+    /*public void move(int pit){
         int side = activePlayer;
         playAgain = false;
 
@@ -135,6 +135,49 @@ public class Board {
                 }
                 side = nextSide(side);
             }
+            pits[side][pit] += 1;
+            rocks -= 1;
+        }
+        turnEnd(side, pit);
+    }*/
+
+    public void move(int pit){
+        int side = activePlayer;
+        playAgain = false;
+
+        if (side != activePlayer)
+            return;
+
+        if (pits[side][pit] == 0)
+            return;
+
+        int rocks = pits[side][pit];
+        pits[side][pit] = 0;
+
+        while (rocks > 0){
+
+            pit = nextPit(pit);
+
+            //case when side changes
+            if(pit == 0){
+
+                //when we change from player side to oponnet side
+                if(side == activePlayer){
+                    //put one rock in our mancala
+                    mancalas[side] += 1;
+                    rocks -= 1;
+
+                    //if ends in mancala player can play again if game is not finished
+                    if(rocks == 0){
+                        checkEmpty();
+                        playAgain = true;
+                        return;
+                    }
+                }
+                //changes side when pass to oponent side
+                side = nextSide(side);
+            }
+            //put rock in house and subtracts one
             pits[side][pit] += 1;
             rocks -= 1;
         }

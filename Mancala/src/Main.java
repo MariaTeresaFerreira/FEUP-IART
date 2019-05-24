@@ -19,7 +19,6 @@ public class Main {
                 modeInput = in.next();
                 if (modeInput.equals("1") || modeInput.equals("2") || modeInput.equals("3")){
                     mode = Integer.parseInt(modeInput);
-                    System.out.println("mode teste: " + mode);
                     break;
                 } else
                     System.out.println("Please enter a valid option");

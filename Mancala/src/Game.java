@@ -29,9 +29,6 @@ public class Game {
 
     public void run(int mode) throws IOException {
 
-        System.out.println("mode: " + mode);
-        System.out.println("depth: " + Minimax.depthMax);
-        System.out.println("alpha beta: " + Minimax.alphaBeta);
         if (mode == 1) {
             humanVsHuman();
         } else if (mode == 2) {
@@ -47,24 +44,7 @@ public class Game {
         while (!board.getGameOver()) {
 
             this.draw();
-            while(true){
-                System.out.println("Hint?: (y/n)");
-                String hint = in.next();
-                if (hint.equals("y")) {
-                    Minimax.constructTree(board);
-                    int play = Minimax.getTreeBoardScores()[1];
-                    System.out.println("hint: " + play);
-                    break;
-                } else if (hint.equals("n")) {
-                    break;
-                } else
-                    System.out.println("Please enter a valid option");
-            }
-
-
-
-            System.out.println("Player " + (board.getActivePlayer() + 1) + ", Insert the column you want to play between 1 and 6:");
-            int mov = in.nextInt();
+            int mov = getMoveFromUser(board.getActivePlayer());
 
             board.move(translateInput(mov, board.getActivePlayer()));
         }
@@ -78,7 +58,7 @@ public class Game {
             this.draw();
 
             if(board.getActivePlayer() == 0){ // HUMAN PLAY
-                move = getMoveFromUser();
+                move = getMoveFromUser(0);
 
             }else{
                 move = getMoveFromAI();
@@ -94,8 +74,7 @@ public class Game {
         this.draw();
         while (!board.getGameOver()) {
 
-            Minimax.constructTree(board);
-            int play = Minimax.getTreeBoardScores()[1];
+            int play = getMoveFromAI();
 
             board.move(play);
 
@@ -122,8 +101,6 @@ public class Game {
 
     private int translateInput(int i, int player) { //de 1 a 6 para 0 a 5
         int j = -1;
-
-        System.out.println("i: " + i);
 
         if (player == 0) {
             switch (i) {
@@ -179,13 +156,70 @@ public class Game {
         return j;
     }
 
-    public int getMoveFromUser(){
+    private static int translateHint(int i, int player) { //de 0 a 5 para 1 a 6
+        int j = -1;
+
+        if(player == 0){
+            switch(i) {
+                case 5:
+                    j = 1;
+                    break;
+                case 4:
+                    j = 2;
+                    break;
+                case 3:
+                    j = 3;
+                    break;
+                case 2:
+                    j = 4;
+                    break;
+                case 1:
+                    j = 5;
+                    break;
+                case 0:
+                    j = 6;
+                    break;
+                default:
+                    System.out.println("input error");
+            }
+        }
+
+        if(player == 1){
+            switch(i) {
+                case 0:
+                    j = 1;
+                    break;
+                case 1:
+                    j = 2;
+                    break;
+                case 2:
+                    j = 3;
+                    break;
+                case 3:
+                    j = 4;
+                    break;
+                case 4:
+                    j = 5;
+                    break;
+                case 5:
+                    j = 6;
+                    break;
+            }
+        }
+        if(j == -1){
+            System.out.println("input error");
+        }
+
+        return j;
+    }
+
+    public int getMoveFromUser(int player){
         while(true){
             System.out.println("Hint?: (y/n)");
             String hint = in.next();
             if (hint.equals("y")) {
                 Minimax.constructTree(board);
-                int play = Minimax.getTreeBoardScores()[1];
+                int play = translateHint(Minimax.getTreeBoardScores()[1], player);
                 System.out.println("hint: " + play);
                 break;
             } else if (hint.equals("n")) {

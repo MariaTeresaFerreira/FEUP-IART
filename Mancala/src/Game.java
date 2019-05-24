@@ -34,7 +34,11 @@ public class Game {
         } else if (mode == 2) {
             humanVsAI();
         } else if (mode == 3) {
+            long startTime = System.nanoTime();
             aIVsAI();
+            long stopTime = System.nanoTime();
+            long elapsedTime = (stopTime - startTime)/1000;
+            System.out.println("Elapsed Time: " + (elapsedTime/1000.0) + " ms");
         } else
             System.out.println("error");
     }

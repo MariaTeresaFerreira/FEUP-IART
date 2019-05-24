@@ -5,7 +5,7 @@ import java.util.Vector;
 
 public class Minimax {
     public static Tree tree;
-    public static int depthMax = 7;
+    public static int depthMax = 1;
     public static int nodeCounter = 0;
     public static boolean alphaBeta = false;
 
@@ -26,7 +26,6 @@ public class Minimax {
                 Board newBoard = new Board(parent.board);
                 newBoard.move(possiblePlays.elementAt(i));
                 Node newNode = new Node(newBoard, parent.board.getActivePlayer(), possiblePlays.elementAt(i));
-                //nodeCounter++;
                 parent.addChild(newNode);
                 if(!newBoard.getGameOver()){
                     constructTree(newNode, depth+1);
@@ -60,27 +59,24 @@ public class Minimax {
                     currValue = getTreeBoardScores(child, alpha, beta);
                 }
 
-                if(currValue[0] > chosenValue){
+                if(currValue[0] >= chosenValue){
                     chosenValue = currValue[0];
                     bestPlay = child.lastMove;
                 }
 
                 //ALPHABETA - BEGIN
-
-
-
-                alpha = Math.max(alpha, chosenValue);
-                if(alpha <= beta){
-                    break;
+                if(alphaBeta){
+                    alpha = Math.max(alpha, chosenValue);
+                    if(alpha <= beta)
+                        break;
                 }
-
                 //ALPHABETA - END
 
             }
             sol[0] = chosenValue;
             sol[1] = bestPlay;
             return sol;
-        } else { //min
+        } else {                                      //min
             int chosenValue = Integer.MAX_VALUE;
             for(Node child : children){
                 int[] currValue = new int[2];
@@ -91,18 +87,17 @@ public class Minimax {
                     currValue = getTreeBoardScores(child, alpha, beta);
                 }
 
-                if(currValue[0] < chosenValue){
+                if(currValue[0] <= chosenValue){
                     chosenValue = currValue[0];
                     bestPlay = child.lastMove;
                 }
 
                 //ALPHABETA - BEGIN
-
-
-                beta = Math.max(beta, chosenValue);
-                if(beta <= alpha)
-                    break;
-
+                if(alphaBeta) {
+                    beta = Math.max(beta, chosenValue);
+                    if (beta <= alpha)
+                        break;
+                }
                 //ALPHABETA - END
 
             }

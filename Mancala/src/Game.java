@@ -18,7 +18,7 @@ public class Game {
         in = new Scanner(System.in);
     }
 
-    private void draw(){
+    private void draw() {
         /*for(int i = 0; i < 10; i++){
             System.out.println();
         }*/
@@ -27,33 +27,28 @@ public class Game {
 
     }
 
-    public void run() throws IOException {
+    public void run(int mode) throws IOException {
 
-        while(mode < 1 || mode > 3) {
-            System.out.println("Insert the mode of the game you want to play:");
-            System.out.println("1 for Human vs Human");
-            System.out.println("2 for Human vs AI");
-            System.out.println("3 for AI vs AI");
-
-            int mode = in.nextInt();
-
-            if (mode == 1) {
-                humanVsHuman();
-            } else if (mode == 2) {
-                humanVsAI();
-            } else if (mode == 3) {
-                aIVsAI();
-            }
-        }
+        System.out.println("mode: " + mode);
+        System.out.println("depth: " + Minimax.depthMax);
+        System.out.println("alpha beta: " + Minimax.alphaBeta);
+        if (mode == 1) {
+            humanVsHuman();
+        } else if (mode == 2) {
+            humanVsAI();
+        } else if (mode == 3) {
+            aIVsAI();
+        } else
+            System.out.println("error");
     }
 
     private void humanVsHuman() throws IOException {
 
-        while (!board.getGameOver()){
+        while (!board.getGameOver()) {
 
             this.draw();
 
-            System.out.println("Player " + (board.getActivePlayer() + 1 ) + ", Insert the column you want to play between 1 and 6:");
+            System.out.println("Player " + (board.getActivePlayer() + 1) + ", Insert the column you want to play between 1 and 6:");
             int mov = in.nextInt();
 
             board.move(translateInput(mov, board.getActivePlayer()));
@@ -62,7 +57,7 @@ public class Game {
 
     private void humanVsAI() throws IOException {
 
-        while (!board.getGameOver()){
+        while (!board.getGameOver()) {
 
             this.draw();
 
@@ -77,40 +72,30 @@ public class Game {
     private void aIVsAI() throws IOException {
 
         this.draw();
-        while (!board.getGameOver()){
+        while (!board.getGameOver()) {
 
             System.out.println("\n");
 
             Minimax.constructTree(board);
-            int score = Minimax.getTreeBoardScores()[0];
             int play = Minimax.getTreeBoardScores()[1];
-
-            /*
-            System.out.println("active player: " + board.getActivePlayer());
-            System.out.println("chosen play: " + play);
-            System.out.println("board score: " + score);
-            Vector<Integer> possiblePlays = board.getValidMoves();
-
-            System.out.print("valid moves: ");
-
-            for(int i = 0; i < possiblePlays.size(); i++){
-                System.out.print(possiblePlays.get(i) + " -> ");
-            }
-            System.out.print("\n");*/
 
             board.move(play);
 
+            System.out.println("Active player: " + (board.getActivePlayer() + 1));
+            System.out.println("Move: " + play);
+
             board.draw();
+
 
         }
 
-        if(board.getBoardScore() < 0){
+        if (board.getBoardScore() < 0) {
             System.out.println("Player 2 won!");
-        }else if(board.getBoardScore() > 0){
+        } else if (board.getBoardScore() > 0) {
             System.out.println("Player 1 won!");
-        }else if(board.getBoardScore() == 0){
+        } else if (board.getBoardScore() == 0) {
             System.out.println("Its a tie!");
-        }else{
+        } else {
             System.out.println("Error");
         }
 
@@ -122,8 +107,8 @@ public class Game {
 
         System.out.println("i: " + i);
 
-        if(player == 0){
-            switch(i) {
+        if (player == 0) {
+            switch (i) {
                 case 1:
                     j = 5;
                     break;
@@ -147,8 +132,8 @@ public class Game {
             }
         }
 
-        if(player == 1){
-            switch(i) {
+        if (player == 1) {
+            switch (i) {
                 case 1:
                     j = 0;
                     break;
@@ -169,7 +154,7 @@ public class Game {
                     break;
             }
         }
-        if(j == -1){
+        if (j == -1) {
             System.out.println("input error");
         }
 

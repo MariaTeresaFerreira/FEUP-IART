@@ -68,7 +68,7 @@ public class Game {
             }else{
                 move = getMoveFromAI();
                 board.move(translateInput(move, board.getActivePlayer()));
-                System.out.println("Move: " + move);
+                System.out.println("\nMove: " + move);
             }
 
 
@@ -85,7 +85,7 @@ public class Game {
 
             board.move(play);
 
-            System.out.println("Active player: " + (board.getActivePlayer() + 1));
+            System.out.println("\nActive player: " + (board.getActivePlayer() + 1));
             System.out.println("Move: " + play);
 
             board.draw();
@@ -102,7 +102,7 @@ public class Game {
             System.out.println("Error");
         }
 
-        System.out.println("node number: " + Minimax.nodeCounter);
+        System.out.println("\nNode number: " + Minimax.nodeCounter);
     }
 
     private int translateInput(int i, int player) { //de 1 a 6 para 0 a 5
@@ -222,7 +222,7 @@ public class Game {
     public int getMoveFromUser(int player){
         String input;
         while(true){
-            System.out.println("Player " + (board.getActivePlayer() + 1) + ", Insert the column you want to play between 1 and 6 (or h for help):");
+            System.out.println("Player " + (board.getActivePlayer() + 1) + ", Insert the column you want to play between 1 and 6 (or h for hint):");
             input = in.next();
             if (input.equals("h")) {
                 Minimax.constructTree(board);

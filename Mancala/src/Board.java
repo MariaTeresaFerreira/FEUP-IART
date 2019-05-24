@@ -70,8 +70,6 @@ public class Board {
 
     public void draw(){
 
-        //System.out.println();
-
         for (int i = N_PITS - 1; i >= 0; i--){
             if(pits[0][i] < 10)
                 System.out.print("  ");
@@ -208,12 +206,6 @@ public class Board {
             mancalas[side] += pits[side][i];
             pits[side][i] = 0;
         }
-
-        /*this.draw();
-        if(this.mancalas[0] > this.mancalas[1])
-            System.out.println("Player 1 Won");
-        else
-            System.out.println("Player 2 Won");*/
     }
 
     private void checkEmpty() {

@@ -47,6 +47,21 @@ public class Game {
         while (!board.getGameOver()) {
 
             this.draw();
+            while(true){
+                System.out.println("Hint?: (y/n)");
+                String hint = in.next();
+                if (hint.equals("y")) {
+                    Minimax.constructTree(board);
+                    int play = Minimax.getTreeBoardScores()[1];
+                    System.out.println("hint: " + play);
+                    break;
+                } else if (hint.equals("n")) {
+                    break;
+                } else
+                    System.out.println("Please enter a valid option");
+            }
+
+
 
             System.out.println("Player " + (board.getActivePlayer() + 1) + ", Insert the column you want to play between 1 and 6:");
             int mov = in.nextInt();

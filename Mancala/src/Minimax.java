@@ -5,7 +5,7 @@ import java.util.Vector;
 
 public class Minimax {
     public static Tree tree;
-    public static int depthMax = 1;
+    public static int depthMax = 5;
     public static int nodeCounter = 0;
     public static boolean alphaBeta = false;
 

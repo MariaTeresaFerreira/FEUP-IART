@@ -8,7 +8,7 @@ public class Main {
         while(true) {
             Scanner in = new Scanner(System.in);
             String modeInput;
-            int mode = -1;
+            int mode;
 
 
             while (true) {

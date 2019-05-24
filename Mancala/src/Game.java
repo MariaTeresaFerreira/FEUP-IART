@@ -72,16 +72,20 @@ public class Game {
 
     private void humanVsAI() throws IOException {
 
-        this.draw();
+        int move;
+
         while (!board.getGameOver()) {
-
             this.draw();
 
-            //move(column);
+            if(board.getActivePlayer() == 0){ // HUMAN PLAY
+                move = getMoveFromUser();
 
-            this.draw();
+            }else{
+                move = getMoveFromAI();
+            }
+            board.move(translateInput(move, board.getActivePlayer()));
 
-            //AI move
+
         }
     }
 
@@ -89,8 +93,6 @@ public class Game {
 
         this.draw();
         while (!board.getGameOver()) {
-
-            System.out.println("\n");
 
             Minimax.constructTree(board);
             int play = Minimax.getTreeBoardScores()[1];
@@ -175,5 +177,33 @@ public class Game {
         }
 
         return j;
+    }
+
+    public int getMoveFromUser(){
+        while(true){
+            System.out.println("Hint?: (y/n)");
+            String hint = in.next();
+            if (hint.equals("y")) {
+                Minimax.constructTree(board);
+                int play = Minimax.getTreeBoardScores()[1];
+                System.out.println("hint: " + play);
+                break;
+            } else if (hint.equals("n")) {
+                break;
+            } else
+                System.out.println("Please enter a valid option");
+        }
+
+        System.out.println("Player " + (board.getActivePlayer() + 1) + ", Insert the column you want to play between 1 and 6:");
+        int mov = in.nextInt();
+
+
+        return mov;
+    }
+
+    public int getMoveFromAI(){
+        Minimax.constructTree(board);
+        int play = Minimax.getTreeBoardScores()[1];
+        return play;
     }
 }

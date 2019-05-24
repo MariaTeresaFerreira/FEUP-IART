@@ -110,8 +110,6 @@ public class Minimax {
     private static int translateInput(int i, int player) { //de 0 a 5 para 1 a 6
         int j = -1;
 
-        System.out.println("i: " + i);
-
         if(player == 0){
             switch(i) {
                 case 5:

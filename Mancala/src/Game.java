@@ -216,25 +216,21 @@ public class Game {
     }
 
     public int getMoveFromUser(int player){
+        String input;
         while(true){
-            System.out.println("Hint?: (y/n)");
-            String hint = in.next();
-            if (hint.equals("y")) {
+            System.out.println("Player " + (board.getActivePlayer() + 1) + ", Insert the column you want to play between 1 and 6 (or h for help):");
+            input = in.next();
+            if (input.equals("h")) {
                 Minimax.constructTree(board);
                 int play = translateHint(Minimax.getTreeBoardScores()[1], player);
                 System.out.println("Hint: " + play);
-                break;
-            } else if (hint.equals("n")) {
+            } else if (input.equals("1") || input.equals("2") || input.equals("3") || input.equals("4") || input.equals("5") || input.equals("6")) {
                 break;
             } else
                 System.out.println("Please enter a valid option");
         }
 
-        System.out.println("Player " + (board.getActivePlayer() + 1) + ", Insert the column you want to play between 1 and 6:");
-        int mov = in.nextInt();
-
-
-        return mov;
+        return Integer.parseInt(input);
     }
 
     public int getMoveFromAI(){

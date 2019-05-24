@@ -17,13 +17,15 @@ public class Main {
                 System.out.println("2 for Human vs AI");
                 System.out.println("3 for AI vs AI");
                 modeInput = in.next();
-                if (modeInput.equals("1") || modeInput.equals("2") || modeInput.equals("3"))
+                if (modeInput.equals("1") || modeInput.equals("2") || modeInput.equals("3")){
+                    mode = Integer.parseInt(modeInput);
+                    System.out.println("mode teste: " + mode);
                     break;
-                else
+                } else
                     System.out.println("Please enter a valid option");
             }
 
-            mode = Integer.parseInt(modeInput);
+
 
             if (mode != 1) {
                 while (true) {
@@ -44,7 +46,6 @@ public class Main {
                     } else
                         System.out.println("Please enter a valid option");
                 }
-                mode = Integer.parseInt(modeInput);
 
                 while (true) {
                     System.out.println("Do you want Minimax with alpha beta pruning?: (y/n)");

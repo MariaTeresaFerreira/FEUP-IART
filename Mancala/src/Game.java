@@ -72,6 +72,7 @@ public class Game {
 
     private void humanVsAI() throws IOException {
 
+        this.draw();
         while (!board.getGameOver()) {
 
             this.draw();

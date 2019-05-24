@@ -77,6 +77,7 @@ public class Game {
     }
 
     private void aIVsAI() throws IOException {
+        int playsCount = 0;
 
         this.draw();
         while (!board.getGameOver()) {
@@ -84,9 +85,10 @@ public class Game {
             int play = getMoveFromAI();
 
             board.move(play);
+            playsCount++;
 
             System.out.println("\nActive player: " + (board.getActivePlayer() + 1));
-            System.out.println("Move: " + play);
+            System.out.println("Move: " + translateHint(play, board.getActivePlayer()));
 
             board.draw();
 
@@ -103,6 +105,9 @@ public class Game {
         }
 
         System.out.println("\nNode number: " + Minimax.nodeCounter);
+        System.out.println("Solution cost: " + playsCount);
+
+        Minimax.nodeCounter = 0;
     }
 
     private int translateInput(int i, int player) { //de 1 a 6 para 0 a 5

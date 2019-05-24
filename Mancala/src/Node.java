@@ -6,7 +6,6 @@ public class Node {
     public int lastPlayer; //parent player
     public int lastMove;
     public int boardScore;
-    public boolean isRoot;
     public Vector<Node> children;
     public int inheritedScore;
 
@@ -16,7 +15,6 @@ public class Node {
         this.lastPlayer = -1;
         this.lastMove = -1;
         this.boardScore = this.board.getBoardScore();
-        this.isRoot = true;
         this.inheritedScore = -1;
 
     }
@@ -27,7 +25,6 @@ public class Node {
         this.lastPlayer = lastPlayer;
         this.lastMove = lastMove;
         this.boardScore = this.board.getBoardScore();
-        this.isRoot = false;
         this.inheritedScore = -1;
 
     }

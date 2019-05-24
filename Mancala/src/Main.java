@@ -65,7 +65,7 @@ public class Main {
             game.run(mode);
 
             while (true) {
-                System.out.println("exit?: (y/n)");
+                System.out.println("Exit?: (y/n)");
                 modeInput = in.next();
                 if (modeInput.equals("y")) {
                     return;

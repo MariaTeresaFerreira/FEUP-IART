@@ -59,11 +59,14 @@ public class Game {
 
             if(board.getActivePlayer() == 0){ // HUMAN PLAY
                 move = getMoveFromUser(0);
+                board.move(translateInput(move, board.getActivePlayer()));
 
             }else{
                 move = getMoveFromAI();
+                board.move(translateInput(move, board.getActivePlayer()));
+                System.out.println("Move: " + move);
             }
-            board.move(translateInput(move, board.getActivePlayer()));
+
 
 
         }
@@ -82,7 +85,6 @@ public class Game {
             System.out.println("Move: " + play);
 
             board.draw();
-
 
         }
 
@@ -220,7 +222,7 @@ public class Game {
             if (hint.equals("y")) {
                 Minimax.constructTree(board);
                 int play = translateHint(Minimax.getTreeBoardScores()[1], player);
-                System.out.println("hint: " + play);
+                System.out.println("Hint: " + play);
                 break;
             } else if (hint.equals("n")) {
                 break;
